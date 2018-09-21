@@ -11,7 +11,7 @@ function chawa_display_wallet() {
 		
 			<p class="warning">
 				<?php _e('You must be'); ?>
-				<a href="<?php wp_login_url( get_permalink() ); ?>" title="<?php _e('Log in'); ?>"><?php _e('logged in'); ?></a> 
+				<a href="<?php echo wp_login_url( get_permalink() ); ?>" title="<?php _e('Log in'); ?>"><?php _e('logged in'); ?></a> 
 				<?php _e('to access your wallet.', 'chawa'); ?>
 			</p>
 	
