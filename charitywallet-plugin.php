@@ -17,3 +17,5 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+require 'shortcode-wallet.php';
