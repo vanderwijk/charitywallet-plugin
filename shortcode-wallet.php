@@ -10,9 +10,9 @@ function chawa_display_wallet() {
 			ob_start(); ?>
 		
 			<p class="warning">
-				<?php __('You must be'); ?>
-				<a href="<?php wp_login_url( get_permalink() ); ?>" title="Log in">logged in</a> 
-				<?php __('to access your wallet.', 'chawa'); ?>
+				<?php _e('You must be'); ?>
+				<a href="<?php wp_login_url( get_permalink() ); ?>" title="<?php _e('Log in'); ?>"><?php _e('logged in'); ?></a> 
+				<?php _e('to access your wallet.', 'chawa'); ?>
 			</p>
 	
 			<?php return ob_get_clean();
