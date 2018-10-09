@@ -19,3 +19,4 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 require 'shortcode-wallet.php';
+

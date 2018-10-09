@@ -1,4 +1,7 @@
 <?php 
+
+require 'vendor/autoload.php';
+
 function chawa_display_wallet() {
 
 	if ( is_user_logged_in() ) { 
