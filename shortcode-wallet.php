@@ -9,6 +9,20 @@ function chawa_display_wallet() {
 			ob_start(); ?>
 
 			<link rel="stylesheet" href="/wp-content/plugins/charitywallet-plugin/style.css" />
+
+			<script>
+			jQuery(document).ready(function($) {
+				$('#top-up-form').submit(function(event) {
+					event.preventDefault();
+					window.location.href = "https://www.mollie.com/paymentscreen/issuer/select/ideal/DwSjwqCVy3";
+				});
+
+				$( "#other-amount" ).focus(function() {
+					$('input[name="top-up-amount"]').prop('checked', false);
+				});
+
+			});
+			</script>
 			
 			<div class="top-up-modal">
 				<button type="button" aria-label="<?php _e('Close','chawa'); ?>" class="close-modal">
@@ -20,7 +34,7 @@ function chawa_display_wallet() {
 				<header><h1><?php _e('Top up your wallet','chawa'); ?></h1></header>
 				<section>
 					<p><?php _e('Choose your monthly amount','chawa'); ?>:</p>
-					<form novalidate="novalidate" class="top-up-form">
+					<form novalidate="novalidate" class="top-up-form" id="top-up-form">
 						<ul class="choose-amount">
 							<li>
 								<input id="top-up-1000" type="radio" name="top-up-amount" value="1000">
