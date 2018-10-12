@@ -9,7 +9,7 @@
  * Author URI:        https://thewebworks.nl
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       charitywallet-plugin
+ * Text Domain:       chawa
  * Domain Path:       /languages
  */
 
@@ -19,4 +19,9 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 require 'shortcode-wallet.php';
+
+function chawa_load_textdomain() {
+	load_plugin_textdomain( 'chawa', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
+}
+add_action( 'init', 'chawa_load_textdomain' );
 
