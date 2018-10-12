@@ -68,9 +68,14 @@ button.close-modal svg {
 	font-weight: 700;
 	
 }
+.top-up-modal ul li label:active {
+	position: relative;
+	top: 1px;
+}
 .top-up-modal ul li input[type=radio]:checked+label {
 	background-image: none;
 	color: #fff;
+	background-image: linear-gradient(to top,rgba(	254, 72, 58, 1) 0,rgba(255,255,255,.2) 100%);
 }
 form label[for=other-amount] {
 	display: block;
