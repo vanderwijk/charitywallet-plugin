@@ -31,7 +31,7 @@ function chawa_display_wallet() {
 						<line x1="1" y1="1" x2="11" y2="11" stroke="black" stroke-width="2"/>
 					</svg>
 				</button>
-				<header><h1><?php _e('Top up your wallet','chawa'); ?></h1></header>
+				<header><h1><?php _e('Add funds to your wallet','chawa'); ?></h1></header>
 				<section>
 					<p><?php _e('Choose your monthly amount','chawa'); ?>:</p>
 					<form novalidate="novalidate" class="top-up-form" id="top-up-form">
@@ -55,7 +55,7 @@ function chawa_display_wallet() {
 							<?php _e('Payment','chawa'); ?>
 						</button>
 					</form>
-					<p><small>Let op, bedragen zijn exclusief 50 cent transactiekosten per maand.</small></p>
+					<p><small>*bedragen zijn exclusief 50 cent transactiekosten per maand.</small></p>
 				</section>
 			</div>
 			

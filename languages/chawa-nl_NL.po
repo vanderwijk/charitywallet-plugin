@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2018-10-12 15:05+0200\n"
-"PO-Revision-Date: 2018-10-12 15:11+0200\n"
+"POT-Creation-Date: 2018-10-12 16:24+0200\n"
+"PO-Revision-Date: 2018-10-12 16:25+0200\n"
 "Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -21,43 +21,43 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: shortcode-wallet.php:14
+#: shortcode-wallet.php:28
 msgid "Close"
 msgstr "Sluiten"
 
-#: shortcode-wallet.php:20
-msgid "Top up your wallet"
-msgstr "Wallet opwaarderen"
+#: shortcode-wallet.php:34
+msgid "Add funds to your wallet"
+msgstr "Wallet saldo aanvullen"
 
-#: shortcode-wallet.php:22
+#: shortcode-wallet.php:36
 msgid "Choose your monthly amount"
 msgstr "Kies je maandbedrag"
 
-#: shortcode-wallet.php:38
+#: shortcode-wallet.php:52
 msgid "Other amount"
 msgstr "Ander bedrag"
 
-#: shortcode-wallet.php:39
+#: shortcode-wallet.php:53
 msgid "Type your amount"
 msgstr "Typ het te betalen bedrag"
 
-#: shortcode-wallet.php:41
+#: shortcode-wallet.php:55
 msgid "Payment"
 msgstr "Betaling"
 
-#: shortcode-wallet.php:52
+#: shortcode-wallet.php:67
 msgid "You must be"
 msgstr "Je moet"
 
-#: shortcode-wallet.php:53
+#: shortcode-wallet.php:68
 msgid "Log in"
 msgstr "Inloggen"
 
-#: shortcode-wallet.php:53
+#: shortcode-wallet.php:68
 msgid "logged in"
 msgstr "ingelogd zijn"
 
-#: shortcode-wallet.php:54
+#: shortcode-wallet.php:69
 msgid "to access your wallet."
 msgstr "voor toegang tot je wallet."
 
