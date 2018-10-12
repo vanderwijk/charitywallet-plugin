@@ -55,6 +55,7 @@ function chawa_display_wallet() {
 							<?php _e('Payment','chawa'); ?>
 						</button>
 					</form>
+					<p><small>Let op, bedragen zijn exclusief 50 cent transactiekosten per maand.</small></p>
 				</section>
 			</div>
 			
