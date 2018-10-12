@@ -33,7 +33,7 @@ function chawa_display_wallet() {
 				</button>
 				<header><h1><?php _e('Add funds to your wallet','chawa'); ?></h1></header>
 				<section>
-					<p><?php _e('Choose amount','chawa'); ?>:</p>
+					<p><?php _e('Choose your amount','chawa'); ?>:</p>
 					<form novalidate="novalidate" class="top-up-form" id="top-up-form">
 						<ul class="choose-amount">
 							<li>
