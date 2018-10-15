@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2018-10-12 16:30+0200\n"
-"PO-Revision-Date: 2018-10-12 16:30+0200\n"
+"POT-Creation-Date: 2018-10-12 17:08+0200\n"
+"PO-Revision-Date: 2018-10-12 17:08+0200\n"
 "Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -42,8 +42,8 @@ msgid "Type your amount"
 msgstr "Typ het te betalen bedrag"
 
 #: shortcode-wallet.php:55
-msgid "Payment"
-msgstr "Betaling"
+msgid "Pay"
+msgstr "Betalen"
 
 #: shortcode-wallet.php:67
 msgid "You must be"

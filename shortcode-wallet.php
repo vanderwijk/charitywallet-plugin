@@ -52,7 +52,7 @@ function chawa_display_wallet() {
 						<label for="other-amount"><?php _e('Other amount','chawa'); ?></label>
 						<input type="number" id="other-amount" placeholder="<?php _e('Type your amount','chawa'); ?>">
 						<button type="submit" class="button-primary">
-							<?php _e('Payment','chawa'); ?>
+							<?php _e('Pay','chawa'); ?>
 						</button>
 					</form>
 					<p><small>*bedragen zijn exclusief 44 cent transactiekosten.</small></p>
