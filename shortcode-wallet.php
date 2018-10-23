@@ -82,16 +82,17 @@ function chawa_display_wallet() {
 				$hostname = $_SERVER['HTTP_HOST'];
 				$path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
 
+				// Use either input or radio value
 				if(!isset($_POST['top-up-amount'])) {
 					$amount = ($_POST["amount"]);
 				} else {
 					$amount = ($_POST["top-up-amount"]);
 				}
 
-				$amount = number_format($amount, 2, '.', ' ');
-				print_r($amount);
-				// test
-				exit;
+				$amount = number_format($amount, 2, '.', ' '); // Add two decimals
+				$amount = $amount + 0.44; // Fixed transaction costs
+				settype($amount, "string"); // Convert to string for Mollie API
+
 				/*
 				* Payment parameters:
 				*   amount        Amount in EUROs. This example creates a € 27.50 payment.
