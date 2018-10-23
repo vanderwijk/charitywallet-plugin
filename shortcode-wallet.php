@@ -109,7 +109,7 @@ function chawa_display_wallet() {
 						"value" => $amount // You must send the correct number of decimals, thus we enforce the use of strings
 					],
 					"method" => \Mollie\Api\Types\PaymentMethod::IDEAL,
-					"description" => 'Wallet' . __('Transaction','chawa') . '#{$orderId}',
+					"description" => 'Wallet ' . __('Transaction','chawa') . ' #{$orderId}',
 					"redirectUrl" => "{$protocol}://{$hostname}{$path}/payments/return.php?order_id={$orderId}",
 					"webhookUrl" => "{$protocol}://{$hostname}{$path}/payments/webhook.php",
 					"metadata" => [
