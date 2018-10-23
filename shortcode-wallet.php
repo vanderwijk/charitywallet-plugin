@@ -82,13 +82,13 @@ function chawa_display_wallet() {
 				$hostname = $_SERVER['HTTP_HOST'];
 				$path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
 
-				if (!isset($_POST["amount"])) {
+				if(!isset($_POST['top-up-amount'])) {
 					$amount = ($_POST["amount"]);
 				} else {
 					$amount = ($_POST["top-up-amount"]);
 				}
 
-				$amount = number_format($amount, 2, '.', ' ');
+				//$amount = number_format($amount, 2, '.', ' ');
 				print_r($amount);
 				exit;
 				/*
