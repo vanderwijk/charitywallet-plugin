@@ -84,6 +84,8 @@ function chawa_display_wallet() {
 				$path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
 				$amount = $_POST["post-amount"];
 				$amount = number_format($amount, 2, '.', ' ');
+				print_r($amount);
+				exit;
 				/*
 				* Payment parameters:
 				*   amount        Amount in EUROs. This example creates a € 27.50 payment.
