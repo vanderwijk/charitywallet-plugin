@@ -67,7 +67,6 @@ function chawa_display_wallet() {
 							}
 							echo '</select>';
 						?>
-						<input type="hidden" id="post-amount" />
 						<button type="submit" class="button-primary">
 							<?php _e('Complete payment','chawa'); ?>
 						</button>
@@ -82,7 +81,13 @@ function chawa_display_wallet() {
 				$protocol = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
 				$hostname = $_SERVER['HTTP_HOST'];
 				$path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
-				$amount = $_POST["post-amount"];
+
+				if (!empty($_POST["amount"])) {
+					$amount = ($_POST["amount"]);
+				} else {
+					$amount = ($_POST["top-up-amount"]);
+				}
+
 				$amount = number_format($amount, 2, '.', ' ');
 				print_r($amount);
 				exit;

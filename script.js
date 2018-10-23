@@ -38,7 +38,6 @@ jQuery(document).ready(function ($) {
 			$('#amount').removeClass('error');
 		}
 
-		$('#post-amount').val(amount);
 		$('#pay-amount').html(amount);
 
 		$('.step-1').hide();
