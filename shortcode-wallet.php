@@ -88,8 +88,9 @@ function chawa_display_wallet() {
 					$amount = ($_POST["top-up-amount"]);
 				}
 
-				//$amount = number_format($amount, 2, '.', ' ');
+				$amount = number_format($amount, 2, '.', ' ');
 				print_r($amount);
+				// test
 				exit;
 				/*
 				* Payment parameters:
