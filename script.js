@@ -43,7 +43,6 @@ jQuery(document).ready(function ($) {
 		$('.step-1').hide();
 		$('.step-2').show();
 
-		console.log(amount);
 	});
 
 });
