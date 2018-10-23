@@ -31,15 +31,15 @@ function chawa_display_wallet() {
 						<p><label><?php _e('Other amount','chawa'); ?>:</label></p>
 						<ul class="choose-amount">
 							<li>
-								<input id="top-up-1000" type="radio" name="top-up-amount" value="10.00">
+								<input id="top-up-1000" type="radio" name="top-up-amount" value="10">
 								<label for="top-up-1000">&euro; 10</label>
 							</li>
 							<li>
-								<input id="top-up-2000" type="radio" name="top-up-amount" value="20.00">
+								<input id="top-up-2000" type="radio" name="top-up-amount" value="20">
 								<label for="top-up-2000">&euro; 20</label>
 							</li>
 							<li>
-								<input id="top-up-5000" type="radio" name="top-up-amount" value="50.00">
+								<input id="top-up-5000" type="radio" name="top-up-amount" value="50">
 								<label for="top-up-5000">&euro; 50</label>
 							</li>
 						</ul>
@@ -82,6 +82,8 @@ function chawa_display_wallet() {
 				$protocol = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
 				$hostname = $_SERVER['HTTP_HOST'];
 				$path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
+				$amount = $_POST["post-amount"];
+				$amount = number_format($amount, 2, '.', ' ');
 				/*
 				* Payment parameters:
 				*   amount        Amount in EUROs. This example creates a € 27.50 payment.
@@ -95,7 +97,7 @@ function chawa_display_wallet() {
 				$payment = $mollie->payments->create([
 					"amount" => [
 						"currency" => "EUR",
-						"value" => (string)$_POST["post-amount"] // You must send the correct number of decimals, thus we enforce the use of strings
+						"value" => $amount // You must send the correct number of decimals, thus we enforce the use of strings
 					],
 					"method" => \Mollie\Api\Types\PaymentMethod::IDEAL,
 					"description" => "Order #{$orderId}",
