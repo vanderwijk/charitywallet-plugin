@@ -1,7 +1,21 @@
+.palette {
+	color: #4eb4d9;
+	color: #abb6d1;
+	color: #78b5be;
+	color: #93d8d4;
+	color: #8fd1c1;
+	color: #e6f1d6;
+}
 .top-up-modal {
 	border-radius: 3px;
 	background-color: #f2f2f2;
 	position: relative;
+}
+.top-up-modal .step-1 {
+	display: block;
+}
+.top-up-modal .step-2 {
+	display: none;	
 }
 .top-up-modal header,
 .top-up-modal section {
@@ -37,9 +51,29 @@ button.close-modal svg {
 	display: flex;
 	flex-wrap: wrap;
 }
+
 .top-up-modal p {
-	font-weight: 600;
-	margin-bottom: 10px;
+	font-weight: 400;
+	margin-bottom: 20px;
+}
+.top-up-modal input[type=number],
+.top-up-modal select {
+	margin-bottom: 20px;
+	color: #000;
+	border-color: #bdc3c7;
+	border-radius: 2px;
+	font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 400;
+	font-size: 20px;
+}
+.top-up-modal input[type=checkbox] {
+
+	color: #000;
+	border-color: #8fd1c1;
+	border-radius: 2px;
+}
+.top-up-modal input[type=number]::placeholder {
+	color: #bdc3c7;
 }
 .top-up-modal ul li {
 	flex: 1 0 auto;
@@ -57,39 +91,53 @@ button.close-modal svg {
 }
 .top-up-modal ul li label {
 	color: #f7f7f7;
-    border: 1px solid #FE6C61;
 	background-color: #FE6C61;
+
+	background-color: #8fd1c1;
+	background-color: #abb6d1;
+	background-color: #bdc3c7;
+
 	border-radius: 5px;
 	padding: 8px 25px;
 	width: 100%;
 	text-align: center;
 	cursor: pointer;
-	background-image: linear-gradient(to bottom,rgba(255,255,255,.2) 0,rgba(255,255,255,.01) 100%);
-	font-weight: 700;
-	
+	font-weight: 600;
 }
 .top-up-modal ul li label:active {
 	position: relative;
 	top: 1px;
 }
 .top-up-modal ul li input[type=radio]:checked+label {
-	background-image: none;
+	background-color: #FE6C61;
+	background-color: #abb6d1;
+	background-color: #8fd1c1;
 	color: #fff;
-	background-image: linear-gradient(to top,rgba(	254, 72, 58, 1) 0,rgba(255,255,255,.2) 100%);
 }
-form label[for=other-amount] {
-	display: block;
-	margin-bottom: 10px;
+form label[for=amount] {
+	display: none;
 }
-#other-amount {
+#amount {
 	background-size: contain;
 	background-position-x: 10px;
-	background-position-y: 18px;
+	background-position-y: 20px;
 	padding-left: 28px;
 	background-repeat: no-repeat;
 	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 938 1250"><path stroke="none" d="m 224.99996,16.22698 -8.11342,36.41161 q -24.14255,-19.78892 -54.61741,-19.78892 -41.3588,0 -65.00658,23.74671 -23.647774,23.7467 -28.397115,53.23215 l 134.960355,0 -5.14505,26.71508 -132.981532,0 -0.395848,7.71771 0.395848,18.20566 127.242642,0 -5.14505,26.71508 -117.941954,0 q 7.519719,40.17154 32.552754,59.06997 25.03303,18.89844 56.49745,18.89844 37.20302,0 57.98149,-19.59107 l 0,40.9631 Q 192.34828,300 162.26913,300 53.034301,300 30.474864,189.18206 l -30.474864,0 5.738751,-26.71508 20.580475,0 q -0.395708,-4.74934 -0.395708,-17.80995 l 0,-8.11342 -25.923518,0 5.738751,-26.71508 23.152999,0 Q 39.181988,55.21112 76.583149,27.60556 113.98417,0 163.06069,0 199.868,0 224.99996,16.22698 z" /></svg>');
+	width: 100%;
 }
-.top-up-modal button[type=submit] {
-	float: right;
+.top-up-modal .button-primary {
+	margin-left: auto;
+	display: block;
 	padding: 10px 20px;
+}
+
+.pretty input:checked~.state.p-primary-o label:before, .pretty.p-toggle .state.p-primary-o label:before {
+	border-color: #8fd1c1;
+}
+.pretty.p-default:not(.p-fill) input:checked~.state.p-primary-o label:after {
+	background-color: #8fd1c1!important;
+}
+.pretty.p-default:not(.p-fill) input:checked~.state.p-primary-o label {
+	font-weight: 600;
 }
