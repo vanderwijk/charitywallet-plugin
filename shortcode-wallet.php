@@ -95,7 +95,7 @@ function chawa_display_wallet() {
 				$payment = $mollie->payments->create([
 					"amount" => [
 						"currency" => "EUR",
-						"value" => '"' . $_POST["post-amount"] . '"'// You must send the correct number of decimals, thus we enforce the use of strings
+						"value" => (string)$_POST["post-amount"] // You must send the correct number of decimals, thus we enforce the use of strings
 					],
 					"method" => \Mollie\Api\Types\PaymentMethod::IDEAL,
 					"description" => "Order #{$orderId}",
