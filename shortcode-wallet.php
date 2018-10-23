@@ -48,7 +48,7 @@ function chawa_display_wallet() {
 						</button>
 					</section>
 					<section class="step-2">
-						<p><?php _e('Please add','chawa'); ?> &euro;<span id="pay-amount"></span>* <?php _e('to my wallet.','chawa'); ?> <a href="#" id="change-amount"><?php _e('Change amount','chawa'); ?></a> </p>
+						<p><?php _e('Please add','chawa'); ?> &euro;<span id="pay-amount"></span>* <?php _e('to my wallet','chawa'); ?> <a href="#" id="change-amount"><?php _e('change amount','chawa'); ?></a> </p>
 						<p>
 							<div class="pretty p-default p-curve p-smooth">
 								<input type="checkbox" value="monthly" />
@@ -60,13 +60,14 @@ function chawa_display_wallet() {
 						<label for="issuer"><?php _e('Choose your bank','chawa'); ?></label>
 						<?php
 							$method = $mollie->methods->get(\Mollie\Api\Types\PaymentMethod::IDEAL, ["include" => "issuers"]);
-							echo '<select name="issuer">';
-							echo '<option>' . __('Choose your bank','chawa') . '</option>';
+							echo '<select name="issuer" id="issuer">';
+							echo '<option value="">' . __('Choose your bank','chawa') . '</option>';
 							foreach ($method->issuers() as $issuer) {
-								echo '<option value=' . htmlspecialchars($issuer->id) . '>' . htmlspecialchars($issuer->name) . '</option>';
+								echo '<option value="' . htmlspecialchars($issuer->id) . '">' . htmlspecialchars($issuer->name) . '</option>';
 							}
 							echo '</select>';
 						?>
+						<input type="hidden" id="post-amount" />
 						<button type="submit" class="button-primary">
 							<?php _e('Complete payment','chawa'); ?>
 						</button>
@@ -94,7 +95,7 @@ function chawa_display_wallet() {
 				$payment = $mollie->payments->create([
 					"amount" => [
 						"currency" => "EUR",
-						"value" => "27.50" // You must send the correct number of decimals, thus we enforce the use of strings
+						"value" => '"' . $_POST["post-amount"] . '"'// You must send the correct number of decimals, thus we enforce the use of strings
 					],
 					"method" => \Mollie\Api\Types\PaymentMethod::IDEAL,
 					"description" => "Order #{$orderId}",

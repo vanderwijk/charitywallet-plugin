@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2018-10-23 10:13+0200\n"
-"PO-Revision-Date: 2018-10-23 10:13+0200\n"
+"POT-Creation-Date: 2018-10-23 13:17+0200\n"
+"PO-Revision-Date: 2018-10-23 13:18+0200\n"
 "Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -21,67 +21,67 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: shortcode-wallet.php:55
+#: shortcode-wallet.php:19
 msgid "Close"
 msgstr "Sluiten"
 
-#: shortcode-wallet.php:61
+#: shortcode-wallet.php:25
 msgid "Add funds to your wallet"
-msgstr "Saldo wallet aanvullen"
+msgstr "Walletsaldo aanvullen"
 
-#: shortcode-wallet.php:64 shortcode-wallet.php:65
+#: shortcode-wallet.php:29 shortcode-wallet.php:30
 msgid "Amount"
 msgstr "Bedrag"
 
-#: shortcode-wallet.php:66
+#: shortcode-wallet.php:31
 msgid "Other amount"
 msgstr "Ander bedrag"
 
-#: shortcode-wallet.php:82
+#: shortcode-wallet.php:47
 msgid "Pay"
 msgstr "Betalen"
 
-#: shortcode-wallet.php:86
+#: shortcode-wallet.php:51
 msgid "Please add"
 msgstr "Voeg"
 
-#: shortcode-wallet.php:86
-msgid "to my wallet."
-msgstr "toe aan mijn wallet."
+#: shortcode-wallet.php:51
+msgid "to my wallet"
+msgstr "toe aan mijn wallet"
 
-#: shortcode-wallet.php:86
-msgid "Change amount"
-msgstr "Wijzig bedrag"
+#: shortcode-wallet.php:51
+msgid "change amount"
+msgstr "wijzig bedrag"
 
-#: shortcode-wallet.php:91
+#: shortcode-wallet.php:56
 msgid "Please repeat this transaction every month."
 msgstr "Herhaal deze transactie elke maand."
 
-#: shortcode-wallet.php:95
+#: shortcode-wallet.php:60 shortcode-wallet.php:64
 msgid "Choose your bank"
 msgstr "Kies je bank"
 
-#: shortcode-wallet.php:111
+#: shortcode-wallet.php:71
 msgid "Complete payment"
 msgstr "Voltooi betaling"
 
-#: shortcode-wallet.php:114
+#: shortcode-wallet.php:73
 msgid "44 cent transaction costs will be added"
 msgstr "44 cent transactiekosten zullen worden toegevoegd"
 
-#: shortcode-wallet.php:124
+#: shortcode-wallet.php:128
 msgid "You must be"
 msgstr "Je moet"
 
-#: shortcode-wallet.php:125
+#: shortcode-wallet.php:129
 msgid "Log in"
 msgstr "Inloggen"
 
-#: shortcode-wallet.php:125
+#: shortcode-wallet.php:129
 msgid "logged in"
 msgstr "ingelogd zijn"
 
-#: shortcode-wallet.php:126
+#: shortcode-wallet.php:130
 msgid "to access your wallet."
 msgstr "voor toegang tot je wallet."
 

@@ -72,6 +72,10 @@ button.close-modal svg {
 	border-color: #8fd1c1;
 	border-radius: 2px;
 }
+.top-up-modal input[type=number].error,
+.top-up-modal select.error {
+	border-color: #FE6C61;
+}
 .top-up-modal input[type=number]::placeholder {
 	color: #bdc3c7;
 }
@@ -98,7 +102,7 @@ button.close-modal svg {
 	background-color: #bdc3c7;
 
 	border-radius: 5px;
-	padding: 8px 25px;
+	padding: 8px 24px;
 	width: 100%;
 	text-align: center;
 	cursor: pointer;

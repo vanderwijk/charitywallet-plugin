@@ -1,8 +1,10 @@
 jQuery(document).ready(function ($) {
-/*	$('#top-up-form').submit(function(event) {
-		event.preventDefault();
-		window.location.href = "https://www.mollie.com/paymentscreen/issuer/select/ideal/DwSjwqCVy3";
-	});*/
+	$('#top-up-form').submit(function(event) {
+		if ($('#issuer option:selected').val() == '') {
+			$('#issuer').addClass('error');
+			return false;
+		}
+	});
 
 	$('#amount').focus(function () {
 		$('input[name="top-up-amount"]').prop('checked', false);
@@ -10,6 +12,7 @@ jQuery(document).ready(function ($) {
 
 	$('input[name="top-up-amount"]').change(function () {
 		$('#amount').val('');
+		$('#amount').removeClass('error');
 	});
 
 	$('#change-amount').click(function(event) {
@@ -27,11 +30,21 @@ jQuery(document).ready(function ($) {
 			amount = $('#amount').val();
 		}
 
+		if (amount == undefined) {
+			$('#amount').addClass('error');
+			$('#amount').focus();
+			return false;
+		} else {
+			$('#amount').removeClass('error');
+		}
+
+		$('#post-amount').val(amount);
 		$('#pay-amount').html(amount);
 
-		console.log(amount);
 		$('.step-1').hide();
 		$('.step-2').show();
+
+		console.log(amount);
 	});
 
 });
