@@ -27,7 +27,7 @@ function chawa_display_wallet() {
 				<form novalidate="novalidate" id="top-up-form" method="post">
 					<section class="step-1">
 						<label for="amount"><?php _e('Amount','chawa'); ?></label>
-						<input id="amount" type="number" placeholder="<?php _e('Amount','chawa'); ?>">
+						<input id="amount" type="number" name="amount" placeholder="<?php _e('Amount','chawa'); ?>">
 						<p><label><?php _e('Other amount','chawa'); ?>:</label></p>
 						<ul class="choose-amount">
 							<li>
@@ -82,7 +82,7 @@ function chawa_display_wallet() {
 				$hostname = $_SERVER['HTTP_HOST'];
 				$path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
 
-				if (!empty($_POST["amount"])) {
+				if (!isset($_POST["amount"])) {
 					$amount = ($_POST["amount"]);
 				} else {
 					$amount = ($_POST["top-up-amount"]);
