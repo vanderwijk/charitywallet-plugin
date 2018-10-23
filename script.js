@@ -27,7 +27,7 @@ jQuery(document).ready(function ($) {
 		if ($('#amount').val() == '') {
 			amount = $('input[name="top-up-amount"]:checked').val();
 		} else {
-			amount = $('#amount').val();
+			amount = $('#amount').val().toFixed(2);
 		}
 
 		if (amount == undefined) {

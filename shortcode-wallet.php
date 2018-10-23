@@ -31,15 +31,15 @@ function chawa_display_wallet() {
 						<p><label><?php _e('Other amount','chawa'); ?>:</label></p>
 						<ul class="choose-amount">
 							<li>
-								<input id="top-up-1000" type="radio" name="top-up-amount" value="10">
+								<input id="top-up-1000" type="radio" name="top-up-amount" value="10.00">
 								<label for="top-up-1000">&euro; 10</label>
 							</li>
 							<li>
-								<input id="top-up-2000" type="radio" name="top-up-amount" value="20">
+								<input id="top-up-2000" type="radio" name="top-up-amount" value="20.00">
 								<label for="top-up-2000">&euro; 20</label>
 							</li>
 							<li>
-								<input id="top-up-5000" type="radio" name="top-up-amount" value="50">
+								<input id="top-up-5000" type="radio" name="top-up-amount" value="50.00">
 								<label for="top-up-5000">&euro; 50</label>
 							</li>
 						</ul>
