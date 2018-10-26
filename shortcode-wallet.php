@@ -14,9 +14,11 @@ function chawa_display_wallet() {
 			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" />
 			<link rel="stylesheet" href="/wp-content/plugins/charitywallet-plugin/style.css" />
 			<script async="async" type="application/javascript" src="/wp-content/plugins/charitywallet-plugin/script.js"></script>
-			
-			<div class="top-up-modal">
-				<button type="button" aria-label="<?php _e('Close','chawa'); ?>" class="close-modal">
+
+			<div class="top-up-modal popup" data-popup="top-up">
+				<div class="popup-inner">
+
+				<button type="button" aria-label="<?php _e('Close','chawa'); ?>" class="close-modal" data-popup-close="top-up">
 					<svg viewPort="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
 						<line x1="1" y1="11" x2="11" y2="1" stroke="black" stroke-width="2"/>
 						<line x1="1" y1="1" x2="11" y2="11" stroke="black" stroke-width="2"/>
@@ -28,6 +30,7 @@ function chawa_display_wallet() {
 					<section class="step-1">
 						<label for="amount"><?php _e('Amount','chawa'); ?></label>
 						<input id="amount" type="number" name="amount" placeholder="<?php _e('Amount','chawa'); ?>">
+						<span class="notice"><?php _e('Please choose your amount','chawa'); ?></span>
 						<p><label><?php _e('Other amount','chawa'); ?>:</label></p>
 						<ul class="choose-amount">
 							<li>
@@ -48,16 +51,16 @@ function chawa_display_wallet() {
 						</button>
 					</section>
 					<section class="step-2">
-						<p><?php _e('Please add','chawa'); ?> &euro;<span id="pay-amount"></span>* <?php _e('to my wallet','chawa'); ?> <a href="#" id="change-amount"><?php _e('change amount','chawa'); ?></a> </p>
+						<p><?php _e('Add','chawa'); ?> &euro;<span id="pay-amount"></span>* <?php _e('to my wallet','chawa'); ?> <a href="#" id="change-amount"><?php _e('change amount','chawa'); ?></a> </p>
 						<p>
 							<div class="pretty p-default p-curve p-smooth">
-								<input type="checkbox" value="monthly" />
+								<input type="checkbox" value="monthly" id="monthly" />
 								<div class="state p-primary-o">
 									<label><?php _e('Please repeat this transaction every month.','chawa'); ?></label>
 								</div>
 							</div>
 						</p>
-						<label for="issuer"><?php _e('Choose your bank','chawa'); ?></label>
+						<label for="issuer"><?php _e('Your bank','chawa'); ?></label>
 						<?php
 							$method = $mollie->methods->get(\Mollie\Api\Types\PaymentMethod::IDEAL, ["include" => "issuers"]);
 							echo '<select name="issuer" id="issuer">';
@@ -74,6 +77,7 @@ function chawa_display_wallet() {
 					</section>
 				</form>
 			</div>
+						</div>
 
 			<?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				$orderId = time();
@@ -128,7 +132,7 @@ function chawa_display_wallet() {
 				header("Location: " . $payment->getCheckoutUrl(), true, 303);
 			} ?>
 
-			<?php return ob_get_clean();
+			<?php echo ob_get_clean(); // use return if shortcode
 			} catch (\Mollie\Api\Exceptions\ApiException $e) {
 				echo "API call failed: " . htmlspecialchars($e->getMessage());
 			}
@@ -146,4 +150,4 @@ function chawa_display_wallet() {
 		}
 
 }
-add_shortcode( 'wallet', 'chawa_display_wallet' );
+add_action('wp_footer', 'chawa_display_wallet');

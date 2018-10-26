@@ -118,6 +118,10 @@ button.close-modal svg {
 	background-color: #8fd1c1;
 	color: #fff;
 }
+.top-up-modal ul li input[type=radio]:disabled+label {
+	background-color: #f2f2f2;
+	color: #fff;
+}
 form label[for=amount] {
 	display: none;
 }
@@ -144,4 +148,74 @@ form label[for=amount] {
 }
 .pretty.p-default:not(.p-fill) input:checked~.state.p-primary-o label {
 	font-weight: 600;
+}
+.top-up-modal .notice {
+	display: none;
+	position: relative;
+	top: -15px;
+}
+.error + .notice {
+	color: #FE6C61;
+	font-weight: 600;
+}
+
+#amount.error + .notice {
+	display: block;
+}
+
+
+/* Outer */
+.popup {
+	width:100%;
+	height:100%;
+	display:none;
+	position:fixed;
+	top:0px;
+	left:0px;
+	background:rgba(242,242,242,.9);
+	z-index: 10000;
+}
+
+/* Inner */
+.popup-inner {
+	max-width:700px;
+	width:90%;
+	padding:40px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	-webkit-transform:translate(-50%, -50%);
+	transform:translate(-50%, -50%);
+
+	border-radius:3px;
+	background:#fff;
+
+}
+
+/* Close Button */
+.popup-close {
+	width:30px;
+	height:30px;
+	padding-top:4px;
+	display:inline-block;
+	position:absolute;
+	top:0px;
+	right:0px;
+	transition:ease 0.25s all;
+	-webkit-transform:translate(50%, -50%);
+	transform:translate(50%, -50%);
+	border-radius:1000px;
+	background:rgba(0,0,0,0.8);
+	font-family:Arial, Sans-Serif;
+	font-size:20px;
+	text-align:center;
+	line-height:100%;
+	color:#fff;
+}
+
+.popup-close:hover {
+	-webkit-transform:translate(50%, -50%) rotate(180deg);
+	transform:translate(50%, -50%) rotate(180deg);
+	background:rgba(0,0,0,1);
+	text-decoration:none;
 }

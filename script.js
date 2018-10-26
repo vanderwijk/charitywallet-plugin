@@ -1,9 +1,18 @@
 jQuery(document).ready(function ($) {
-	$('#top-up-form').submit(function(event) {
-		if ($('#issuer option:selected').val() == '') {
-			$('#issuer').addClass('error');
-			return false;
+
+	function validateAmount() {
+		if (amount == undefined || amount == '') {
+			$('#amount').addClass('error');
+			$('#amount').focus();
+		} else {
+			$('#amount').removeClass('error');
+			$('#amount').val(amount);
 		}
+	};
+
+	$('#amount').keyup(function () {
+		amount = $(this).val();
+		validateAmount();
 	});
 
 	$('#amount').focus(function () {
@@ -11,37 +20,65 @@ jQuery(document).ready(function ($) {
 	});
 
 	$('input[name="top-up-amount"]').change(function () {
-		$('#amount').val('');
-		$('#amount').removeClass('error');
+		amount = $(this).val();
+		validateAmount();
 	});
 
-	$('#change-amount').click(function(event) {
-		event.preventDefault();
+	$('#next').click(function (e) {
+		validateAmount();
+		if ((amount != undefined) && (amount != '')) {
+			$('#pay-amount').html(amount);
+			$('.step-1').hide();
+			$('.step-2').show();
+		}
+	});
 
+	$('#change-amount').click(function (e) {
+		e.preventDefault();
 		$('.step-2').hide();
 		$('.step-1').show();
 	});
 
-	$('#next').click(function(event) {
-
-		if ($('#amount').val() == '') {
-			amount = $('input[name="top-up-amount"]:checked').val();
-		} else {
-			amount = $('#amount').val();
-		}
-
-		if (amount == undefined) {
-			$('#amount').addClass('error');
-			$('#amount').focus();
+	$('#top-up-form').submit(function (e) {
+		if ($('#issuer option:selected').val() == '') {
+			$('#issuer').addClass('error');
 			return false;
-		} else {
-			$('#amount').removeClass('error');
+		}
+	});
+
+});
+
+jQuery(function ($) {
+
+	$('[data-popup-open]').on('click', function (e) {
+		e.preventDefault();
+
+		var targeted_popup_class = $(this).attr('data-popup-open');
+		$('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
+
+		amount = $(this).attr('data-popup-amount');
+		$('#amount').val(amount);
+
+		$('input:radio').each(function () {
+			var set_amount = $(this).val();
+			if (set_amount < amount) {
+				$(this).attr('disabled', true);
+			}
+		});
+
+		monthly = $(this).attr('data-popup-monthly');
+		if (monthly == 'monthly') {
+			$('#monthly').prop('checked', true);
+			$('.pretty').hide();
 		}
 
-		$('#pay-amount').html(amount);
+	});
 
-		$('.step-1').hide();
-		$('.step-2').show();
+	$('[data-popup-close]').on('click', function (e) {
+		e.preventDefault();
+
+		var targeted_popup_class = jQuery(this).attr('data-popup-close');
+		$('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
 
 	});
 
