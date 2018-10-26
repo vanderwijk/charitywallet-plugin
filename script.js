@@ -70,6 +70,7 @@ jQuery(function ($) {
 		if (monthly == 'monthly') {
 			$('#monthly').prop('checked', true);
 			$('.pretty').hide();
+			$('#monthly-text').show();
 		}
 
 	});
