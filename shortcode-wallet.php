@@ -11,10 +11,6 @@ function chawa_display_wallet() {
 
 			ob_start(); ?>
 
-			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" />
-			<link rel="stylesheet" href="/wp-content/plugins/charitywallet-plugin/style.css" />
-			<script async="async" type="application/javascript" src="/wp-content/plugins/charitywallet-plugin/script.js"></script>
-
 			<div class="top-up-modal popup" data-popup="top-up">
 				<div class="popup-inner">
 
@@ -29,8 +25,8 @@ function chawa_display_wallet() {
 				<form novalidate="novalidate" id="top-up-form" method="post">
 					<section class="step-1">
 						<label for="amount"><?php _e('Amount','chawa'); ?></label>
-						<input id="amount" type="number" name="amount" placeholder="<?php _e('Amount','chawa'); ?>">
-						<span class="notice"><?php _e('Please choose your amount','chawa'); ?></span>
+						<input id="amount" type="number" min="1" name="amount" placeholder="<?php _e('Amount','chawa'); ?>">
+						<span class="notice"></span>
 						<p><label><?php _e('Other amount','chawa'); ?>:</label></p>
 						<ul class="choose-amount">
 							<li>
