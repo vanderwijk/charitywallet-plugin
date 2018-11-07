@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2018-10-26 16:19+0200\n"
-"PO-Revision-Date: 2018-10-26 16:19+0200\n"
+"POT-Creation-Date: 2018-11-07 16:51+0100\n"
+"PO-Revision-Date: 2018-11-07 16:51+0100\n"
 "Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -38,8 +38,8 @@ msgid "Please choose your amount"
 msgstr "Kies je bedrag"
 
 #: shortcode-wallet.php:34
-msgid "Other amount"
-msgstr "Ander bedrag"
+msgid "Or choose other amount"
+msgstr "Of kies ander bedrag"
 
 #: shortcode-wallet.php:50
 msgid "Pay"
@@ -120,6 +120,9 @@ msgstr "Johan van der Wijk"
 #. Author URI of the plugin/theme
 msgid "https://thewebworks.nl"
 msgstr "http://thewebworks.nl"
+
+#~ msgid "Other amount"
+#~ msgstr "Ander bedrag"
 
 #~ msgid "Please add"
 #~ msgstr "Voeg"

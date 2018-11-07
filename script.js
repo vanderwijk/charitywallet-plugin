@@ -59,6 +59,8 @@ jQuery(function ($) {
 		amount = $(this).attr('data-popup-amount');
 		$('#amount').val(amount);
 
+		$('#pay-amount').html(amount);
+
 		$('input:radio').each(function () {
 			var set_amount = $(this).val();
 			if (set_amount < amount) {
