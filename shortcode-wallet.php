@@ -27,7 +27,7 @@ function chawa_display_wallet() {
 						<label for="amount"><?php _e('Amount','chawa'); ?></label>
 						<input id="amount" type="number" min="1" name="amount" placeholder="<?php _e('Amount','chawa'); ?>">
 						<span class="notice"></span>
-						<p><label><?php _e('Other amount','chawa'); ?>:</label></p>
+						<p><label><?php _e('Or choose a different amount','chawa'); ?>:</label></p>
 						<ul class="choose-amount">
 							<li>
 								<input id="top-up-1000" type="radio" name="top-up-amount" value="10">

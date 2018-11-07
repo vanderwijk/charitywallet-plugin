@@ -59,14 +59,13 @@ jQuery(function ($) {
 
 		donation = $(this).attr('data-popup-donation');
 		monthly = $(this).attr('data-popup-monthly');
+		amount = donation;
 
 		var targeted_popup_class = $(this).attr('data-popup-open');
 
 		$('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
 
 		$('#amount').val(donation);
-
-		$('#pay-amount').html(amount);
 
 		$('input:radio').each(function () {
 			var set_amount = $(this).val();
@@ -75,10 +74,18 @@ jQuery(function ($) {
 			}
 		});
 
-		if (monthly == 'monthly') {
+		if (monthly == 'yes') {
 			$('#monthly').prop('checked', true);
 			$('.pretty').hide();
 			$('#monthly-text').show();
+			validateAmount();
+		}
+
+		if (monthly == 'no') {
+			$('#monthly').prop('checked', false);
+			$('.pretty').hide();
+			$('#monthly-text').hide();
+			validateAmount();
 		}
 
 	});
