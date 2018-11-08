@@ -140,6 +140,10 @@ form label[for=amount] {
 	padding: 10px 20px;
 }
 
+a#change-amount {
+	color:#51a8b8;
+}
+
 .pretty input:checked~.state.p-primary-o label:before, .pretty.p-toggle .state.p-primary-o label:before {
 	border-color: #8fd1c1;
 }
