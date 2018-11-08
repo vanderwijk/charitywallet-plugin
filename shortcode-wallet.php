@@ -47,7 +47,7 @@ function chawa_display_wallet() {
 						</button>
 					</section>
 					<section class="step-2">
-						<p><?php _e('Add','chawa'); ?> <span id="monthly-text" class="monthly-text"><?php _e('monthly','chawa'); ?></span> &euro;<span id="pay-amount"></span>* <?php _e('to my wallet','chawa'); ?> <a href="#" id="change-amount"><?php _e('change amount','chawa'); ?></a> </p>
+						<p><?php _e('Add','chawa'); ?> <span id="monthly-text" class="monthly-text"><?php _e('monthly','chawa'); ?></span> &euro;<span id="pay-amount"></span>* <?php _e('to my wallet','chawa'); ?> <a href="#" id="change-amount">(<?php _e('change amount','chawa'); ?>)</a></p>
 						<p>
 							<div class="pretty p-default p-curve p-smooth">
 								<input type="checkbox" value="monthly" id="monthly" />
