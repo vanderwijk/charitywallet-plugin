@@ -146,12 +146,14 @@ class Order extends BaseResource
 
     /**
      * The order lines contain the actual things the customer bought.
+     *
      * @var array|object[]
      */
     public $lines;
 
     /**
      * An object with several URL objects relevant to the customer. Every URL object will contain an href and a type field.
+     *
      * @var object[]
      */
     public $_links;
@@ -403,5 +405,26 @@ class Order extends BaseResource
         }
 
         return $resourceCollection;
+    }
+
+    /**
+     * Saves the order's updated billingAddress and/or shippingAddress.
+     *
+     * @return Order
+     */
+    public function update()
+    {
+        if (!isset($this->_links->self->href)) {
+            return $this;
+        }
+
+        $body = json_encode(array(
+            "billingAddress" => $this->billingAddress,
+            "shippingAddress" => $this->shippingAddress,
+        ));
+
+        $result = $this->client->performHttpCallToFullUrl(MollieApiClient::HTTP_PATCH, $this->_links->self->href, $body);
+
+        return ResourceFactory::createFromApiResult($result, new Order($this->client));
     }
 }

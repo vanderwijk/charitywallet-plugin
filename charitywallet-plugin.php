@@ -24,7 +24,7 @@ define( 'CHAWA_PLUGIN_VER', '1.0.1' );
 require 'shortcode-wallet.php';
 
 function chawa_load_textdomain() {
-	load_plugin_textdomain( 'chawa', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
+	load_plugin_textdomain( 'chawa', false, CHAWA_PLUGIN_DIR . '/languages' ); 
 }
 add_action( 'init', 'chawa_load_textdomain' );
 

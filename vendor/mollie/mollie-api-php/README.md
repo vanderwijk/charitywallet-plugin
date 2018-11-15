@@ -1,6 +1,9 @@
-[<img src="https://www.mollie.com/assets/images/mollie/logo-black.svg" width="110">](https://www.mollie.com/)
+<p align="center">
+  <img src="https://info.mollie.com/hubfs/github/php/logo.png" width="128" height="128"/>
+</p>
+<h1 align="center">Mollie API client for PHP</h1>
 
-# Mollie API client for PHP #
+<img src="https://info.mollie.com/hubfs/github/php/editor.png" />
 
 Accepting [iDEAL](https://www.mollie.com/en/payments/ideal/), [Bancontact](https://www.mollie.com/en/payments/bancontact/), [SOFORT Banking](https://www.mollie.com/en/payments/sofort/), [Creditcard](https://www.mollie.com/en/payments/credit-card/), [SEPA Bank transfer](https://www.mollie.com/en/payments/bank-transfer/), [SEPA Direct debit](https://www.mollie.com/en/payments/direct-debit/), [Bitcoin](https://www.mollie.com/en/payments/bitcoin/), [PayPal](https://www.mollie.com/en/payments/paypal/), [Belfius Direct Net](https://www.mollie.com/en/payments/belfius/), [KBC/CBC](https://www.mollie.com/en/payments/kbc-cbc/), [paysafecard](https://www.mollie.com/en/payments/paysafecard/), [ING Home'Pay](https://www.mollie.com/en/payments/ing-homepay/), [Giftcards](https://www.mollie.com/en/payments/gift-cards/), [Giropay](https://www.mollie.com/en/payments/giropay/) and [EPS](https://www.mollie.com/en/payments/eps/) online payments without fixed monthly costs or any punishing registration procedures. Just use the Mollie API to receive payments directly on your website or easily refund transactions to your customers.
 
@@ -83,7 +86,7 @@ header("Location: " . $payment->getCheckoutUrl(), true, 303);
 ```
 _This header location should always be a GET, thus we enforce 303 http response code_
 
-For a payment create example, see [Example 1 - New Payment](https://github.com/mollie/mollie-api-php/blob/master/examples/01-new-payment.php).
+For a payment create example, see [Example - New Payment](https://github.com/mollie/mollie-api-php/blob/master/examples/payments/create-payment.php).
 
 ## Retrieving payments ##
 We can use the `$payment->id` to retrieve a payment and check if the payment `isPaid`.
@@ -103,12 +106,12 @@ Or retrieve a collection of payments.
 $payments = $mollie->payments->page(); 
 ```
 
-For an extensive example of listing payments with the details and status, see [Example 5 - Payments History](https://github.com/mollie/mollie-api-php/blob/master/examples/05-payments-history.php).
+For an extensive example of listing payments with the details and status, see [Example - List Payments](https://github.com/mollie/mollie-api-php/blob/master/examples/payments/list-payments.php).
 
 ## Payment webhook ##
 
 When the status of a payment changes the `webhookUrl` we specified in the creation of the payment will be called.  
-There we can use the `id` from our POST parameters to check te status and act upon that, see [Example 2 - Webhook verification](https://github.com/mollie/mollie-api-php/blob/master/examples/02-webhook-verification.php).
+There we can use the `id` from our POST parameters to check te status and act upon that, see [Example - Webhook](https://github.com/mollie/mollie-api-php/blob/master/examples/payments/webhook.php).
 
 
 ## Multicurrency ##
@@ -142,7 +145,7 @@ $method = $mollie->methods->get(\Mollie\Api\Types\PaymentMethod::IDEAL, ["includ
 ```
 
 _`$method->issuers` will be a list of objects. Use the property `$id` of this object in the
- API call, and the property `$name` for displaying the issuer to your customer. For a more in-depth example, see [Example 4 - iDEAL payment](https://github.com/mollie/mollie-api-php/blob/master/examples/04-ideal-payment.php)._
+ API call, and the property `$name` for displaying the issuer to your customer. For a more in-depth example, see [Example - iDEAL payment](https://github.com/mollie/mollie-api-php/blob/master/examples/payments/create-ideal-payment.php)._
 
 Create a payment with the selected issuer:
 
@@ -181,7 +184,7 @@ $refund = $payment->refund([
 ]);
 ```
 
-For a working example, see [Example 7 - Refund payment](https://github.com/mollie/mollie-api-php/blob/master/examples/07-refund-payment.php).
+For a working example, see [Example - Refund payment](https://github.com/mollie/mollie-api-php/blob/master/examples/payments/refund-payment.php).
 
 ## API documentation ##
 If you wish to learn more about our API, please visit the [Mollie Developer Portal](https://www.mollie.com/en/developers). API Documentation is available in English.
