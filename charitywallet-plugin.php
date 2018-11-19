@@ -22,6 +22,7 @@ define( 'CHAWA_PLUGIN_DIR', plugin_dir_url( __FILE__ ) );
 define( 'CHAWA_PLUGIN_VER', '1.0.1' );
 
 require 'shortcode-wallet.php';
+require 'shortcode-basket.php';
 
 function chawa_load_textdomain() {
 	load_plugin_textdomain( 'chawa', false, CHAWA_PLUGIN_DIR . '/languages' ); 

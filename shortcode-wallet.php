@@ -142,7 +142,7 @@ function chawa_display_wallet() {
 				<?php _e('to access your wallet.', 'chawa'); ?>
 			</p>
 	
-			<?php return ob_get_clean();
+			<?php echo ob_get_clean();
 		}
 
 }
