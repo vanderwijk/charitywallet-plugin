@@ -21,13 +21,13 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'CHAWA_PLUGIN_DIR', plugin_dir_url( __FILE__ ) );
 define( 'CHAWA_PLUGIN_VER', '1.0.1' );
 
-require 'shortcode-wallet.php';
-require 'shortcode-basket.php';
-
 function chawa_load_textdomain() {
-	load_plugin_textdomain( 'chawa', false, CHAWA_PLUGIN_DIR . '/languages' ); 
+	load_plugin_textdomain( 'chawa', false, basename( CHAWA_PLUGIN_DIR ) . '/languages' );
 }
 add_action( 'init', 'chawa_load_textdomain' );
+
+require 'shortcode-wallet.php';
+require 'shortcode-basket.php';
 
 function chawa_enqueue_styles() {
 	wp_enqueue_style( 'chawa-plugin', CHAWA_PLUGIN_DIR . 'style.css', '', CHAWA_PLUGIN_VER );
