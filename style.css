@@ -226,3 +226,7 @@ a#change-amount {
 .monthly-text {
 	display: none;
 }
+
+button.active {
+	background-color: #FE6C61;
+}

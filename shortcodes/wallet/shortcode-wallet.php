@@ -1,13 +1,17 @@
 <?php 
 
+// Wallet charging functionality (Choose amout and process payment)
+
 function chawa_display_wallet() {
+
+	do_action('start_shortcode_wallet'); 
 
 	if ( is_user_logged_in() ) { 
 		$current_user = wp_get_current_user();
 
 		try {
 
-			require 'initialize-mollie.php';
+			require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-mollie.php';
 
 			ob_start(); ?>
 
