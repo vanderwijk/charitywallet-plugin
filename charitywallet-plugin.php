@@ -4,7 +4,7 @@
  * Plugin Name:       Charity Wallet
  * Plugin URI:        https://charitywallet.com
  * Description:       Charity Wallet WordPress plugin
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Johan van der Wijk
  * Author URI:        https://thewebworks.nl
  * License:           GPL-2.0+
