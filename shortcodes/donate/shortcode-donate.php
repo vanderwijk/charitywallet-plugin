@@ -17,6 +17,7 @@ function chawa_add_to_basket() {
 					ul.charity-list,
 					ul.charity-basket {
 						padding: 0;
+						margin-left: 0;
 					}
 					.charity-list li,
 					.charity-basket li {
@@ -27,17 +28,30 @@ function chawa_add_to_basket() {
 					.remove {
 						background-color: #FE6C61;
 					}
+					.basket-icon {
+						float: right;
+						font-weight: 700;
+					}
+					button[disabled=disabled],
+					button:disabled {
+						background-color: #abb4bb;
+					}
 				</style>
+
+				<div class="basket-icon">
+					<span class="basket-count" id="basket-count"></span>
+					<span class="basket-total" id="basket-total"></span>
+				</div>
 
 				<h2><?php _e('Charities', 'chawa'); ?></h2>
 
 				<ul class="charity-list" id="charity-list">
 					<li>Greenpeace Nederland <button class="donate" data-charity="159" data-amount="40" data-name="Greenpeace Nederland"><?php _e('Add'); ?></button></li>
-					<li>Wereld Natuurfonds - Nederland<button class="donate" data-charity="271" data-amount="45" data-name="Wereld Natuurfonds - Nederland"><?php _e('Add'); ?></button></li>
+					<li>Wereld Natuurfonds - Nederland <button class="donate" data-charity="271" data-amount="45" data-name="Wereld Natuurfonds - Nederland"><?php _e('Add'); ?></button></li>
 					<li>Amnesty International <button class="donate" data-charity="107" data-amount="50" data-name="Amnesty International"><?php _e('Add'); ?></button></li>
 				</ul>
 
-				<h2><?php _e('Basket', 'chawa'); ?></h2>
+				<h2><?php _e('Charity Basket', 'chawa'); ?></h2>
 
 				<ul class="charity-basket" id="charity-basket">
 				</ul>

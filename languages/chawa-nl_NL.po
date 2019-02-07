@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2019-02-01 16:58+0100\n"
-"PO-Revision-Date: 2019-02-01 16:59+0100\n"
+"POT-Creation-Date: 2019-02-07 13:41+0100\n"
+"PO-Revision-Date: 2019-02-07 13:41+0100\n"
 "Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -77,8 +77,8 @@ msgid "Add"
 msgstr "Toevoegen"
 
 #: shortcodes/donate/shortcode-donate.php:40
-msgid "Basket"
-msgstr "Mandje"
+msgid "Charity Basket"
+msgstr "Goede doelen mandje"
 
 #: shortcodes/wallet/shortcode-wallet.php:21
 msgid "Close"
@@ -160,6 +160,9 @@ msgstr "Johan van der Wijk"
 #. Author URI of the plugin/theme
 msgid "https://thewebworks.nl"
 msgstr "http://thewebworks.nl"
+
+#~ msgid "Basket"
+#~ msgstr "Mandje"
 
 #~ msgid "Other amount"
 #~ msgstr "Ander bedrag"
