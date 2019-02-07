@@ -53,8 +53,7 @@ function chawa_add_to_basket() {
 
 				<h2><?php _e('Charity Basket', 'chawa'); ?></h2>
 
-				<ul class="charity-basket" id="charity-basket">
-				</ul>
+				<ul class="charity-basket" id="charity-basket"></ul>
 
 			</div>
 
