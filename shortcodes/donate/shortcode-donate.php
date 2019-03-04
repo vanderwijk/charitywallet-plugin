@@ -14,16 +14,14 @@ function chawa_add_to_basket() {
 			<div class="basket">
 
 				<style>
-					ul.charity-list,
-					ul.charity-basket {
-						padding: 0;
-						margin-left: 0;
+					.charity-list td:last-child {
+						text-align: right;
 					}
-					.charity-list li,
-					.charity-basket li {
-						display: flex;
-						justify-content: space-between;
-						width: 100%;
+					.charity-basket td {
+						text-align: right;
+					}
+					.charity-basket td:first-child {
+						text-align: left;
 					}
 					.remove {
 						background-color: #FE6C61;
@@ -36,6 +34,24 @@ function chawa_add_to_basket() {
 					button:disabled {
 						background-color: #abb4bb;
 					}
+					.charity-basket .amount {
+						display: none;
+					}
+					.charity-basket .value {
+						color: #51a8b8;
+						font-weight: 600;
+						font-size: 1.2em;
+						margin: 0 10px;
+					}
+					.charity-basket .minus,
+					.charity-basket .plus {
+						font-weight: 900;
+						padding: 10px;
+					}
+					.charity-basket .minus:hover,
+					.charity-basket .plus:hover {
+						cursor: pointer;
+					}
 				</style>
 
 				<div class="basket-icon">
@@ -45,15 +61,26 @@ function chawa_add_to_basket() {
 
 				<h2><?php _e('Charities', 'chawa'); ?></h2>
 
-				<ul class="charity-list" id="charity-list">
-					<li>Greenpeace Nederland <button class="donate" data-charity="159" data-amount="40" data-name="Greenpeace Nederland"><?php _e('Add'); ?></button></li>
-					<li>Wereld Natuurfonds - Nederland <button class="donate" data-charity="271" data-amount="45" data-name="Wereld Natuurfonds - Nederland"><?php _e('Add'); ?></button></li>
-					<li>Amnesty International <button class="donate" data-charity="107" data-amount="50" data-name="Amnesty International"><?php _e('Add'); ?></button></li>
-				</ul>
+				<table class="charity-list" id="charity-list">
+					<tbody>
+						<tr>
+							<td>Greenpeace Nederland</td>
+							<td><button class="donate" data-charity="159" data-amount="1" data-name="Greenpeace Nederland"><?php _e('Add'); ?></button></td>
+						</tr>
+						<tr>
+							<td>Wereld Natuurfonds - Nederland</td>
+							<td><button class="donate" data-charity="271" data-amount="1" data-name="Wereld Natuurfonds - Nederland"><?php _e('Add'); ?></button></td>
+						</tr>
+						<tr>
+							<td>Amnesty International</td>
+							<td><button class="donate" data-charity="107" data-amount="1" data-name="Amnesty International"><?php _e('Add'); ?></button></td>
+						</tr>
+					</tbody>
+				</table>
 
 				<h2><?php _e('Charity Basket', 'chawa'); ?></h2>
 
-				<ul class="charity-basket" id="charity-basket"></ul>
+				<table class="charity-basket" id="charity-basket"></table>
 
 			</div>
 
