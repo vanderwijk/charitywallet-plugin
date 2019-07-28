@@ -42,7 +42,6 @@ button.close-modal svg {
 	height: 12px;
 	line-height: 0;
 	stroke: #51a8b8;
-
 }
 .top-up-modal ul {
 	list-style: none;
@@ -67,7 +66,6 @@ button.close-modal svg {
 	font-size: 20px;
 }
 .top-up-modal input[type=checkbox] {
-
 	color: #000;
 	border-color: #8fd1c1;
 	border-radius: 2px;

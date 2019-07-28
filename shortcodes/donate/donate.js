@@ -1,5 +1,16 @@
 jQuery(document).ready(function($) {
 
+	// select
+	$("#charity-select").select2({
+		placeholder: "Kies je goede doel",
+		allowClear: true
+	});
+
+	$('#charity-select').on('select2:select', function (e) {
+		var data = e.params.data;
+		console.log(data);
+	});
+
 	showCart();
 	
 	$('.donate').click(function() {
@@ -15,6 +26,15 @@ jQuery(document).ready(function($) {
 		charity = {};
 		charity.id = $(this).parents('tr').attr('data-charity-id');
 		removeFromCart(charity.id);
+	});
+
+	// Recurring monthly?
+	$('#basket-recurring').change(function() {
+		if ( $(this).is(":checked") ) {
+			updateCartMeta(true);
+		} else {
+			updateCartMeta(false);
+		}
 	});
 
 	$('#charity-basket').on('click', '.minus', function() {
@@ -45,6 +65,14 @@ jQuery(document).ready(function($) {
 
 });
 
+// Update cart meta
+function updateCartMeta(recurring) {
+	var cart = JSON.parse(localStorage.getItem('cart'));
+	cart.meta.recurring = recurring;
+	localStorage.setItem('cart', JSON.stringify(cart));
+	showCart();
+}
+
 // Count the total number of charities in basket
 function countCart(cart) {
 	var n = cart.length;
@@ -55,6 +83,20 @@ function countCart(cart) {
 	}
 }
 
+// Show cart date
+function dateCart(cart) {
+	var timestamp = cart.meta.date;
+	var date = new Date(timestamp);
+	var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+	var cartDate = date.toLocaleDateString('nl-NL', options);
+
+	if (cartDate) {
+		jQuery('#basket-date').html('Uitvoerdatum ' + cartDate);
+	} else {
+		jQuery('#basket-date').html('');
+	}
+}
+
 // Count the total donation amount
 function totalCart(cart) {
 	var total = 0;
@@ -62,7 +104,7 @@ function totalCart(cart) {
 		total += cart.charities[x].amount;
 	}
 	if (total > 0) {
-		jQuery('#basket-total').html('(' + total + ')');
+		jQuery('#basket-total').html('€' + total + ',00');
 	} else {
 		jQuery('#basket-total').html('');
 	}
@@ -107,6 +149,12 @@ function updateCart(charity) {
 // Show cart contents
 function showCart() {
 	if (localStorage && localStorage.getItem('cart')) {
+
+		// REMOVE THIS ON WORDPRESS
+		var chawa_donate = {};
+		chawa_donate.remove = 'Verwijderen';
+		// END REMOVE THIS ON WORDPRESS
+
 		var cart = JSON.parse(localStorage.getItem('cart'));
 		var list = jQuery('.charity-basket');
 		var parent = list.parent();
@@ -122,6 +170,10 @@ function showCart() {
 		countCart(cart);
 		totalCart(cart);
 		checkCart(cart);
+		dateCart(cart);
+
+		$("#basket-recurring").prop( "checked", cart.meta.recurring );
+
 	}
 }
 
@@ -141,8 +193,10 @@ function addToCart(charity) {
 		// No cart exists
 		//console.log('No cart exists');
 		var cart = {};
+		cart.meta = {};
 		cart.charities = [];
 		cart.charities.push(charity);
+		cart.meta.date = Date.now();
 		//console.log('Cart after: ' + JSON.stringify(cart));
 		localStorage.setItem('cart', JSON.stringify(cart));
 	}
