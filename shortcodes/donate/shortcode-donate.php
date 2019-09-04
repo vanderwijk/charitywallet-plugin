@@ -54,11 +54,6 @@ function chawa_add_to_basket() {
 					}
 				</style>
 
-				<div class="basket-icon">
-					<span class="basket-count" id="basket-count"></span>
-					<span class="basket-total" id="basket-total"></span>
-				</div>
-
 				<h2><?php _e('Charities', 'chawa'); ?></h2>
 
 				<table class="charity-list" id="charity-list">
@@ -75,12 +70,27 @@ function chawa_add_to_basket() {
 							<td>Amnesty International</td>
 							<td><button class="donate" data-charity="107" data-amount="1" data-name="Amnesty International"><?php _e('Add'); ?></button></td>
 						</tr>
+
 					</tbody>
 				</table>
 
 				<h2><?php _e('Charity Basket', 'chawa'); ?></h2>
 
 				<table class="charity-basket" id="charity-basket"></table>
+
+				<div class="basket-icon">
+					<span class="basket-count" id="basket-count"></span>
+					<span class="basket-total" id="basket-total"></span>
+				</div>
+
+				<div class="basket-date" id="basket-date"></div>
+
+				<div class="pretty p-switch p-fill">
+					<input type="checkbox" class="basket-recurring" id="basket-recurring" />
+					<div class="state">
+						<label><?php _e('Donate monthly','chawa'); ?></label>
+					</div>
+				</div>
 
 			</div>
 

@@ -10,9 +10,46 @@ function chawa_display_basket() {
 			ob_start(); ?>
 
 			<div class="basket">
-				<h2><?php _e('Charities'); ?></h2>
-				
+
 				<style>
+					.charity-list td:last-child {
+						text-align: right;
+					}
+					.charity-basket td {
+						text-align: right;
+					}
+					.charity-basket td:first-child {
+						text-align: left;
+					}
+					.remove {
+						background-color: #FE6C61;
+					}
+					.basket-icon {
+						float: right;
+						font-weight: 700;
+					}
+					button[disabled=disabled],
+					button:disabled {
+						background-color: #abb4bb;
+					}
+					.charity-basket .amount {
+						display: none;
+					}
+					.charity-basket .value {
+						color: #51a8b8;
+						font-weight: 600;
+						font-size: 1.2em;
+						margin: 0 10px;
+					}
+					.charity-basket .minus,
+					.charity-basket .plus {
+						font-weight: 900;
+						padding: 10px;
+					}
+					.charity-basket .minus:hover,
+					.charity-basket .plus:hover {
+						cursor: pointer;
+					}
 					.charity-list li {
 						display: flex;
 						justify-content: space-between;
@@ -20,12 +57,22 @@ function chawa_display_basket() {
 					}
 				</style>
 
-				<ul class="charity-list">
-					<li>Greenpeace Nederland <button class="donate" data-charity="159"><?php _e('Donate'); ?></button></li>
-				</ul>
+				<h2><?php _e('Your donations basket', 'chawa'); ?></h2>
+				<table class="charity-basket" id="charity-basket"></table>
 
-				<h2><?php _e('Your donations basket'); ?></h2>
-				<ul class="basket"></ul>
+				<div class="basket-icon">
+					<span class="basket-count" id="basket-count"></span>
+					<span class="basket-total" id="basket-total"></span>
+				</div>
+
+				<div class="basket-date" id="basket-date"></div>
+
+				<div class="pretty p-switch p-fill">
+					<input type="checkbox" class="basket-recurring" id="basket-recurring" />
+					<div class="state">
+						<label><?php _e('Donate monthly','chawa'); ?></label>
+					</div>
+				</div>
 
 			</div>
 

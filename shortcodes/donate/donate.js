@@ -91,7 +91,7 @@ function dateCart(cart) {
 	var cartDate = date.toLocaleDateString('nl-NL', options);
 
 	if (cartDate) {
-		jQuery('#basket-date').html('Uitvoerdatum ' + cartDate);
+		jQuery('#basket-date').html( chawa_donate.date + ' ' + cartDate);
 	} else {
 		jQuery('#basket-date').html('');
 	}
@@ -172,7 +172,7 @@ function showCart() {
 		checkCart(cart);
 		dateCart(cart);
 
-		$("#basket-recurring").prop( "checked", cart.meta.recurring );
+		jQuery("#basket-recurring").prop( "checked", cart.meta.recurring );
 
 	}
 }
