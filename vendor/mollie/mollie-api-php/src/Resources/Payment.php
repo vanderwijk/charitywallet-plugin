@@ -215,6 +215,11 @@ class Payment extends BaseResource
     public $_links;
 
     /**
+     * @var object[]
+     */
+    public $_embedded;
+
+    /**
      * Whether or not this payment can be canceled.
      *
      * @var bool|null
@@ -412,20 +417,12 @@ class Payment extends BaseResource
             $this->_links->refunds->href
         );
 
-        $resourceCollection = new RefundCollection(
+        return ResourceFactory::createCursorResourceCollection(
             $this->client,
-            $result->count,
+            $result->_embedded->refunds,
+            Refund::class,
             $result->_links
         );
-
-        foreach ($result->_embedded->refunds as $dataResult) {
-            $resourceCollection[] = ResourceFactory::createFromApiResult(
-                $dataResult,
-                new Refund($this->client)
-            );
-        }
-
-        return $resourceCollection;
     }
 
     /**
@@ -456,20 +453,12 @@ class Payment extends BaseResource
             $this->_links->captures->href
         );
 
-        $resourceCollection = new CaptureCollection(
+        return ResourceFactory::createCursorResourceCollection(
             $this->client,
-            $result->count,
+            $result->_embedded->captures,
+            Capture::class,
             $result->_links
         );
-
-        foreach ($result->_embedded->captures as $dataResult) {
-            $resourceCollection[] = ResourceFactory::createFromApiResult(
-                $dataResult,
-                new Capture($this->client)
-            );
-        }
-
-        return $resourceCollection;
     }
 
     /**
@@ -504,20 +493,12 @@ class Payment extends BaseResource
             $this->_links->chargebacks->href
         );
 
-        $resourceCollection = new ChargebackCollection(
+        return ResourceFactory::createCursorResourceCollection(
             $this->client,
-            $result->count,
+            $result->_embedded->chargebacks,
+            Chargeback::class,
             $result->_links
         );
-
-        foreach ($result->_embedded->chargebacks as $dataResult) {
-            $resourceCollection[] = ResourceFactory::createFromApiResult(
-                $dataResult,
-                new Chargeback($this->client)
-            );
-        }
-
-        return $resourceCollection;
     }
 
     /**

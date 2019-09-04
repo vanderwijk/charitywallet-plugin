@@ -43,7 +43,7 @@ abstract class EndpointAbstract
      * @param array $filters
      * @return string
      */
-    private function buildQueryString(array $filters)
+    protected function buildQueryString(array $filters)
     {
         if (empty($filters)) {
             return "";
@@ -167,16 +167,6 @@ abstract class EndpointAbstract
     abstract protected function getResourceObject();
 
     /**
-     * Get the collection object that is used by this API endpoint. Every API endpoint uses one type of collection object.
-     *
-     * @param int $count
-     * @param object[] $_links
-     *
-     * @return BaseCollection
-     */
-    abstract protected function getResourceCollectionObject($count, $_links);
-
-    /**
      * @param string $resourcePath
      */
     public function setResourcePath($resourcePath)
@@ -217,7 +207,7 @@ abstract class EndpointAbstract
         try {
             $encoded = \GuzzleHttp\json_encode($body);
         } catch (\InvalidArgumentException $e) {
-            throw new ApiException("Error encoding parameters into JSON: '" . $e->getMessage() . "'.");
+            throw new ApiException("Error encoding parameters into JSON: '".$e->getMessage()."'.");
         }
 
         return $encoded;

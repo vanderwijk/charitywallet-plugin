@@ -199,7 +199,8 @@ class Order extends BaseResource
     }
 
     /**
-     * Is this order refunded?
+     * (Deprecated) Is this order refunded?
+     * @deprecated 2018-11-27
      *
      * @return bool
      */
@@ -238,6 +239,15 @@ class Order extends BaseResource
         return $this->status === OrderStatus::STATUS_EXPIRED;
     }
 
+    /**
+     * Is this order completed?
+     *
+     * @return bool
+     */
+    public function isPending()
+    {
+        return $this->status === OrderStatus::STATUS_PENDING;
+    }
 
     /**
      * Cancels this order.
@@ -247,7 +257,7 @@ class Order extends BaseResource
      * be found.
      *
      * @return Order
-     * @throws ApiException
+     * @throws \Mollie\Api\Exceptions\ApiException
      */
     public function cancel()
     {
@@ -262,6 +272,7 @@ class Order extends BaseResource
      *
      * @param  array|null $data
      * @return null
+     * @throws \Mollie\Api\Exceptions\ApiException
      */
     public function cancelLines(array $data)
     {
@@ -274,6 +285,7 @@ class Order extends BaseResource
      *
      * @param  array|null $data
      * @return null
+     * @throws \Mollie\Api\Exceptions\ApiException
      */
     public function cancelAllLines($data = [])
     {
@@ -288,12 +300,7 @@ class Order extends BaseResource
      */
     public function lines()
     {
-        $lines  = new OrderLineCollection(count($this->lines), null);
-        foreach ($this->lines as $line) {
-            $lines->append(ResourceFactory::createFromApiResult($line, new OrderLine($this->client)));
-        }
-
-        return $lines;
+        return ResourceFactory::createBaseResourceCollection($this->client, $this->lines, OrderLine::class);
     }
 
     /**
@@ -384,12 +391,11 @@ class Order extends BaseResource
         return $this->refund($data);
     }
 
-
     /**
      * Retrieves all refunds associated with this order
      *
      * @return RefundCollection
-     * @throws ApiException
+     * @throws \Mollie\Api\Exceptions\ApiException
      */
     public function refunds()
     {
@@ -399,18 +405,19 @@ class Order extends BaseResource
 
         $result = $this->client->performHttpCallToFullUrl(MollieApiClient::HTTP_GET, $this->_links->refunds->href);
 
-        $resourceCollection = new RefundCollection($this->client, $result->count, $result->_links);
-        foreach ($result->_embedded->refunds as $dataResult) {
-            $resourceCollection[] = ResourceFactory::createFromApiResult($dataResult, new Refund($this->client));
-        }
-
-        return $resourceCollection;
+        return ResourceFactory::createCursorResourceCollection(
+            $this->client,
+            $result->_embedded->refunds,
+            Refund::class,
+            $result->_links
+        );
     }
 
     /**
      * Saves the order's updated billingAddress and/or shippingAddress.
      *
-     * @return Order
+     * @return \Mollie\Api\Resources\BaseResource|\Mollie\Api\Resources\Order
+     * @throws \Mollie\Api\Exceptions\ApiException
      */
     public function update()
     {
@@ -426,5 +433,37 @@ class Order extends BaseResource
         $result = $this->client->performHttpCallToFullUrl(MollieApiClient::HTTP_PATCH, $this->_links->self->href, $body);
 
         return ResourceFactory::createFromApiResult($result, new Order($this->client));
+    }
+
+    /**
+     * Create a new payment for this Order.
+     *
+     * @param $data
+     * @param array $filters
+     * @return \Mollie\Api\Resources\BaseResource|\Mollie\Api\Resources\Payment
+     * @throws \Mollie\Api\Exceptions\ApiException
+     */
+    public function createPayment($data, $filters = [])
+    {
+        return $this->client->orderPayments->createFor($this, $data, $filters);
+    }
+
+    /**
+     * Retrieve the payments for this order.
+     * Requires the order to be retrieved using the embed payments parameter.
+     *
+     * @return null|\Mollie\Api\Resources\PaymentCollection
+     */
+    public function payments()
+    {
+        if(! isset($this->_embedded, $this->_embedded->payments) ) {
+            return null;
+        }
+
+        return ResourceFactory::createCursorResourceCollection(
+            $this->client,
+            $this->_embedded->payments,
+            Payment::class
+        );
     }
 }

@@ -6,7 +6,7 @@ use Mollie\Api\Exceptions\ApiException;
 use Mollie\Api\Resources\Order;
 use Mollie\Api\Resources\OrderCollection;
 
-class OrderEndpoint extends EndpointAbstract
+class OrderEndpoint extends CollectionEndpointAbstract
 {
     protected $resourcePath = "orders";
 
@@ -68,7 +68,7 @@ class OrderEndpoint extends EndpointAbstract
     public function get($orderId, array $parameters = [])
     {
         if (empty($orderId) || strpos($orderId, self::RESOURCE_ID_PREFIX) !== 0) {
-            throw new ApiException("Invalid order ID: '{$orderId}'. An order ID should start with '" . self::RESOURCE_ID_PREFIX . "'.");
+            throw new ApiException("Invalid order ID: '{$orderId}'. An order ID should start with '".self::RESOURCE_ID_PREFIX."'.");
         }
 
         return parent::rest_read($orderId, $parameters);
