@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2019-09-04 14:47+0200\n"
-"PO-Revision-Date: 2019-09-04 14:47+0200\n"
+"POT-Creation-Date: 2019-09-11 11:41+0200\n"
+"PO-Revision-Date: 2019-09-11 11:42+0200\n"
 "Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -21,81 +21,114 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: charitywallet-plugin.php:46 charitywallet-plugin.php:53
+#: charitywallet-plugin.php:48 charitywallet-plugin.php:55
 msgid "The top-up amount is too low."
 msgstr "Het opwaardeerbedrag is te laag."
 
-#: charitywallet-plugin.php:47 charitywallet-plugin.php:54
+#: charitywallet-plugin.php:49 charitywallet-plugin.php:56
 msgid "Please choose your amount"
 msgstr "Kies je bedrag"
 
-#: charitywallet-plugin.php:60
-msgid "Remove"
-msgstr "Verwijderen"
-
-#: charitywallet-plugin.php:61
+#: charitywallet-plugin.php:57 charitywallet-plugin.php:65
+#: charitywallet-plugin.php:72 shortcodes/account/shortcode-account.php:22
+#: shortcodes/account/shortcode-account.php:29
 msgid "Date"
 msgstr "Datum"
 
-#: shortcodes/basket/shortcode-basket.php:13
-#: shortcodes/charity/shortcode-charity.php:62
-#: shortcodes/donate/shortcode-donate.php:71
-msgid "Charities"
-msgstr "Goede doelen"
+#: charitywallet-plugin.php:58 charitywallet-plugin.php:64
+#: charitywallet-plugin.php:71
+msgid "Remove"
+msgstr "Verwijderen"
 
-#: shortcodes/basket/shortcode-basket.php:24
-msgid "Donate"
-msgstr "Doneer"
+#: shortcodes/account/shortcode-account.php:16
+msgid "Wallet"
+msgstr "Wallet"
 
-#: shortcodes/basket/shortcode-basket.php:27
-msgid "Your donations basket"
-msgstr "Je donatiemandje"
+#: shortcodes/account/shortcode-account.php:18
+msgid "Balance"
+msgstr "Saldo"
 
-#: shortcodes/basket/shortcode-basket.php:38
-#: shortcodes/charity/shortcode-charity.php:93
-#: shortcodes/donate/shortcode-donate.php:109
+#: shortcodes/account/shortcode-account.php:20
+msgid "Recurring"
+msgstr "Automatisch opwaarderen"
+
+#: shortcodes/account/shortcode-account.php:24
+msgid "Financial overview"
+msgstr "Financieel overzicht"
+
+#: shortcodes/account/shortcode-account.php:30
+msgid "Description"
+msgstr "Omschrijving"
+
+#: shortcodes/account/shortcode-account.php:31
+#: shortcodes/wallet/shortcode-wallet.php:31
+#: shortcodes/wallet/shortcode-wallet.php:32
+msgid "Amount"
+msgstr "Bedrag"
+
+#: shortcodes/account/shortcode-account.php:38
+msgid "Monthly wallet top-up"
+msgstr "Maandelijkse wallet storting"
+
+#: shortcodes/account/shortcode-account.php:44
+msgid "Monthly donation"
+msgstr "Maandelijkse donatie"
+
+#: shortcodes/account/shortcode-account.php:59
+#: shortcodes/basket/shortcode-basket.php:88
+#: shortcodes/charity/shortcode-charity.php:76
+#: shortcodes/donate/shortcode-donate.php:103
 #: shortcodes/wallet/shortcode-wallet.php:144
 msgid "You must be"
 msgstr "Je moet"
 
-#: shortcodes/basket/shortcode-basket.php:39
-#: shortcodes/charity/shortcode-charity.php:94
-#: shortcodes/donate/shortcode-donate.php:110
+#: shortcodes/account/shortcode-account.php:60
+#: shortcodes/basket/shortcode-basket.php:89
+#: shortcodes/charity/shortcode-charity.php:77
+#: shortcodes/donate/shortcode-donate.php:104
 #: shortcodes/wallet/shortcode-wallet.php:145
 msgid "Log in"
 msgstr "Inloggen"
 
-#: shortcodes/basket/shortcode-basket.php:39
-#: shortcodes/charity/shortcode-charity.php:94
-#: shortcodes/donate/shortcode-donate.php:110
+#: shortcodes/account/shortcode-account.php:60
+#: shortcodes/basket/shortcode-basket.php:89
+#: shortcodes/charity/shortcode-charity.php:77
+#: shortcodes/donate/shortcode-donate.php:104
 #: shortcodes/wallet/shortcode-wallet.php:145
 msgid "logged in"
 msgstr "ingelogd zijn"
 
-#: shortcodes/basket/shortcode-basket.php:40
-#: shortcodes/charity/shortcode-charity.php:95
-#: shortcodes/donate/shortcode-donate.php:111
+#: shortcodes/account/shortcode-account.php:61
+#: shortcodes/basket/shortcode-basket.php:90
+#: shortcodes/charity/shortcode-charity.php:78
+#: shortcodes/donate/shortcode-donate.php:105
 msgid "to access your basket."
 msgstr "voor toegang tot je mandje."
 
-#: shortcodes/charity/shortcode-charity.php:68
-#: shortcodes/charity/shortcode-charity.php:72
-#: shortcodes/charity/shortcode-charity.php:76
-#: shortcodes/donate/shortcode-donate.php:77
-#: shortcodes/donate/shortcode-donate.php:81
-#: shortcodes/donate/shortcode-donate.php:85
+#: shortcodes/basket/shortcode-basket.php:63
+msgid "Your donations basket"
+msgstr "Je donatiemandje"
+
+#: shortcodes/basket/shortcode-basket.php:76
+#: shortcodes/donate/shortcode-donate.php:91
+msgid "Donate monthly"
+msgstr "Doneer maandelijks"
+
+#: shortcodes/charity/shortcode-charity.php:61
+#: shortcodes/donate/shortcode-donate.php:63
+#: shortcodes/donate/shortcode-donate.php:67
+#: shortcodes/donate/shortcode-donate.php:71
 #: shortcodes/wallet/shortcode-wallet.php:54
 msgid "Add"
 msgstr "Toevoegen"
 
-#: shortcodes/charity/shortcode-charity.php:81
-#: shortcodes/donate/shortcode-donate.php:97
+#: shortcodes/donate/shortcode-donate.php:57
+msgid "Charities"
+msgstr "Goede doelen"
+
+#: shortcodes/donate/shortcode-donate.php:77
 msgid "Charity Basket"
 msgstr "Goede doelen mandje"
-
-#: shortcodes/donate/shortcode-donate.php:67
-msgid "Donate monthly"
-msgstr "Doneer maandelijks"
 
 #: shortcodes/wallet/shortcode-wallet.php:21
 msgid "Close"
@@ -104,11 +137,6 @@ msgstr "Sluiten"
 #: shortcodes/wallet/shortcode-wallet.php:27
 msgid "Add funds to your wallet"
 msgstr "Walletsaldo aanvullen"
-
-#: shortcodes/wallet/shortcode-wallet.php:31
-#: shortcodes/wallet/shortcode-wallet.php:32
-msgid "Amount"
-msgstr "Bedrag"
 
 #: shortcodes/wallet/shortcode-wallet.php:34
 msgid "Or choose a different amount"
@@ -177,6 +205,9 @@ msgstr "Johan van der Wijk"
 #. Author URI of the plugin/theme
 msgid "https://thewebworks.nl"
 msgstr "http://thewebworks.nl"
+
+#~ msgid "Donate"
+#~ msgstr "Doneer"
 
 #~ msgid "Basket"
 #~ msgstr "Mandje"

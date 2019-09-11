@@ -1,49 +1,57 @@
 jQuery(document).ready(function($) {
-
-	showCart();
-	
-	$('.donate').click(function() {
-		//debugger;
-		charity = {};
-		charity.id = parseInt($(this).attr('data-charity'));
-		charity.amount = parseInt($(this).attr('data-amount'));
-		charity.name = $(this).attr('data-name');
-		addToCart(charity);
-	});
-
-	$('#charity-basket').on('click', '.remove', function() {
-		charity = {};
-		charity.id = $(this).parents('tr').attr('data-charity-id');
-		removeFromCart(charity.id);
-	});
-
-	$('#charity-basket').on('click', '.minus', function() {
-		charity = {};
-		charity.id = $(this).parents('tr').attr('data-charity-id');
-		amount = $('[name=' + charity.id + ']').val();
-		charity.amount = parseFloat(amount) - 1;
-		if ( charity.amount > 0 ) {
-			updateCart(charity);
-		}
-	});
-
-	$('#charity-basket').on('click', '.plus', function() {
-		charity = {};
-		charity.id = $(this).parents('tr').attr('data-charity-id');
-		amount = $('[name=' + charity.id + ']').val();
-		charity.amount = parseFloat(amount) + 1;
-		updateCart(charity);
-	});
-
-	$('#charity-basket').on('change', '.amount', function() {
-		//console.log( jQuery( this ).val() );
-		charity = {};
-		charity.id = parseInt($(this).attr('name'));
-		charity.amount = parseInt($(this).val());
-		updateCart(charity);
-	});
-
+    var cart = JSON.parse(localStorage.getItem('cart'));
+    jQuery('.page-item-22 a').append(' <sup></sup>');
+    
+    totalCart(cart);
 });
+
+// Update cart meta
+function updateCartMeta(recurring) {
+	var cart = JSON.parse(localStorage.getItem('cart'));
+	cart.meta.recurring = recurring;
+	localStorage.setItem('cart', JSON.stringify(cart));
+	showCart();
+}
+
+// Count the total number of charities in basket
+function countCart(cart) {
+	var n = cart.length;
+	if (n > 0) {
+		jQuery('#basket-count').html(n);
+	} else {
+		jQuery('#basket-count').html('');
+	}
+}
+
+// Show cart date
+function dateCart(cart) {
+	var timestamp = cart.meta.date;
+	var date = new Date(timestamp);
+	var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+	var cartDate = date.toLocaleDateString('nl-NL', options);
+
+	if (cartDate) {
+		jQuery('#basket-date').html( chawa_localize.date + ' ' + cartDate);
+	} else {
+		jQuery('#basket-date').html('');
+	}
+}
+
+// Count the total donation amount
+function totalCart(cart) {
+	var total = 0;
+	for (var x = 0; x < cart.charities.length; x++) {
+		total += cart.charities[x].amount;
+	}
+	if (total > 0) {
+        jQuery('#basket-total').html('€' + total + ',00');
+        jQuery('.page-item-22 a sup').html('€' + total + ',00');
+
+	} else {
+		jQuery('#basket-total').html('');
+	}
+	console.log('Total: ' + total);
+}
 
 // Check which charities are in the cart and disable them
 function checkCart() {
@@ -90,15 +98,18 @@ function showCart() {
 		
 		list.empty().each(function(i) {
 			for (var x = 0; x < cart.charities.length; x++) {
-				if (cart.charities[x].id === 159 ) {
-					jQuery(this).append('<tr data-charity-id="' + cart.charities[x].id + '"><td>' + cart.charities[x].name + '</td><td><span class="amount-wrap"><span class="plus">+</span><span class="value">€<span class="the-value">' + cart.charities[x].amount + '</span>,-</span><span class="minus">-</span></span><input class="amount" type="number" step="1" name="' + cart.charities[x].id + '" value="' + cart.charities[x].amount + '"></td><td><button class="remove" data-charity="' + cart.charities[x].id + '" data-amount="' + cart.charities[x].amount + '" >' + chawa_localize.remove + '</button></td></tr>');
-					if (x == cart.length - 1) {
-						jQuery(this).appendTo(parent);
-					}
+				jQuery(this).append('<tr data-charity-id="' + cart.charities[x].id + '"><td>' + cart.charities[x].name + '</td><td><span class="amount-wrap"><span class="plus">+</span><span class="value">€<span class="the-value">' + cart.charities[x].amount + '</span>,-</span><span class="minus">-</span></span><input class="amount" type="number" step="1" name="' + cart.charities[x].id + '" value="' + cart.charities[x].amount + '"></td><td><button class="remove" data-charity="' + cart.charities[x].id + '" data-amount="' + cart.charities[x].amount + '" >' + chawa_localize.remove + '</button></td></tr>');
+				if (x == cart.length - 1) {
+					jQuery(this).appendTo(parent);
 				}
 			}
 		});
+		countCart(cart);
+		totalCart(cart);
 		checkCart(cart);
+		dateCart(cart);
+
+		jQuery("#basket-recurring").prop( "checked", cart.meta.recurring );
 
 	}
 }

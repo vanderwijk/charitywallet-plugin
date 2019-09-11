@@ -55,6 +55,9 @@ function chawa_display_basket() {
 						justify-content: space-between;
 						width: 100%;
 					}
+					.amount-wrap {
+						white-space: nowrap;
+					}
 				</style>
 
 				<h2><?php _e('Your donations basket', 'chawa'); ?></h2>

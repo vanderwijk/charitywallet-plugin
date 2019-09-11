@@ -91,7 +91,7 @@ function dateCart(cart) {
 	var cartDate = date.toLocaleDateString('nl-NL', options);
 
 	if (cartDate) {
-		jQuery('#basket-date').html( chawa_donate.date + ' ' + cartDate);
+		jQuery('#basket-date').html( chawa_localize.date + ' ' + cartDate);
 	} else {
 		jQuery('#basket-date').html('');
 	}
@@ -150,18 +150,13 @@ function updateCart(charity) {
 function showCart() {
 	if (localStorage && localStorage.getItem('cart')) {
 
-		// REMOVE THIS ON WORDPRESS
-		var chawa_donate = {};
-		chawa_donate.remove = 'Verwijderen';
-		// END REMOVE THIS ON WORDPRESS
-
 		var cart = JSON.parse(localStorage.getItem('cart'));
 		var list = jQuery('.charity-basket');
 		var parent = list.parent();
 		
 		list.empty().each(function(i) {
 			for (var x = 0; x < cart.charities.length; x++) {
-				jQuery(this).append('<tr data-charity-id="' + cart.charities[x].id + '"><td>' + cart.charities[x].name + '</td><td><span class="amount-wrap"><span class="plus">+</span><span class="value">€<span class="the-value">' + cart.charities[x].amount + '</span>,-</span><span class="minus">-</span></span><input class="amount" type="number" step="1" name="' + cart.charities[x].id + '" value="' + cart.charities[x].amount + '"></td><td><button class="remove" data-charity="' + cart.charities[x].id + '" data-amount="' + cart.charities[x].amount + '" >' + chawa_donate.remove + '</button></td></tr>');
+				jQuery(this).append('<tr data-charity-id="' + cart.charities[x].id + '"><td>' + cart.charities[x].name + '</td><td><span class="amount-wrap"><span class="plus">+</span><span class="value">€<span class="the-value">' + cart.charities[x].amount + '</span>,-</span><span class="minus">-</span></span><input class="amount" type="number" step="1" name="' + cart.charities[x].id + '" value="' + cart.charities[x].amount + '"></td><td><button class="remove" data-charity="' + cart.charities[x].id + '" data-amount="' + cart.charities[x].amount + '" >' + chawa_localize.remove + '</button></td></tr>');
 				if (x == cart.length - 1) {
 					jQuery(this).appendTo(parent);
 				}

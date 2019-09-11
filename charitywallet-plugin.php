@@ -31,6 +31,7 @@ require 'shortcodes/basket/shortcode-basket.php';
 require 'shortcodes/donate/shortcode-donate.php';
 require 'shortcodes/wallet/shortcode-wallet.php';
 require 'shortcodes/charity/shortcode-charity.php';
+require 'shortcodes/account/shortcode-account.php';
 
 function chawa_enqueue_styles() {
 	wp_enqueue_style( 'select2', CHAWA_PLUGIN_DIR . 'vendor/select2/select2/dist/css/select2.min.css', '', CHAWA_PLUGIN_VER );
@@ -41,18 +42,20 @@ add_action( 'wp_enqueue_scripts', 'chawa_enqueue_styles' );
 
 function chawa_enqueue_scripts() {
 	wp_enqueue_script( 'select2', CHAWA_PLUGIN_DIR . 'vendor/select2/select2/dist/js/select2.min.js', array( 'jquery' ), CHAWA_PLUGIN_VER );
+	wp_enqueue_script( 'charitywallet', CHAWA_PLUGIN_DIR . 'charitywallet.js', array( 'jquery' ), CHAWA_PLUGIN_VER );
 	wp_register_script( 'wallet', CHAWA_PLUGIN_DIR . 'shortcodes/wallet/wallet.js', array( 'jquery' ), CHAWA_PLUGIN_VER );
 	$translation_array = array(
 		'top_up_amount_too_low' => __( 'The top-up amount is too low.', 'chawa'),
 		'choose_amount' => __( 'Please choose your amount', 'chawa'),
 	);
-	wp_localize_script( 'wallet', 'chawa', $translation_array );
+	wp_localize_script( 'wallet', 'chawa_localize', $translation_array );
 
 	wp_register_script( 'basket', CHAWA_PLUGIN_DIR . 'shortcodes/basket/basket.js', array( 'jquery' ), CHAWA_PLUGIN_VER );
 	$translation_array = array(
 		'top_up_amount_too_low' => __( 'The top-up amount is too low.', 'chawa'),
 		'choose_amount' => __( 'Please choose your amount', 'chawa'),
-		'date' => __( 'Date', 'chawa')
+		'date' => __( 'Date', 'chawa'),
+		'remove' => __( 'Remove', 'chawa')
 	);
 	wp_localize_script( 'basket', 'chawa_localize', $translation_array );
 
@@ -61,14 +64,14 @@ function chawa_enqueue_scripts() {
 		'remove' => __( 'Remove', 'chawa'),
 		'date' => __( 'Date', 'chawa')
 	);
-	wp_localize_script( 'donate', 'chawa_donate', $translation_array );
+	wp_localize_script( 'donate', 'chawa_localize', $translation_array );
 
 	wp_register_script( 'charity', CHAWA_PLUGIN_DIR . 'shortcodes/charity/charity.js', array( 'jquery' ), CHAWA_PLUGIN_VER );
 	$translation_array = array(
 		'remove' => __( 'Remove', 'chawa'),
 		'date' => __( 'Date', 'chawa')
 	);
-	wp_localize_script( 'charity', 'chawa_charity', $translation_array );
+	wp_localize_script( 'charity', 'chawa_localize', $translation_array );
 }
 add_action( 'wp_enqueue_scripts', 'chawa_enqueue_scripts' );
 

@@ -65,6 +65,8 @@ jQuery(document).ready(function($) {
 
 });
 
+/*
+
 // Update cart meta
 function updateCartMeta(recurring) {
 	var cart = JSON.parse(localStorage.getItem('cart'));
@@ -150,11 +152,6 @@ function updateCart(charity) {
 function showCart() {
 	if (localStorage && localStorage.getItem('cart')) {
 
-		// REMOVE THIS ON WORDPRESS
-		var chawa_localize = {};
-		chawa_localize.remove = 'Verwijderen';
-		// END REMOVE THIS ON WORDPRESS
-
 		var cart = JSON.parse(localStorage.getItem('cart'));
 		var list = jQuery('.charity-basket');
 		var parent = list.parent();
@@ -213,4 +210,6 @@ function removeFromCart(charityID) {
 		localStorage.setItem('cart', JSON.stringify(cart));
 		showCart();
 	}
-}
+} 
+
+*/

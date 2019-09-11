@@ -14,7 +14,7 @@ function chawa_display_wallet() {
 			require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-mollie.php';
 
 			ob_start(); ?>
-
+			
 			<div class="top-up-modal popup" data-popup="top-up">
 				<div class="popup-inner">
 

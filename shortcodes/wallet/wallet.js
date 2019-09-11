@@ -3,14 +3,14 @@ jQuery(function ($) {
 	function validateAmount() {
 		if ( (amount == undefined) || (amount == '') || (isNaN(amount)) ) {
 			$('#amount').addClass('error');
-			$('.notice').html(chawa.choose_amount);
+			$('.notice').html(chawa_localize.choose_amount);
 			$('#amount').focus();
 			amountStatus = 'invalid';
 		} else {
 			if ( amount < donation ) {
 				$('#amount').addClass('error');
 				$('#amount').focus();
-				$('.notice').html(chawa.top_up_amount_too_low);
+				$('.notice').html(chawa_localize.top_up_amount_too_low);
 				amountStatus = 'invalid';
 			} else {
 				$('#amount').removeClass('error');
