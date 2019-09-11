@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
     var cart = JSON.parse(localStorage.getItem('cart'));
-    jQuery('.page-item-22 a').append(' <sup></sup>');
+    jQuery('#site-navigation li:nth-last-child(3) a').append(' <sup></sup>');
     
     totalCart(cart);
 });
@@ -45,7 +45,7 @@ function totalCart(cart) {
 	}
 	if (total > 0) {
         jQuery('#basket-total').html('€' + total + ',00');
-        jQuery('.page-item-22 a sup').html('€' + total + ',00');
+        jQuery('#site-navigation li:nth-last-child(3) a sup').html('€' + total + ',00');
 
 	} else {
 		jQuery('#basket-total').html('');

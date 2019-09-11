@@ -52,6 +52,9 @@ function chawa_add_to_basket() {
 					.charity-basket .plus:hover {
 						cursor: pointer;
 					}
+					.amount-wrap {
+						white-space: nowrap;
+					}
 				</style>
 
 				<h2><?php _e('Charities', 'chawa'); ?></h2>
