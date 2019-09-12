@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2019-09-11 11:41+0200\n"
-"PO-Revision-Date: 2019-09-11 11:42+0200\n"
+"POT-Creation-Date: 2019-09-11 15:37+0200\n"
+"PO-Revision-Date: 2019-09-11 15:40+0200\n"
 "Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -21,24 +21,22 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: charitywallet-plugin.php:48 charitywallet-plugin.php:55
-msgid "The top-up amount is too low."
-msgstr "Het opwaardeerbedrag is te laag."
-
-#: charitywallet-plugin.php:49 charitywallet-plugin.php:56
-msgid "Please choose your amount"
-msgstr "Kies je bedrag"
-
-#: charitywallet-plugin.php:57 charitywallet-plugin.php:65
-#: charitywallet-plugin.php:72 shortcodes/account/shortcode-account.php:22
+#: charitywallet-plugin.php:48 shortcodes/account/shortcode-account.php:22
 #: shortcodes/account/shortcode-account.php:29
 msgid "Date"
 msgstr "Datum"
 
-#: charitywallet-plugin.php:58 charitywallet-plugin.php:64
-#: charitywallet-plugin.php:71
+#: charitywallet-plugin.php:49
 msgid "Remove"
 msgstr "Verwijderen"
+
+#: charitywallet-plugin.php:56 charitywallet-plugin.php:63
+msgid "The top-up amount is too low."
+msgstr "Het opwaardeerbedrag is te laag."
+
+#: charitywallet-plugin.php:57 charitywallet-plugin.php:64
+msgid "Please choose your amount"
+msgstr "Kies je bedrag"
 
 #: shortcodes/account/shortcode-account.php:16
 msgid "Wallet"
@@ -76,32 +74,32 @@ msgstr "Maandelijkse donatie"
 
 #: shortcodes/account/shortcode-account.php:59
 #: shortcodes/basket/shortcode-basket.php:88
-#: shortcodes/charity/shortcode-charity.php:76
-#: shortcodes/donate/shortcode-donate.php:103
+#: shortcodes/charity/shortcode-charity.php:71
+#: shortcodes/donate/shortcode-donate.php:106
 #: shortcodes/wallet/shortcode-wallet.php:144
 msgid "You must be"
 msgstr "Je moet"
 
 #: shortcodes/account/shortcode-account.php:60
 #: shortcodes/basket/shortcode-basket.php:89
-#: shortcodes/charity/shortcode-charity.php:77
-#: shortcodes/donate/shortcode-donate.php:104
+#: shortcodes/charity/shortcode-charity.php:72
+#: shortcodes/donate/shortcode-donate.php:107
 #: shortcodes/wallet/shortcode-wallet.php:145
 msgid "Log in"
 msgstr "Inloggen"
 
 #: shortcodes/account/shortcode-account.php:60
 #: shortcodes/basket/shortcode-basket.php:89
-#: shortcodes/charity/shortcode-charity.php:77
-#: shortcodes/donate/shortcode-donate.php:104
+#: shortcodes/charity/shortcode-charity.php:72
+#: shortcodes/donate/shortcode-donate.php:107
 #: shortcodes/wallet/shortcode-wallet.php:145
 msgid "logged in"
 msgstr "ingelogd zijn"
 
 #: shortcodes/account/shortcode-account.php:61
 #: shortcodes/basket/shortcode-basket.php:90
-#: shortcodes/charity/shortcode-charity.php:78
-#: shortcodes/donate/shortcode-donate.php:105
+#: shortcodes/charity/shortcode-charity.php:73
+#: shortcodes/donate/shortcode-donate.php:108
 msgid "to access your basket."
 msgstr "voor toegang tot je mandje."
 
@@ -110,23 +108,26 @@ msgid "Your donations basket"
 msgstr "Je donatiemandje"
 
 #: shortcodes/basket/shortcode-basket.php:76
-#: shortcodes/donate/shortcode-donate.php:91
+#: shortcodes/donate/shortcode-donate.php:94
 msgid "Donate monthly"
 msgstr "Doneer maandelijks"
 
-#: shortcodes/charity/shortcode-charity.php:61
-#: shortcodes/donate/shortcode-donate.php:63
-#: shortcodes/donate/shortcode-donate.php:67
-#: shortcodes/donate/shortcode-donate.php:71
+#: shortcodes/charity/shortcode-charity.php:60
+msgid "Add to basket"
+msgstr "In mandje"
+
+#: shortcodes/donate/shortcode-donate.php:60
+msgid "Charities"
+msgstr "Goede doelen"
+
+#: shortcodes/donate/shortcode-donate.php:66
+#: shortcodes/donate/shortcode-donate.php:70
+#: shortcodes/donate/shortcode-donate.php:74
 #: shortcodes/wallet/shortcode-wallet.php:54
 msgid "Add"
 msgstr "Toevoegen"
 
-#: shortcodes/donate/shortcode-donate.php:57
-msgid "Charities"
-msgstr "Goede doelen"
-
-#: shortcodes/donate/shortcode-donate.php:77
+#: shortcodes/donate/shortcode-donate.php:80
 msgid "Charity Basket"
 msgstr "Goede doelen mandje"
 
