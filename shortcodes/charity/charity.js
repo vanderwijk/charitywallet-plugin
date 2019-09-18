@@ -2,14 +2,7 @@ jQuery(document).ready(function($) {
 
 	showCharity();
 	
-	$('.donate').click(function() {
-		//debugger;
-		charity = {};
-		charity.id = parseInt($(this).attr('data-charity'));
-		charity.amount = parseInt($(this).attr('data-amount'));
-		charity.name = $(this).attr('data-name');
-		addToCart(charity);
-	});
+
 
 	$('#charity').on('click', '.remove', function() {
 		charity = {};
@@ -17,54 +10,11 @@ jQuery(document).ready(function($) {
 		removeFromCart(charity.id);
 	});
 
-	$('#charity').on('click', '.minus', function(e) {
-		charity = {};
-		charity.id = $(this).parents('tr').attr('data-charity-id');
-		amount = $('button[data-charity="' + charity.id + '"]').attr('data-amount');
-		charity.amount = parseFloat(amount) - 1;
 
-		if ( charity.amount < 1 ) {
-			var r = confirm(chawa_localize_charity.are_you_sure);
-			if (r == true) {
-				console.log('delete');
-			} else {
-				//stopImmediatePropagation();
-				charity.amount = 1;
- 
-			}
-
-		}
-
-		$('button[data-charity="' + charity.id + '"]').attr('data-amount', charity.amount);
-		$('.the-value').html(charity.amount);
-	});
-
-	$('#charity').on('click', '.plus', function() {
-		charity = {};
-		charity.id = $(this).parents('tr').attr('data-charity-id');
-		amount = $('button[data-charity="' + charity.id + '"]').attr('data-amount');
-		charity.amount = parseFloat(amount) + 1;
-
-		$('button[data-charity="' + charity.id + '"]').attr('data-amount', charity.amount);
-		$('.the-value').html(charity.amount);
-	});
 
 });
 
-// Show cart contents
-function showCharity() {
-	if (localStorage && localStorage.getItem('cart')) {
 
-		var cart = JSON.parse(localStorage.getItem('cart'));
-		for (var x = 0; x < cart.charities.length; x++) {
-			if (cart.charities[x].id === 159 ) {
-				jQuery('#the-value').html(cart.charities[x].amount);
-				jQuery('button[data-charity="' + cart.charities[x].id + '"]').attr('data-amount', cart.charities[x].amount);
-			}
-		}
-
-	}
-}
 
 // Update donation amount
 function updateCart(charity) {

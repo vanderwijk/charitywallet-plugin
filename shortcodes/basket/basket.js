@@ -22,11 +22,11 @@ jQuery(document).ready(function($) {
 		addToCart(charity);
 	});
 
-	$('#charity-basket').on('click', '.remove', function() {
+/*	$('#charity-basket').on('click', '.remove', function() {
 		charity = {};
 		charity.id = $(this).parents('tr').attr('data-charity-id');
 		removeFromCart(charity.id);
-	});
+	});*/
 
 	// Recurring monthly?
 	$('#basket-recurring').change(function() {

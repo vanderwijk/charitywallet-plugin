@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2019-09-11 15:37+0200\n"
-"PO-Revision-Date: 2019-09-11 15:40+0200\n"
+"POT-Creation-Date: 2019-09-18 13:01+0200\n"
+"PO-Revision-Date: 2019-09-18 13:02+0200\n"
 "Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -30,13 +30,25 @@ msgstr "Datum"
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: charitywallet-plugin.php:56 charitywallet-plugin.php:63
+#: charitywallet-plugin.php:50
+msgid "Would you like to remove"
+msgstr "Wil je"
+
+#: charitywallet-plugin.php:51
+msgid "from your basket?"
+msgstr "uit je mandje verwijderen?"
+
+#: charitywallet-plugin.php:58 charitywallet-plugin.php:65
 msgid "The top-up amount is too low."
 msgstr "Het opwaardeerbedrag is te laag."
 
-#: charitywallet-plugin.php:57 charitywallet-plugin.php:64
+#: charitywallet-plugin.php:59 charitywallet-plugin.php:66
 msgid "Please choose your amount"
 msgstr "Kies je bedrag"
+
+#: charitywallet-plugin.php:78
+msgid "Are you sure?"
+msgstr "Weet je het zeker?"
 
 #: shortcodes/account/shortcode-account.php:16
 msgid "Wallet"

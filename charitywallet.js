@@ -1,9 +1,99 @@
 jQuery(document).ready(function($) {
-    var cart = JSON.parse(localStorage.getItem('cart'));
+
+	// Empty <sup> element to show total cart 
     jQuery('#site-navigation li:nth-last-child(3) a').append(' <sup></sup>');
-    
-    totalCart(cart);
+
+	// Show cart total in navigation
+	totalCart();
+
+	// Remove button on basket page
+	$('#charity-basket').on('click', '.remove', function() {
+		charity = {};
+		charity.id = $(this).parents('tr').attr('data-charity-id');
+		removeFromCart(charity.id);
+		showCart();
+	});
+
+	// Show charity amount on single charity page
+	showCharity();
+
+	// Donate button on single charity page
+	$('.donate').click(function() {
+		charity = {};
+		charity.id = parseInt($(this).attr('data-charity'));
+		charity.amount = parseInt($(this).attr('data-amount'));
+		charity.name = $(this).attr('data-name');
+		addToCart(charity);
+		totalCart();
+	});
+
+	// Minus button on single charity page
+	$('#charity').on('click', '.minus', function(e) {
+		charity = {};
+		charity.id = $(this).parents('tr').attr('data-charity-id');
+		amount = $('button[data-charity="' + charity.id + '"]').attr('data-amount');
+		charity.amount = parseFloat(amount) - 1;
+
+		if ( charity.amount < 1 ) {
+
+			// Check if charity is already in cart
+			var cart = JSON.parse(localStorage.getItem('cart'));
+			if (cart != null) {
+				var charities = cart.charities;
+				if (charities && charities.length > 0) {
+					jQuery.each(charities, function() {
+						if (this.id == charity.id) { // yes
+							var r = confirm(chawa_localize.would_you_like_to_remove + ' ' + this.name + ' ' + chawa_localize.from_your_basket);
+							if (r == true) {
+								removeFromCart(charity.id);
+								totalCart();
+							} else { // cancel button
+								charity.amount = 1;
+							}
+						} else { // no
+							console.log('donoting');
+						}
+					});
+				} else {
+					console.log('whatelse');
+					charity.amount = 0;
+				}
+			} else {
+				console.log('cart is null');
+				charity.amount = 1;
+			}
+
+		}
+
+		$('button[data-charity="' + charity.id + '"]').attr('data-amount', charity.amount);
+		$('.the-value').html(charity.amount);
+	});
+
+	$('#charity').on('click', '.plus', function() {
+		charity = {};
+		charity.id = $(this).parents('tr').attr('data-charity-id');
+		amount = $('button[data-charity="' + charity.id + '"]').attr('data-amount');
+		charity.amount = parseFloat(amount) + 1;
+
+		$('button[data-charity="' + charity.id + '"]').attr('data-amount', charity.amount);
+		$('.the-value').html(charity.amount);
+	});
+
 });
+
+// Show cart contents on single charity page
+function showCharity() {
+	if (localStorage && localStorage.getItem('cart')) {
+		var cart = JSON.parse(localStorage.getItem('cart'));
+		for (var x = 0; x < cart.charities.length; x++) {
+			charityid = jQuery('#charity tr').attr('data-charity-id');
+			if (cart.charities[x].id == charityid) {
+				jQuery('#the-value').html(cart.charities[x].amount);
+				jQuery('button[data-charity="' + cart.charities[x].id + '"]').attr('data-amount', cart.charities[x].amount);
+			}
+		}
+	}
+}
 
 // Update cart meta
 function updateCartMeta(recurring) {
@@ -29,7 +119,6 @@ function dateCart(cart) {
 	var date = new Date(timestamp);
 	var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 	var cartDate = date.toLocaleDateString('nl-NL', options);
-
 	if (cartDate) {
 		jQuery('#basket-date').html( chawa_localize.date + ' ' + cartDate);
 	} else {
@@ -37,20 +126,21 @@ function dateCart(cart) {
 	}
 }
 
-// Count the total donation amount
-function totalCart(cart) {
-	var total = 0;
-	for (var x = 0; x < cart.charities.length; x++) {
-		total += cart.charities[x].amount;
+// Count the total donation amount and show in main navigation
+function totalCart() {
+	if (localStorage && localStorage.getItem('cart')) {
+		var cart = JSON.parse(localStorage.getItem('cart'));
+		var total = 0;
+		for (var x = 0; x < cart.charities.length; x++) {
+			total += cart.charities[x].amount;
+		}
+		if (total > 0) {
+			jQuery('#basket-total').html('€' + total + ',00');
+			jQuery('#site-navigation li:nth-last-child(3) a sup').html('€' + total + ',00');
+		} else {
+			jQuery('#site-navigation li:nth-last-child(3) a sup').html('');
+		}
 	}
-	if (total > 0) {
-        jQuery('#basket-total').html('€' + total + ',00');
-        jQuery('#site-navigation li:nth-last-child(3) a sup').html('€' + total + ',00');
-
-	} else {
-		jQuery('#basket-total').html('');
-	}
-	console.log('Total: ' + total);
 }
 
 // Check which charities are in the cart and disable them
@@ -111,20 +201,35 @@ function showCart() {
 
 		jQuery("#basket-recurring").prop( "checked", cart.meta.recurring );
 
+	} else {
+		console.log ('leeg');
+		jQuery("#charity-basket").html('<tr><td>' + chawa_localize.cart_is_empty + '</td></tr>');
 	}
 }
+
 
 // Add charity to cart
 function addToCart(charity) {
 	if (localStorage && localStorage.getItem('cart')) {
 		// Cart exists
-		cart = localStorage.getItem('cart');
-		//console.log('Cart exists');
-		//console.log('Cart before: ' + cart);
+		//cart = localStorage.getItem('cart');
 		var cart = JSON.parse(localStorage.getItem('cart'));
-		//console.log('Charity: ' + JSON.stringify(charity));
-		cart.charities.push(charity);
-		//console.log('Cart after: ' + JSON.stringify(cart));
+		
+		// Check if charity is already in cart
+		var charities = cart.charities;
+		console.log(charities);
+		if (charities && charities.length > 0) {
+			jQuery.each(charities, function() {
+				if (this.id == charity.id) {
+					this.amount = charity.amount;
+				} else {
+					cart.charities.push(charity);
+				}
+			});
+		} else {
+			cart.charities.push(charity);
+		}
+
 		localStorage.setItem('cart', JSON.stringify(cart));
 	} else {
 		// No cart exists
@@ -148,6 +253,6 @@ function removeFromCart(charityID) {
 		var filteredCart = charities.filter(item => item.id != charityID);
 		cart.charities = filteredCart;
 		localStorage.setItem('cart', JSON.stringify(cart));
-		showCart();
+		//showCart();
 	}
 }

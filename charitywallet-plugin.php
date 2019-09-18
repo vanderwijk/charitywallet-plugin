@@ -46,10 +46,13 @@ function chawa_enqueue_scripts() {
 	wp_register_script( 'charitywallet', CHAWA_PLUGIN_DIR . 'charitywallet.js', array( 'jquery' ), CHAWA_PLUGIN_VER );
 	$translation_array = array(
 		'date' => __( 'Date', 'chawa'),
-		'remove' => __( 'Remove', 'chawa')
+		'remove' => __( 'Remove', 'chawa'),
+		'would_you_like_to_remove' => __( 'Would you like to remove', 'chawa'),
+		'from_your_basket' => __( 'from your basket?', 'chawa'),
+		'cart_is_empty' => __( 'Je mandje is leeg', 'chawa')
 	);
 	wp_localize_script( 'charitywallet', 'chawa_localize', $translation_array );
-	//wp_enqueue_script( 'charitywallet' );
+	wp_enqueue_script( 'charitywallet' );
 
 	wp_register_script( 'wallet', CHAWA_PLUGIN_DIR . 'shortcodes/wallet/wallet.js', array( 'jquery' ), CHAWA_PLUGIN_VER );
 	$translation_array = array(
@@ -75,7 +78,7 @@ function chawa_enqueue_scripts() {
 	$translation_array = array(
 		'are_you_sure' => __( 'Are you sure?', 'chawa'),
 	);
-	wp_localize_script( 'charity', 'chawa_localize_charity', $translation_array );
+	//wp_localize_script( 'charity', 'chawa_localize_charity', $translation_array );
 }
 add_action( 'wp_enqueue_scripts', 'chawa_enqueue_scripts' );
 
@@ -95,6 +98,6 @@ function script_donate(){
 add_action('start_shortcode_donate', 'script_donate', 10);
 
 function script_charity(){
-	wp_enqueue_script( 'charity' );
+	//wp_enqueue_script( 'charity' );
 }
 add_action('start_shortcode_charity', 'script_charity', 10);
