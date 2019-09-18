@@ -61,21 +61,25 @@ function chawa_display_basket() {
 				</style>
 
 				<h2><?php _e('Your donations basket', 'chawa'); ?></h2>
-				<table class="charity-basket" id="charity-basket"></table>
+				<table class="charity-basket" id="charity-basket"><tbody></tbody>
 
-				<div class="basket-icon">
-					<span class="basket-count" id="basket-count"></span>
-					<span class="basket-total" id="basket-total"></span>
-				</div>
-
-				<div class="pretty p-switch p-fill">
-					<input type="checkbox" class="basket-recurring" id="basket-recurring" />
-					<div class="state">
-						<label><?php _e('Donate monthly','chawa'); ?></label>
-					</div>
-				</div>
-
-				<p style="text-align: right;"><input type="submit" value="Start met doneren"></p>
+				<tfoot>
+					<tr>
+						<td>				
+							<div class="pretty p-switch p-fill">
+								<input type="checkbox" class="basket-recurring" id="basket-recurring" />
+								<div class="state">
+									<label><?php _e('Donate monthly','chawa'); ?></label>
+								</div>
+							</div>
+						</td>
+						<td style="text-align: center;font-weight:600;font-size: 1.2em;">				
+							<span class="basket-total" id="basket-total"></span>
+						</td>
+						<td><input type="submit" value="Doneer"></td>
+					</tr>
+				</tfoot>
+			</table>	
 
 			</div>
 

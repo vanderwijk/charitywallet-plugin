@@ -31,7 +31,17 @@ jQuery(document).ready(function($) {
 	// Recurring monthly?
 	$('#basket-recurring').change(function() {
 		if ( $(this).is(":checked") ) {
-			updateCartMeta(true);
+			// Check if wallet has recurring payment
+			if (localStorage && localStorage.getItem('wallet')) {
+				var wallet = JSON.parse(localStorage.getItem('wallet'));
+				recurring = wallet.recurring;
+				if (recurring == true) {
+					updateCartMeta(true);
+				} else {
+					alert('je moet automatisch opwaarderen inschakelen');
+					$(this).removeAttr('checked');
+				}
+			}
 		} else {
 			updateCartMeta(false);
 		}

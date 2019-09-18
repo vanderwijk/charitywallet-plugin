@@ -46,7 +46,24 @@ function chawa_single_charity() {
 				.charity .plus:hover {
 					cursor: pointer;
 				}
+				#notification {
+					display: none;
+				}
+				.amount-wrap::selection,
+				.plus::selection,
+				.minus::selection,
+				.value::selection,
+				.the-value::selection {
+					background-color: transparent;
+				}
 			</style>
+
+			<div id="notification" style="background-color: #fff198;padding: 0 .4em;">
+				<?php _e('Your donation has been added to your', 'chawa'); ?>
+				<a style="text-decoration: underline;" href="/basket/">
+					<?php _e('basket', 'chawa'); ?>
+				</a>
+			</div>
 
 			<table class="charity" id="charity">
 				<tbody>

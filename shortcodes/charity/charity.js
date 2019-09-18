@@ -1,8 +1,6 @@
 jQuery(document).ready(function($) {
 
 	showCharity();
-	
-
 
 	$('#charity').on('click', '.remove', function() {
 		charity = {};
@@ -10,11 +8,7 @@ jQuery(document).ready(function($) {
 		removeFromCart(charity.id);
 	});
 
-
-
 });
-
-
 
 // Update donation amount
 function updateCart(charity) {

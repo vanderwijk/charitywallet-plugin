@@ -1,10 +1,16 @@
 jQuery(document).ready(function($) {
 
+	createWallet();
+
 	// Empty <sup> element to show total cart 
-    jQuery('#site-navigation li:nth-last-child(3) a').append(' <sup></sup>');
+	jQuery('#site-navigation li:nth-last-child(3) a').append(' <sup></sup>');
+	jQuery('#site-navigation li:nth-child(2) a').append(' <sup></sup>');
 
 	// Show cart total in navigation
 	totalCart();
+
+	// Show wallet total in navigation
+	totalWallet();
 
 	// Remove button on basket page
 	$('#charity-basket').on('click', '.remove', function() {
@@ -14,17 +20,37 @@ jQuery(document).ready(function($) {
 		showCart();
 	});
 
-	// Show charity amount on single charity page
-	showCharity();
-
 	// Donate button on single charity page
 	$('.donate').click(function() {
 		charity = {};
 		charity.id = parseInt($(this).attr('data-charity'));
 		charity.amount = parseInt($(this).attr('data-amount'));
 		charity.name = $(this).attr('data-name');
-		addToCart(charity);
-		totalCart();
+
+		// Check if wallet exists and find balance
+		if (localStorage && localStorage.getItem('wallet')) {
+			var wallet = JSON.parse(localStorage.getItem('wallet'));
+			balance = wallet.balance;
+
+			// Check if cart exists and calculate total
+			if (localStorage && localStorage.getItem('cart')) {
+				var cart = JSON.parse(localStorage.getItem('cart'));
+				var total = 0;
+				for (var x = 0; x < cart.charities.length; x++) {
+					total += cart.charities[x].amount;
+				}
+			}
+
+			donations = total + charity.amount;
+			if ( balance < donations ) {
+				alert('Je hebt onvoldoende wallet tegoed');
+			} else {
+				addToCart(charity);
+				showMessage();
+			}
+
+		}
+
 	});
 
 	// Minus button on single charity page
@@ -33,36 +59,8 @@ jQuery(document).ready(function($) {
 		charity.id = $(this).parents('tr').attr('data-charity-id');
 		amount = $('button[data-charity="' + charity.id + '"]').attr('data-amount');
 		charity.amount = parseFloat(amount) - 1;
-
 		if ( charity.amount < 1 ) {
-
-			// Check if charity is already in cart
-			var cart = JSON.parse(localStorage.getItem('cart'));
-			if (cart != null) {
-				var charities = cart.charities;
-				if (charities && charities.length > 0) {
-					jQuery.each(charities, function() {
-						if (this.id == charity.id) { // yes
-							var r = confirm(chawa_localize.would_you_like_to_remove + ' ' + this.name + ' ' + chawa_localize.from_your_basket);
-							if (r == true) {
-								removeFromCart(charity.id);
-								totalCart();
-							} else { // cancel button
-								charity.amount = 1;
-							}
-						} else { // no
-							console.log('donoting');
-						}
-					});
-				} else {
-					console.log('whatelse');
-					charity.amount = 0;
-				}
-			} else {
-				console.log('cart is null');
-				charity.amount = 1;
-			}
-
+			charity.amount = 1;
 		}
 
 		$('button[data-charity="' + charity.id + '"]').attr('data-amount', charity.amount);
@@ -80,6 +78,11 @@ jQuery(document).ready(function($) {
 	});
 
 });
+
+// Show message on page
+function showMessage() {
+	jQuery('#notification').delay(500).fadeIn('slow').delay(5000).fadeOut('fast');
+}
 
 // Show cart contents on single charity page
 function showCharity() {
@@ -135,10 +138,30 @@ function totalCart() {
 			total += cart.charities[x].amount;
 		}
 		if (total > 0) {
-			jQuery('#basket-total').html('€' + total + ',00');
-			jQuery('#site-navigation li:nth-last-child(3) a sup').html('€' + total + ',00');
+			jQuery('#basket-total').html('€' + total + ',-');
+			jQuery('#site-navigation li:nth-last-child(3) a sup').html('€' + total + ',-');
 		} else {
 			jQuery('#site-navigation li:nth-last-child(3) a sup').html('');
+		}
+	}
+}
+
+// Check the wallet balance and show in main navigation
+function totalWallet() {
+	if (localStorage && localStorage.getItem('wallet')) {
+		var wallet = JSON.parse(localStorage.getItem('wallet'));
+		balance = wallet.balance;
+		if ( wallet.recurring == true ) {
+			recurring = '<span class="dashicons dashicons-update"></span>';
+		} else {
+			recurring = '';
+		}
+
+		if (balance > 0) {
+			jQuery('#basket-total').html('€' + balance + ',-');
+			jQuery('#site-navigation li:nth-child(2) a sup').html('€' + balance + ',-' + recurring);
+		} else {
+			jQuery('#site-navigation li:nth-child(2) a sup').html('');
 		}
 	}
 }
@@ -183,7 +206,7 @@ function showCart() {
 	if (localStorage && localStorage.getItem('cart')) {
 
 		var cart = JSON.parse(localStorage.getItem('cart'));
-		var list = jQuery('.charity-basket');
+		var list = jQuery('.charity-basket tbody');
 		var parent = list.parent();
 		
 		list.empty().each(function(i) {
@@ -212,16 +235,14 @@ function showCart() {
 function addToCart(charity) {
 	if (localStorage && localStorage.getItem('cart')) {
 		// Cart exists
-		//cart = localStorage.getItem('cart');
 		var cart = JSON.parse(localStorage.getItem('cart'));
 		
 		// Check if charity is already in cart
 		var charities = cart.charities;
-		console.log(charities);
 		if (charities && charities.length > 0) {
 			jQuery.each(charities, function() {
 				if (this.id == charity.id) {
-					this.amount = charity.amount;
+					this.amount = this.amount + charity.amount;
 				} else {
 					cart.charities.push(charity);
 				}
@@ -255,4 +276,14 @@ function removeFromCart(charityID) {
 		localStorage.setItem('cart', JSON.stringify(cart));
 		//showCart();
 	}
+}
+
+function createWallet() {
+	var wallet = {};
+	wallet.meta = {};
+	wallet.balance = 12;
+	wallet.recurring = false;
+	wallet.meta.date = Date.now();
+	//console.log('Cart after: ' + JSON.stringify(cart));
+	localStorage.setItem('wallet', JSON.stringify(wallet));
 }

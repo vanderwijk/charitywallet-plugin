@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2019-09-18 13:01+0200\n"
-"PO-Revision-Date: 2019-09-18 13:02+0200\n"
+"POT-Creation-Date: 2019-09-18 14:53+0200\n"
+"PO-Revision-Date: 2019-09-18 14:53+0200\n"
 "Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -38,15 +38,19 @@ msgstr "Wil je"
 msgid "from your basket?"
 msgstr "uit je mandje verwijderen?"
 
-#: charitywallet-plugin.php:58 charitywallet-plugin.php:65
+#: charitywallet-plugin.php:52
+msgid "Je mandje is leeg"
+msgstr ""
+
+#: charitywallet-plugin.php:59 charitywallet-plugin.php:66
 msgid "The top-up amount is too low."
 msgstr "Het opwaardeerbedrag is te laag."
 
-#: charitywallet-plugin.php:59 charitywallet-plugin.php:66
+#: charitywallet-plugin.php:60 charitywallet-plugin.php:67
 msgid "Please choose your amount"
 msgstr "Kies je bedrag"
 
-#: charitywallet-plugin.php:78
+#: charitywallet-plugin.php:79
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
 
@@ -86,7 +90,7 @@ msgstr "Maandelijkse donatie"
 
 #: shortcodes/account/shortcode-account.php:59
 #: shortcodes/basket/shortcode-basket.php:88
-#: shortcodes/charity/shortcode-charity.php:71
+#: shortcodes/charity/shortcode-charity.php:81
 #: shortcodes/donate/shortcode-donate.php:106
 #: shortcodes/wallet/shortcode-wallet.php:144
 msgid "You must be"
@@ -94,7 +98,7 @@ msgstr "Je moet"
 
 #: shortcodes/account/shortcode-account.php:60
 #: shortcodes/basket/shortcode-basket.php:89
-#: shortcodes/charity/shortcode-charity.php:72
+#: shortcodes/charity/shortcode-charity.php:82
 #: shortcodes/donate/shortcode-donate.php:107
 #: shortcodes/wallet/shortcode-wallet.php:145
 msgid "Log in"
@@ -102,7 +106,7 @@ msgstr "Inloggen"
 
 #: shortcodes/account/shortcode-account.php:60
 #: shortcodes/basket/shortcode-basket.php:89
-#: shortcodes/charity/shortcode-charity.php:72
+#: shortcodes/charity/shortcode-charity.php:82
 #: shortcodes/donate/shortcode-donate.php:107
 #: shortcodes/wallet/shortcode-wallet.php:145
 msgid "logged in"
@@ -110,7 +114,7 @@ msgstr "ingelogd zijn"
 
 #: shortcodes/account/shortcode-account.php:61
 #: shortcodes/basket/shortcode-basket.php:90
-#: shortcodes/charity/shortcode-charity.php:73
+#: shortcodes/charity/shortcode-charity.php:83
 #: shortcodes/donate/shortcode-donate.php:108
 msgid "to access your basket."
 msgstr "voor toegang tot je mandje."
@@ -119,12 +123,20 @@ msgstr "voor toegang tot je mandje."
 msgid "Your donations basket"
 msgstr "Je donatiemandje"
 
-#: shortcodes/basket/shortcode-basket.php:76
+#: shortcodes/basket/shortcode-basket.php:74
 #: shortcodes/donate/shortcode-donate.php:94
 msgid "Donate monthly"
 msgstr "Doneer maandelijks"
 
-#: shortcodes/charity/shortcode-charity.php:60
+#: shortcodes/charity/shortcode-charity.php:55
+msgid "Your donation has been added to your"
+msgstr "Je donatie is toegevoegd aan je"
+
+#: shortcodes/charity/shortcode-charity.php:57
+msgid "basket"
+msgstr "mandje"
+
+#: shortcodes/charity/shortcode-charity.php:70
 msgid "Add to basket"
 msgstr "In mandje"
 
@@ -221,9 +233,6 @@ msgstr "http://thewebworks.nl"
 
 #~ msgid "Donate"
 #~ msgstr "Doneer"
-
-#~ msgid "Basket"
-#~ msgstr "Mandje"
 
 #~ msgid "Other amount"
 #~ msgstr "Ander bedrag"
