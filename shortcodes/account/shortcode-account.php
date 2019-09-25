@@ -56,7 +56,7 @@ function chawa_single_account() {
 			ob_start(); ?>
 		
 			<p class="warning">
-				<?php _e('You must be'); ?>
+				<?php _e('You must be', 'chawa'); ?>
 				<a href="<?php echo wp_login_url( get_permalink() ); ?>" title="<?php _e('Log in'); ?>"><?php _e('logged in','chawa'); ?></a> 
 				<?php _e('to access your basket.', 'chawa'); ?>
 			</p>

@@ -470,5 +470,41 @@
         ],
         "description": "Select2 is a jQuery based replacement for select boxes.",
         "homepage": "https://select2.org/"
+    },
+    {
+        "name": "wildbit/postmark-php",
+        "version": "2.8.0",
+        "version_normalized": "2.8.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wildbit/postmark-php.git",
+            "reference": "06581271d5a6fb731fa0e1d9a0286b83079343a2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/wildbit/postmark-php/zipball/06581271d5a6fb731fa0e1d9a0286b83079343a2",
+            "reference": "06581271d5a6fb731fa0e1d9a0286b83079343a2",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/guzzle": "~6.0",
+            "php": ">=5.5.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.4.0"
+        },
+        "time": "2019-08-22T06:50:42+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Postmark\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "The officially supported client for Postmark (http://postmarkapp.com)"
     }
 ]

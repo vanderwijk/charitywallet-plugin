@@ -61,11 +61,22 @@ class ComposerStaticInitb4e14f2efb0339ccaba829ca4c76baf0
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'Postmark\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/wildbit/postmark-php/src',
+            ),
+        ),
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitb4e14f2efb0339ccaba829ca4c76baf0::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitb4e14f2efb0339ccaba829ca4c76baf0::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitb4e14f2efb0339ccaba829ca4c76baf0::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

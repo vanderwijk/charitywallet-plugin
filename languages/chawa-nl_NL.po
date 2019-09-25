@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2019-09-18 14:53+0200\n"
-"PO-Revision-Date: 2019-09-18 14:53+0200\n"
+"POT-Creation-Date: 2019-09-25 12:04+0200\n"
+"PO-Revision-Date: 2019-09-25 12:04+0200\n"
 "Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -21,36 +21,38 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: charitywallet-plugin.php:48 shortcodes/account/shortcode-account.php:22
+#: charitywallet-plugin.php:50 shortcodes/account/shortcode-account.php:22
 #: shortcodes/account/shortcode-account.php:29
 msgid "Date"
 msgstr "Datum"
 
-#: charitywallet-plugin.php:49
+#: charitywallet-plugin.php:51
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: charitywallet-plugin.php:50
+#: charitywallet-plugin.php:52
 msgid "Would you like to remove"
 msgstr "Wil je"
 
-#: charitywallet-plugin.php:51
+#: charitywallet-plugin.php:53
 msgid "from your basket?"
 msgstr "uit je mandje verwijderen?"
 
-#: charitywallet-plugin.php:52
+#: charitywallet-plugin.php:54
 msgid "Je mandje is leeg"
 msgstr ""
 
-#: charitywallet-plugin.php:59 charitywallet-plugin.php:66
+#: charitywallet-plugin.php:61 charitywallet-plugin.php:68
+#: charitywallet-plugin.php:75
 msgid "The top-up amount is too low."
 msgstr "Het opwaardeerbedrag is te laag."
 
-#: charitywallet-plugin.php:60 charitywallet-plugin.php:67
+#: charitywallet-plugin.php:62 charitywallet-plugin.php:69
+#: charitywallet-plugin.php:76
 msgid "Please choose your amount"
 msgstr "Kies je bedrag"
 
-#: charitywallet-plugin.php:79
+#: charitywallet-plugin.php:88
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
 
@@ -89,33 +91,37 @@ msgid "Monthly donation"
 msgstr "Maandelijkse donatie"
 
 #: shortcodes/account/shortcode-account.php:59
-#: shortcodes/basket/shortcode-basket.php:88
-#: shortcodes/charity/shortcode-charity.php:81
+#: shortcodes/basket/shortcode-basket.php:92
+#: shortcodes/charity/shortcode-charity.php:88
 #: shortcodes/donate/shortcode-donate.php:106
+#: shortcodes/onboarding/shortcode-onboarding.php:95
 #: shortcodes/wallet/shortcode-wallet.php:144
 msgid "You must be"
 msgstr "Je moet"
 
 #: shortcodes/account/shortcode-account.php:60
-#: shortcodes/basket/shortcode-basket.php:89
-#: shortcodes/charity/shortcode-charity.php:82
+#: shortcodes/basket/shortcode-basket.php:93
+#: shortcodes/charity/shortcode-charity.php:89
 #: shortcodes/donate/shortcode-donate.php:107
+#: shortcodes/onboarding/shortcode-onboarding.php:96
 #: shortcodes/wallet/shortcode-wallet.php:145
 msgid "Log in"
 msgstr "Inloggen"
 
 #: shortcodes/account/shortcode-account.php:60
-#: shortcodes/basket/shortcode-basket.php:89
-#: shortcodes/charity/shortcode-charity.php:82
+#: shortcodes/basket/shortcode-basket.php:93
+#: shortcodes/charity/shortcode-charity.php:89
 #: shortcodes/donate/shortcode-donate.php:107
+#: shortcodes/onboarding/shortcode-onboarding.php:96
 #: shortcodes/wallet/shortcode-wallet.php:145
 msgid "logged in"
 msgstr "ingelogd zijn"
 
 #: shortcodes/account/shortcode-account.php:61
-#: shortcodes/basket/shortcode-basket.php:90
-#: shortcodes/charity/shortcode-charity.php:83
+#: shortcodes/basket/shortcode-basket.php:94
+#: shortcodes/charity/shortcode-charity.php:90
 #: shortcodes/donate/shortcode-donate.php:108
+#: shortcodes/onboarding/shortcode-onboarding.php:97
 msgid "to access your basket."
 msgstr "voor toegang tot je mandje."
 
@@ -123,20 +129,20 @@ msgstr "voor toegang tot je mandje."
 msgid "Your donations basket"
 msgstr "Je donatiemandje"
 
-#: shortcodes/basket/shortcode-basket.php:74
+#: shortcodes/basket/shortcode-basket.php:72
 #: shortcodes/donate/shortcode-donate.php:94
 msgid "Donate monthly"
 msgstr "Doneer maandelijks"
 
-#: shortcodes/charity/shortcode-charity.php:55
+#: shortcodes/charity/shortcode-charity.php:62
 msgid "Your donation has been added to your"
 msgstr "Je donatie is toegevoegd aan je"
 
-#: shortcodes/charity/shortcode-charity.php:57
+#: shortcodes/charity/shortcode-charity.php:64
 msgid "basket"
 msgstr "mandje"
 
-#: shortcodes/charity/shortcode-charity.php:70
+#: shortcodes/charity/shortcode-charity.php:77
 msgid "Add to basket"
 msgstr "In mandje"
 
@@ -154,6 +160,73 @@ msgstr "Toevoegen"
 #: shortcodes/donate/shortcode-donate.php:80
 msgid "Charity Basket"
 msgstr "Goede doelen mandje"
+
+#: shortcodes/onboarding/shortcode-onboarding.php:42
+msgid "Leuk dat je er bent!"
+msgstr ""
+
+#: shortcodes/onboarding/shortcode-onboarding.php:43
+msgid "Ben je klaar voor het nieuwe doneren of wil je eerst even rondkijken?"
+msgstr ""
+
+#: shortcodes/onboarding/shortcode-onboarding.php:44
+msgid "Ik wil doneren"
+msgstr ""
+
+#: shortcodes/onboarding/shortcode-onboarding.php:45
+msgid "Ik kijk nog even rond"
+msgstr ""
+
+#: shortcodes/onboarding/shortcode-onboarding.php:49
+#: shortcodes/onboarding/shortcode-onboarding.php:56
+msgid "Account maken"
+msgstr ""
+
+#: shortcodes/onboarding/shortcode-onboarding.php:50
+msgid ""
+"Goed idee om vanaf vandaag te gaan doneren zonder deurbel of handtekening!"
+msgstr ""
+
+#: shortcodes/onboarding/shortcode-onboarding.php:51
+msgid "We gaan eerst een account voor je aanmaken."
+msgstr ""
+
+#: shortcodes/onboarding/shortcode-onboarding.php:52
+#: shortcodes/onboarding/shortcode-onboarding.php:85
+msgid "Next"
+msgstr "Volgende"
+
+#: shortcodes/onboarding/shortcode-onboarding.php:59
+msgid "What is your name?"
+msgstr "Hoe heet je?"
+
+#: shortcodes/onboarding/shortcode-onboarding.php:64
+msgid "Enter your first name."
+msgstr "Vul je voornaam in."
+
+#: shortcodes/onboarding/shortcode-onboarding.php:65
+msgid "First name"
+msgstr "Voornaam"
+
+#: shortcodes/onboarding/shortcode-onboarding.php:71
+msgid "Enter your last name."
+msgstr "Vul je achternaam in."
+
+#: shortcodes/onboarding/shortcode-onboarding.php:72
+msgid "Last name"
+msgstr "Achternaam"
+
+#: shortcodes/onboarding/shortcode-onboarding.php:78
+msgid "What is your e-mail address?"
+msgstr "Wat is je e-mailadres?"
+
+#: shortcodes/onboarding/shortcode-onboarding.php:80
+msgid "This value should be a valid e-mail address."
+msgstr "Deze waarde moet een geldig e-mailadres zijn."
+
+#: shortcodes/onboarding/shortcode-onboarding.php:81
+msgid "E-mail address"
+msgstr "E-mailadres"
 
 #: shortcodes/wallet/shortcode-wallet.php:21
 msgid "Close"

@@ -140,12 +140,6 @@ function chawa_display_wallet() {
 		} else { // not logged in
 			ob_start(); ?>
 		
-			<p class="warning">
-				<?php _e('You must be'); ?>
-				<a href="<?php echo wp_login_url( get_permalink() ); ?>" title="<?php _e('Log in'); ?>"><?php _e('logged in','chawa'); ?></a> 
-				<?php _e('to access your wallet.', 'chawa'); ?>
-			</p>
-	
 			<?php echo ob_get_clean();
 		}
 
