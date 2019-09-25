@@ -90,13 +90,11 @@ function sendPostmarkEmail( template, email_address, user_id, participant_count 
 		method: 'POST',
 		data: {
 			recipient: email_address,
-			//naam_opleiding: group_name, 
-			voornaam_deelnemer: firstname,
-			achternaam_deelnemer: lastname,
+			firstname: firstname,
+			lastname: lastname,
 			state: state,
 			template: template,
-			//aantal_deelnemers: participant_count,
-			//klant: organisation,
+            activation_url: '',
 			user_id: user_id
 		},
 		headers: [

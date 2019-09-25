@@ -125,14 +125,6 @@ function script_charity(){
 }
 add_action('start_shortcode_charity', 'script_charity', 10);
 
-function auto_login_new_user( $user_id ) {
-    wp_set_current_user($user_id);
-    wp_set_auth_cookie($user_id);
-    wp_redirect( home_url() ); // You can change home_url() to the specific URL,such as "wp_redirect( 'http://www.wpcoke.com' )";
-    exit();
-}
-add_action( 'user_register', 'auto_login_new_user' );
-
 function nLbwuEa8_modify_create_user_route() {
     $users_controller = new WP_REST_Users_Controller();
 

@@ -33,6 +33,24 @@ function chawa_onboarding() {
 		ul.parsley-errors-list li {
 			margin-bottom: -10px;
 		}
+		.gfield_required {
+			display: none;
+		}
+		#step-3 .gform_wrapper div.validation_error {
+			display: none;
+		}
+		#step-3 .gform_wrapper li.gfield.gfield_error {
+			background-color: transparent;
+			border: none;
+		}
+		#step-3 .gform_wrapper .gfield_error .gfield_label,
+		#step-3 .gform_wrapper .validation_message,
+		#step-3 .gform_wrapper li.gfield_error div.ginput_complex.ginput_container label {
+			color: #FE6C61;
+		}
+		#step-3 .gform_wrapper li.gfield_error input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]) {
+			border-color: #FE6C61;
+		}
 	</style>
 
 	<div class="step" id="step-1">
@@ -52,36 +70,8 @@ function chawa_onboarding() {
 	<div class="step" id="step-3" style="display: none;">
 		<h1><?php _e('Account maken', 'chawa'); ?></h1>
 
-		<form method="post" class="add-user" id="add-user" enctype="multipart/form-data" action="" onSubmit="registerParticipant(event)">
-		<h4><?php _e('What is your name?', 'chawa'); ?></h4>
-		
-		<div class="col-2">
-			<div class="col">
-				<label>
-					<input type="text" name="first_name" id="first_name" required data-parsley-error-message="<?php _e('Enter your first name.', 'chawa'); ?>">
-					<?php _e('First name', 'chawa'); ?>
-				</label>
-			</div>
-			
-			<div class="col">
-				<label class="group">
-					<input type="text" name="last_name" id="last_name" required data-parsley-error-message="<?php _e('Enter your last name.', 'chawa'); ?>">
-					<?php _e('Last name', 'chawa'); ?>
-				</label>
-			</div>
-		</div>
+		<?php echo do_shortcode( '[gravityform id=1 title=false description=false ajax=true tabindex=49]' ); ?>
 
-		<div class="col-1">
-			<h4><?php _e('What is your e-mail address?', 'chawa'); ?></h4>
-			<label>
-				<input type="email" name="user_email" id="user_email" required data-parsley-error-message="<?php _e('This value should be a valid e-mail address.', 'chawa'); ?>">
-				<?php _e('E-mail address', 'chawa'); ?>
-			</label>
-		</div>
-
-		<p><input type="submit" id="submit" class="next" id="next-4" value="<?php _e('Next', 'chawa'); ?>"></p>
-		<input type="hidden" name="state" id="state" value="<?php echo wp_generate_password( 8, false ); ?>">
-		</form>
 	</div>
 
 	<div class="step" id="step-4" style="display: none;">
