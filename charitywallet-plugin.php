@@ -32,7 +32,6 @@ require 'shortcodes/donate/shortcode-donate.php';
 require 'shortcodes/wallet/shortcode-wallet.php';
 require 'shortcodes/charity/shortcode-charity.php';
 require 'shortcodes/account/shortcode-account.php';
-require 'shortcodes/onboarding/shortcode-onboarding.php';
 
 function chawa_enqueue_styles() {
 	wp_enqueue_style( 'select2', CHAWA_PLUGIN_DIR . 'vendor/select2/select2/dist/css/select2.min.css', '', CHAWA_PLUGIN_VER );
@@ -70,12 +69,19 @@ function chawa_enqueue_scripts() {
 	);
 	wp_localize_script( 'basket', 'chawa_localize_basket', $translation_array );
 
-	wp_register_script( 'onboarding', CHAWA_PLUGIN_DIR . 'shortcodes/onboarding/onboarding.js', array( 'jquery' ), CHAWA_PLUGIN_VER );
+	wp_register_script( 'onboarding_account', CHAWA_PLUGIN_DIR . 'shortcodes/onboarding/onboarding-account.js', array( 'jquery' ), CHAWA_PLUGIN_VER );
 	$translation_array = array(
 		'top_up_amount_too_low' => __( 'The top-up amount is too low.', 'chawa'),
 		'choose_amount' => __( 'Please choose your amount', 'chawa'),
 	);
-	wp_localize_script( 'onboarding', 'chawa_localize_onboarding', $translation_array );
+	wp_localize_script( 'onboarding_account', 'chawa_localize_onboarding', $translation_array );
+
+	wp_register_script( 'onboarding_wallet', CHAWA_PLUGIN_DIR . 'shortcodes/onboarding/onboarding-wallet.js', array( 'jquery' ), CHAWA_PLUGIN_VER );
+	$translation_array = array(
+		'top_up_amount_too_low' => __( 'The top-up amount is too low.', 'chawa'),
+		'choose_amount' => __( 'Please choose your amount', 'chawa'),
+	);
+	wp_localize_script( 'onboarding_wallet', 'chawa_localize_onboarding', $translation_array );
 
 	wp_register_script( 'user', CHAWA_PLUGIN_DIR . 'shortcodes/onboarding/user.js', array( 'jquery' ), CHAWA_PLUGIN_VER );
 	$translation_array = array(
@@ -97,18 +103,6 @@ function chawa_enqueue_scripts() {
 	//wp_localize_script( 'charity', 'chawa_localize_charity', $translation_array );
 }
 add_action( 'wp_enqueue_scripts', 'chawa_enqueue_scripts' );
-
-function script_wallet() {
-	wp_enqueue_script( 'wallet' );
-}
-add_action('start_shortcode_wallet', 'script_wallet', 10);
-
-function script_onboarding(){
-	wp_enqueue_script( 'onboarding' );
-	wp_enqueue_script( 'user' );
-	wp_localize_script( 'user', 'WP_API_Settings', array( 'root' => esc_url_raw( rest_url() ), 'nonce' => wp_create_nonce( 'wp_rest' ), 'title' => ( current_time( 'H:i:s' ) ) ) );
-}
-add_action('start_shortcode_onboarding', 'script_onboarding', 10);
 
 function script_basket(){
 	wp_enqueue_script( 'basket' );
@@ -143,4 +137,98 @@ function nLbwuEa8_modify_create_user_route() {
         ),
     ) );
 };
-add_action( 'rest_api_init', 'nLbwuEa8_modify_create_user_route' );
+//add_action( 'rest_api_init', 'nLbwuEa8_modify_create_user_route' );
+
+add_action( 'gform_user_registered', 'wpc_gravity_registration_autologin',  10, 4 );
+/**
+ * Auto login after registration.
+ */
+function wpc_gravity_registration_autologin( $user_id, $user_config, $entry, $password ) {
+	$user = get_userdata( $user_id );
+	$user_login = $user->user_login;
+	$user_password = $password;
+       $user->set_role(get_option('default_role', 'subscriber'));
+
+    wp_signon( array(
+		'user_login' => $user_login,
+		'user_password' =>  $user_password,
+		'remember' => false
+
+    ) );
+}
+
+// Remove admin bar
+function remove_admin_bar() {
+	if (!current_user_can('administrator') && !is_admin()) {
+	show_admin_bar(false);
+	}
+}
+add_action('after_setup_theme', 'remove_admin_bar');
+
+
+function page_templates( $template ) {
+
+	if ( is_front_page() ) {
+		$new_template = locate_template( array( '/shortcodes/onboarding/onboarding-account.php' ) );
+		if ( !empty( $new_template ) ) {
+			return $new_template;
+		}
+	}
+
+	return $template;
+}
+//add_filter( 'template_include', 'page_templates', 99 );
+
+/* Rewrite Rules */
+
+function chawa_rewrite_rules() {
+	add_rewrite_rule( 'onboarding/account/?$', 'index.php?onboarding=account', 'top' );
+	add_rewrite_rule( 'onboarding/wallet/?$', 'index.php?onboarding=wallet', 'top' );
+}
+add_action('init', 'chawa_rewrite_rules');
+
+/* Query Vars */
+function chawa_register_query_var( $vars ) {
+	$vars[] = 'onboarding';
+    return $vars;
+}
+add_filter( 'query_vars', 'chawa_register_query_var' );
+
+/* Template Include */
+function chawa_onboarding_template_include($template) {
+    global $wp_query;
+    $page_value = $wp_query->query_vars['onboarding'];
+
+    if ($page_value && $page_value == "account") {
+        return plugin_dir_path(__FILE__).'shortcodes/onboarding/onboarding-account.php';
+	}
+	
+	if ($page_value && $page_value == "wallet") {
+        return plugin_dir_path(__FILE__).'shortcodes/onboarding/onboarding-wallet.php';
+    }
+
+    return $template;
+}
+add_filter('template_include', 'chawa_onboarding_template_include', 1, 1); 
+
+
+// Add rest api endpoint for 'wallet' meta field
+function slug_register_wallet() {
+	register_rest_field( 'user',
+		'wallet',
+		array(
+			'get_callback'    => 'slug_get_wallet',
+			'update_callback' => 'slug_update_wallet',
+			'schema'          => null,
+		)
+	);
+}
+add_action( 'rest_api_init', 'slug_register_wallet' );
+
+function slug_get_wallet( $data, $field_name, $request ) {
+	return get_user_meta( $data['id'], $field_name, false );
+}
+
+function slug_update_wallet( $value, $object, $field_name ) {
+	return update_user_meta( $object->id, $field_name, $value );
+}

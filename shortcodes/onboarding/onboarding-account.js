@@ -9,10 +9,5 @@ jQuery(document).ready(function($) {
 		$('#step-2').hide();
 		$('#step-3').show();
 	});
-
-	$('#step-4').on('click', '.next', function() {
-		$('#step-4').hide();
-		$('#step-5').show();
-	});
-
+	
 });

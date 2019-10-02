@@ -33,15 +33,16 @@ function registerParticipant(event) {
 
 	// Maak nieuwe gebruiker aan
 	jQuery.ajax({
-		url: WP_API_Settings.root + 'wp/v2/users',
+		//url: WP_API_Settings.root + 'wp/v2/users',
+		url: 'wp-login.php?action=register',
 		method: 'POST',
 		beforeSend: function (xhr) {
 			jQuery('#submit').addClass('loading');
 			xhr.setRequestHeader('X-WP-Nonce', WP_API_Settings.nonce);
 		},
 		data: {
-			username : 'u' + num,
-			email: email,
+			user_login : 'u' + num,
+			user_email: email,
 			password: state,
 			first_name: firstname,
 			last_name: lastname,
@@ -62,7 +63,7 @@ function registerParticipant(event) {
 
 		console.log('Nieuwe gebruiker toegevoegd.');
 		console.log('textStatus: ' + textStatus);
-		//console.dir(data);
+		console.dir(data);
         //console.dir(jqXHR);
         
         jQuery('#step-3').hide();
