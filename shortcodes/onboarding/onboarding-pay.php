@@ -120,8 +120,6 @@
 		$hostname = $_SERVER['HTTP_HOST'];
 		$path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
 
-
-
 		$amount = number_format($amount, 2, '.', ' '); // Add two decimals
 		$amount = $amount + 0.44; // Fixed transaction costs
 		settype($amount, "string"); // Convert to string for Mollie API
@@ -161,7 +159,7 @@
 		header("Location: " . $payment->getCheckoutUrl(), true, 303);
 	} ?>
 
-	<?php echo ob_get_clean(); // use return if shortcode
+	<?php return ob_get_clean(); // use return if shortcode
 	} catch (\Mollie\Api\Exceptions\ApiException $e) {
 		echo "API call failed: " . htmlspecialchars($e->getMessage());
 	} ?>
