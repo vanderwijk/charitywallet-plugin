@@ -1,10 +1,12 @@
+<?php try {
+	require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-mollie.php'; ?>
 <?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	$user_id = get_current_user_id();
 	$user_wallet = get_user_meta($user_id, 'wallet', true);
 	$recurring = $user_wallet[0]['recurring'];
 	$amount = $user_wallet[0]['amount'];
-	
+
 	$orderId = time();
 
 	$protocol = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
@@ -127,10 +129,6 @@
 	<h1><?php _e('Wallet opwaarderen', 'chawa'); ?></h1>
 	<div class="notice" id="notice"></div>
 	
-<?php try {
-	require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-mollie.php';
-	ob_start(); ?>
-
 	<form method="post" class="pay" id="pay" enctype="multipart/form-data" action="" onSubmit="pay(<?php echo get_current_user_id(); ?>)">
 		<p><strong><?php _e('Je wilt', 'chawa'); ?> 
 		<?php if ( $recurring === 'true' ) {
@@ -165,7 +163,7 @@
 		<p><input type="submit" id="submit" class="next" id="next-4" value="<?php _e('Akkoord & betalen', 'chawa'); ?>"></p>
 	</form>
 
-	<?php echo ob_get_clean(); // use return if shortcode
+	<?php
 	} catch (\Mollie\Api\Exceptions\ApiException $e) {
 		echo "API call failed: " . htmlspecialchars($e->getMessage());
 	} ?>
