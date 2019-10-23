@@ -1,3 +1,55 @@
+<?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+	$user_id = get_current_user_id();
+	$user_wallet = get_user_meta($user_id, 'wallet', true);
+	$recurring = $user_wallet[0]['recurring'];
+	$amount = $user_wallet[0]['amount'];
+	
+	$orderId = time();
+
+	$protocol = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
+	$hostname = $_SERVER['HTTP_HOST'];
+	$path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
+
+	$amount = number_format($amount, 2, '.', ' '); // Add two decimals
+	$amount = $amount + 0.44; // Fixed transaction costs
+	settype($amount, "string"); // Convert to string for Mollie API
+
+	/*
+	* Payment parameters:
+	*   amount        Amount in EUROs. This example creates a € 27.50 payment.
+	*   method        Payment method "ideal".
+	*   description   Description of the payment.
+	*   redirectUrl   Redirect location. The customer will be redirected there after the payment.
+	*   webhookUrl    Webhook location, used to report when the payment changes state.
+	*   metadata      Custom metadata that is stored with the payment.
+	*   issuer        The customer's bank. If empty the customer can select it later.
+	*/
+	$payment = $mollie->payments->create([
+		"amount" => [
+			"currency" => "EUR",
+			"value" => $amount // You must send the correct number of decimals, thus we enforce the use of strings
+		],
+		"method" => \Mollie\Api\Types\PaymentMethod::IDEAL,
+		"description" => 'Wallet ' . __('Transaction','chawa') . ' #{$orderId}',
+		"redirectUrl" => "{$protocol}://{$hostname}{$path}/payments/return.php?order_id={$orderId}",
+		"webhookUrl" => "{$protocol}://{$hostname}{$path}/payments/webhook.php",
+		"metadata" => [
+			"order_id" => $orderId,
+		],
+		"issuer" => !empty($_POST["issuer"]) ? $_POST["issuer"] : null
+	]);
+	/*
+	* In this example we store the order with its payment status in a database.
+	*/
+	//save_transaction($orderId, $payment->status);
+	/*
+	* Send the customer off to complete the payment.
+	* This request should always be a GET, thus we enforce 303 http response code
+	*/
+	header("Location: " . $payment->getCheckoutUrl(), true, 303);
+} ?>
+
 <?php get_header(); ?>
 
 <section id="primary" class="content-area">
@@ -79,7 +131,7 @@
 	require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-mollie.php';
 	ob_start(); ?>
 
-	<form novalidate="novalidate" id="top-up-form" method="post">
+	<form method="post" class="pay" id="pay" enctype="multipart/form-data" action="" onSubmit="pay(<?php echo get_current_user_id(); ?>)">
 		<p><strong><?php _e('Je wilt', 'chawa'); ?> 
 		<?php if ( $recurring === 'true' ) {
 			echo 'maandelijks';
@@ -112,52 +164,6 @@
 		<p><small><?php _e('Per transatie rekenen we € 0,44 transactiekosten bovenop het donatiegeld.', 'chawa'); ?></small></p>
 		<p><input type="submit" id="submit" class="next" id="next-4" value="<?php _e('Akkoord & betalen', 'chawa'); ?>"></p>
 	</form>
-
-	<?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		$orderId = time();
-
-		$protocol = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
-		$hostname = $_SERVER['HTTP_HOST'];
-		$path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
-
-		$amount = number_format($amount, 2, '.', ' '); // Add two decimals
-		$amount = $amount + 0.44; // Fixed transaction costs
-		settype($amount, "string"); // Convert to string for Mollie API
-
-		/*
-		* Payment parameters:
-		*   amount        Amount in EUROs. This example creates a € 27.50 payment.
-		*   method        Payment method "ideal".
-		*   description   Description of the payment.
-		*   redirectUrl   Redirect location. The customer will be redirected there after the payment.
-		*   webhookUrl    Webhook location, used to report when the payment changes state.
-		*   metadata      Custom metadata that is stored with the payment.
-		*   issuer        The customer's bank. If empty the customer can select it later.
-		*/
-		$payment = $mollie->payments->create([
-			"amount" => [
-				"currency" => "EUR",
-				"value" => $amount // You must send the correct number of decimals, thus we enforce the use of strings
-			],
-			"method" => \Mollie\Api\Types\PaymentMethod::IDEAL,
-			"description" => 'Wallet ' . __('Transaction','chawa') . ' #{$orderId}',
-			"redirectUrl" => "{$protocol}://{$hostname}{$path}/payments/return.php?order_id={$orderId}",
-			"webhookUrl" => "{$protocol}://{$hostname}{$path}/payments/webhook.php",
-			"metadata" => [
-				"order_id" => $orderId,
-			],
-			"issuer" => !empty($_POST["issuer"]) ? $_POST["issuer"] : null
-		]);
-		/*
-		* In this example we store the order with its payment status in a database.
-		*/
-		//save_transaction($orderId, $payment->status);
-		/*
-		* Send the customer off to complete the payment.
-		* This request should always be a GET, thus we enforce 303 http response code
-		*/
-		header("Location: " . $payment->getCheckoutUrl(), true, 303);
-	} ?>
 
 	<?php echo ob_get_clean(); // use return if shortcode
 	} catch (\Mollie\Api\Exceptions\ApiException $e) {
