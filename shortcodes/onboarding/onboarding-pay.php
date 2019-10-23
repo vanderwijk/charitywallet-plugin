@@ -159,7 +159,7 @@
 		header("Location: " . $payment->getCheckoutUrl(), true, 303);
 	} ?>
 
-	<?php return ob_get_clean(); // use return if shortcode
+	<?php print ob_get_clean(); // use return if shortcode
 	} catch (\Mollie\Api\Exceptions\ApiException $e) {
 		echo "API call failed: " . htmlspecialchars($e->getMessage());
 	} ?>
