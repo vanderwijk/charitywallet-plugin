@@ -79,7 +79,7 @@
 	require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-mollie.php';
 	ob_start(); ?>
 
-	<form method="post" class="pay" id="pay" enctype="multipart/form-data" action="" onSubmit="pay(<?php echo get_current_user_id(); ?>)">
+	<form novalidate="novalidate" id="top-up-form" method="post">
 		<p><strong><?php _e('Je wilt', 'chawa'); ?> 
 		<?php if ( $recurring === 'true' ) {
 			echo 'maandelijks';
