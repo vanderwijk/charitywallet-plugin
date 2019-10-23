@@ -19,6 +19,22 @@ try {
 
 		if ( $recurring === 'true' ) {
 			// Subscription
+
+			$customer = $mollie->customers->page(null, 1)[0];
+
+			$mandate = $customer->createMandate([
+				"method" => \Mollie\Api\Types\MandateMethod::DIRECTDEBIT,
+				"consumerAccount" => 'NL34ABNA0243341423',
+				"consumerName" => 'B. A. Example',
+			]);
+
+			echo "<p>Mandate created with id " . $mandate->id . " for customer " . $customer->name . "</p>";
+/*
+			$customer = $mollie->customers->create([
+				"name" => "Customer A",
+				"email" => "customer@example.org",
+			]);
+
 			$customer = $mollie->customers->get("cst_NQ4knepKKb");
 			$customer->createSubscription([
 			"amount" => [
@@ -29,6 +45,7 @@ try {
 			"description" => "Maandelijkse opwaardering wallet",
 			"webhookUrl" => "https://{$hostname}{$path}/subscriptions/webhook.php",
 			]);
+			*/
 			
 		} else {
 			// One-off payment
