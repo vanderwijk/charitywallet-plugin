@@ -17,10 +17,6 @@ try {
 		} else {
 			// One-off payment
 
-			$user_wallet = get_user_meta($user_id, 'wallet', true);
-			$recurring = $user_wallet[0]['recurring'];
-			$amount = $user_wallet[0]['amount'];
-
 			$orderId = time();
 
 			$protocol = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
@@ -48,8 +44,8 @@ try {
 				],
 				"method" => \Mollie\Api\Types\PaymentMethod::IDEAL,
 				"description" => 'Wallet ' . __('Transaction','chawa') . ' #{$orderId}',
-				"redirectUrl" => "{$protocol}://{$hostname}{$path}/payments/return.php?order_id={$orderId}",
-				"webhookUrl" => "{$protocol}://{$hostname}{$path}/payments/webhook.php",
+				"redirectUrl" => "https://{$hostname}{$path}/payments/return.php?order_id={$orderId}",
+				"webhookUrl" => "https://{$hostname}{$path}/payments/webhook.php",
 				"metadata" => [
 					"order_id" => $orderId,
 				],
