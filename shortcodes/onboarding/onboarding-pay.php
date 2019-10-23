@@ -5,9 +5,12 @@ $user_wallet = get_user_meta($user_id, 'wallet', true);
 $recurring = $user_wallet[0]['recurring'];
 $amount = $user_wallet[0]['amount'];
 
-$amount = number_format($amount, 2, '.', ' '); // Add two decimals
-$amount = $amount + 0.44; // Fixed transaction costs
-settype($amount, "string"); // Convert to string for Mollie API
+$mollie_amount = number_format($amount, 2, '.', ' '); // Add two decimals
+$mollie_amount = $mollie_amount + 0.44; // Fixed transaction costs
+settype($mollie_amount, "string"); // Convert to string for Mollie API
+
+$hostname = $_SERVER['HTTP_HOST'];
+$path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
 
 try {
 	require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-mollie.php';
@@ -20,7 +23,7 @@ try {
 			$customer->createSubscription([
 			"amount" => [
 					"currency" => "EUR",
-					"value" => $amount,
+					"value" => $mollie_amount,
 			],
 			"interval" => "1 months",
 			"description" => "Maandelijkse opwaardering wallet",
@@ -31,9 +34,6 @@ try {
 			// One-off payment
 
 			$orderId = time();
-
-			$hostname = $_SERVER['HTTP_HOST'];
-			$path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
 
 			/*
 			* Payment parameters:
@@ -48,7 +48,7 @@ try {
 			$payment = $mollie->payments->create([
 				"amount" => [
 					"currency" => "EUR",
-					"value" => $amount // You must send the correct number of decimals, thus we enforce the use of strings
+					"value" => $mollie_amount // You must send the correct number of decimals, thus we enforce the use of strings
 				],
 				"method" => \Mollie\Api\Types\PaymentMethod::IDEAL,
 				"description" => 'Wallet ' . __('Transaction','chawa') . ' #{$orderId}',
