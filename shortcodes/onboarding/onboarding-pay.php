@@ -5,6 +5,10 @@ $user_wallet = get_user_meta($user_id, 'wallet', true);
 $recurring = $user_wallet[0]['recurring'];
 $amount = $user_wallet[0]['amount'];
 
+$amount = number_format($amount, 2, '.', ' '); // Add two decimals
+$amount = $amount + 0.44; // Fixed transaction costs
+settype($amount, "string"); // Convert to string for Mollie API
+
 try {
 	require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-mollie.php';
 
@@ -12,20 +16,24 @@ try {
 
 		if ( $recurring === 'true' ) {
 			// Subscription
-			header("Location: " . home_url(), true, 303);
+			$customer = $mollie->customers->get("cst_stTC2WHAuS");
+			$customer->createSubscription([
+			"amount" => [
+					"currency" => "EUR",
+					"value" => $amount,
+			],
+			"interval" => "1 months",
+			"description" => "Maandelijkse opwaardering wallet",
+			"webhookUrl" => "https://{$hostname}{$path}/subscriptions/webhook.php",
+			]);
 			
 		} else {
 			// One-off payment
 
 			$orderId = time();
 
-			$protocol = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
 			$hostname = $_SERVER['HTTP_HOST'];
 			$path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
-
-			$amount = number_format($amount, 2, '.', ' '); // Add two decimals
-			$amount = $amount + 0.44; // Fixed transaction costs
-			settype($amount, "string"); // Convert to string for Mollie API
 
 			/*
 			* Payment parameters:
