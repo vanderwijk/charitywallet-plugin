@@ -16,7 +16,7 @@ try {
 
 		if ( $recurring === 'true' ) {
 			// Subscription
-			$customer = $mollie->customers->get("cst_stTC2WHAuS");
+			$customer = $mollie->customers->get("cst_NQ4knepKKb");
 			$customer->createSubscription([
 			"amount" => [
 					"currency" => "EUR",

@@ -14,4 +14,4 @@ require_once __DIR__ . "/vendor/autoload.php";
  * See: https://www.mollie.com/dashboard/developers/api-keys
  */
 $mollie = new \Mollie\Api\MollieApiClient();
-$mollie->setApiKey("test_X3pmGrVc2HRZA3Dasgz42nEBXVC5pz");
+$mollie->setApiKey("test_EeaxutFWBzRsumRB3pcNzE42qw6Kdw");
