@@ -24,11 +24,7 @@ function pay( user_id ) {
 
 	// Validation
 	jQuery('#notice').removeClass('error');
-	if ( !payment_type ) {
-		event.preventDefault();
-		console.log('Geen betaalmethode');
-		jQuery('#notice').html( chawa_localize_onboarding.choose_payment_type ).addClass('error');
-	} else if (!bank) {
+	if (!bank) {
 		event.preventDefault();
 		console.log('Geen bank');
 		jQuery('#notice').html( chawa_localize_onboarding.choose_bank ).addClass('error');;
