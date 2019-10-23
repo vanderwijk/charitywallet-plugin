@@ -4,7 +4,7 @@
     <main id="main" class="site-main">
         <div id="post-wrap">
 
-        <?php // BEGIN Include ?>
+<?php // BEGIN Include ?>
 
 <?php wp_enqueue_script( 'onboarding_account' ); ?>
 

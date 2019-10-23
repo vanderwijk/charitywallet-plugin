@@ -252,17 +252,17 @@
     },
     {
         "name": "mollie/mollie-api-php",
-        "version": "v2.10.0",
-        "version_normalized": "2.10.0.0",
+        "version": "v2.12.0",
+        "version_normalized": "2.12.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/mollie/mollie-api-php.git",
-            "reference": "151bdb85c325f6768452a3d8461930589be85729"
+            "reference": "a8540896e069fca409cf18351b33ec10f58622c6"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/mollie/mollie-api-php/zipball/151bdb85c325f6768452a3d8461930589be85729",
-            "reference": "151bdb85c325f6768452a3d8461930589be85729",
+            "url": "https://api.github.com/repos/mollie/mollie-api-php/zipball/a8540896e069fca409cf18351b33ec10f58622c6",
+            "reference": "a8540896e069fca409cf18351b33ec10f58622c6",
             "shasum": ""
         },
         "require": {
@@ -280,7 +280,7 @@
         "suggest": {
             "mollie/oauth2-mollie-php": "Use OAuth to authenticate with the Mollie API. This is needed for some endpoints. Visit https://docs.mollie.com/ for more information."
         },
-        "time": "2019-05-20T09:07:29+00:00",
+        "time": "2019-09-26T12:36:04+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -301,6 +301,7 @@
         "description": "Mollie API client library for PHP. Mollie is a European Payment Service provider and offers international payment methods such as Mastercard, VISA, American Express and PayPal, and local payment methods such as iDEAL, Bancontact, SOFORT Banking, SEPA direct debit, Belfius Direct Net, KBC Payment Button and various gift cards such as Podiumcadeaukaart and fashioncheque.",
         "homepage": "https://www.mollie.com/en/developers",
         "keywords": [
+            "Apple Pay",
             "CBC",
             "Przelewy24",
             "api",
@@ -433,20 +434,20 @@
     },
     {
         "name": "select2/select2",
-        "version": "4.0.8",
-        "version_normalized": "4.0.8.0",
+        "version": "4.0.10",
+        "version_normalized": "4.0.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/select2/select2.git",
-            "reference": "a389a6da47f613ea9de3efc7a6dcf5cbda167608"
+            "reference": "c4b730a0a014ea38641bfbcb245e4b7aa0ca5657"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/select2/select2/zipball/a389a6da47f613ea9de3efc7a6dcf5cbda167608",
-            "reference": "a389a6da47f613ea9de3efc7a6dcf5cbda167608",
+            "url": "https://api.github.com/repos/select2/select2/zipball/c4b730a0a014ea38641bfbcb245e4b7aa0ca5657",
+            "reference": "c4b730a0a014ea38641bfbcb245e4b7aa0ca5657",
             "shasum": ""
         },
-        "time": "2019-07-21T03:16:43+00:00",
+        "time": "2019-08-28T03:09:32+00:00",
         "type": "component",
         "extra": {
             "component": {

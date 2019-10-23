@@ -29,7 +29,7 @@ add_action( 'init', 'chawa_load_textdomain' );
 
 require 'shortcodes/basket/shortcode-basket.php';
 require 'shortcodes/donate/shortcode-donate.php';
-require 'shortcodes/wallet/shortcode-wallet.php';
+//require 'shortcodes/wallet/shortcode-wallet.php';
 require 'shortcodes/charity/shortcode-charity.php';
 require 'shortcodes/account/shortcode-account.php';
 
@@ -50,7 +50,7 @@ function chawa_enqueue_scripts() {
 		'remove' => __( 'Remove', 'chawa'),
 		'would_you_like_to_remove' => __( 'Would you like to remove', 'chawa'),
 		'from_your_basket' => __( 'from your basket?', 'chawa'),
-		'cart_is_empty' => __( 'Je mandje is leeg', 'chawa')
+		'cart_is_empty' => __( 'Your basket is empty', 'chawa')
 	);
 	wp_localize_script( 'charitywallet', 'chawa_localize', $translation_array );
 	wp_enqueue_script( 'charitywallet' );
@@ -76,10 +76,19 @@ function chawa_enqueue_scripts() {
 	);
 	wp_localize_script( 'onboarding_account', 'chawa_localize_onboarding', $translation_array );
 
+	wp_register_script( 'onboarding_pay', CHAWA_PLUGIN_DIR . 'shortcodes/onboarding/onboarding-pay.js', array( 'jquery' ), CHAWA_PLUGIN_VER );
+	$translation_array = array(
+		'choose_payment_type' => __( 'Please choose a payment type.', 'chawa'),
+		'choose_bank' => __( 'Please choose your bank.', 'chawa'),
+		'accept' => __( 'Please accept the terms and privacy statement.', 'chawa'),
+	);
+	wp_localize_script( 'onboarding_pay', 'chawa_localize_onboarding', $translation_array );
+
 	wp_register_script( 'onboarding_wallet', CHAWA_PLUGIN_DIR . 'shortcodes/onboarding/onboarding-wallet.js', array( 'jquery' ), CHAWA_PLUGIN_VER );
 	$translation_array = array(
 		'top_up_amount_too_low' => __( 'The top-up amount is too low.', 'chawa'),
 		'choose_amount' => __( 'Please choose your amount', 'chawa'),
+		'choose_frequency' => __( 'Please choose your frequency', 'chawa'),
 	);
 	wp_localize_script( 'onboarding_wallet', 'chawa_localize_onboarding', $translation_array );
 
@@ -184,6 +193,7 @@ function page_templates( $template ) {
 function chawa_rewrite_rules() {
 	add_rewrite_rule( 'onboarding/account/?$', 'index.php?onboarding=account', 'top' );
 	add_rewrite_rule( 'onboarding/wallet/?$', 'index.php?onboarding=wallet', 'top' );
+	add_rewrite_rule( 'onboarding/pay/?$', 'index.php?onboarding=pay', 'top' );
 }
 add_action('init', 'chawa_rewrite_rules');
 
@@ -205,6 +215,10 @@ function chawa_onboarding_template_include($template) {
 	
 	if ($page_value && $page_value == "wallet") {
         return plugin_dir_path(__FILE__).'shortcodes/onboarding/onboarding-wallet.php';
+	}
+	
+	if ($page_value && $page_value == "pay") {
+        return plugin_dir_path(__FILE__).'shortcodes/onboarding/onboarding-pay.php';
     }
 
     return $template;
