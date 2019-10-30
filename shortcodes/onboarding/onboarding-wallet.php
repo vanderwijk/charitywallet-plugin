@@ -1,3 +1,11 @@
+<?php 
+// Make sure user is logged in
+if (!is_user_logged_in()) {
+	global $wp;
+	$redirect = home_url($wp->request);
+	wp_redirect(wp_login_url($redirect));
+} ?>
+
 <?php get_header(); ?>
 
 <section id="primary" class="content-area">
