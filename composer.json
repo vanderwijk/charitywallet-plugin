@@ -1,7 +1,7 @@
 {
 	"require": {
-		"mollie/mollie-api-php": "^2.0",
 		"select2/select2": "^4.0",
-		"wildbit/postmark-php": "^2.8"
+		"wildbit/postmark-php": "^2.8",
+		"stripe/stripe-php": "^7.10"
 	}
 }

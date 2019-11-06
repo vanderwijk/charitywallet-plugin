@@ -11,7 +11,7 @@ function chawa_display_wallet() {
 
 		try {
 
-			require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-mollie.php';
+			require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-stripe.php';
 
 			ob_start(); ?>
 			
@@ -62,7 +62,7 @@ function chawa_display_wallet() {
 						</p>
 						<label for="issuer"><?php _e('Your bank','chawa'); ?></label>
 						<?php
-							$method = $mollie->methods->get(\Mollie\Api\Types\PaymentMethod::IDEAL, ["include" => "issuers"]);
+							$method = $stripe->methods->get(\Stripe\Api\Types\PaymentMethod::IDEAL, ["include" => "issuers"]);
 							echo '<select name="issuer" id="issuer">';
 							echo '<option value="">' . __('Choose your bank','chawa') . '</option>';
 							foreach ($method->issuers() as $issuer) {
@@ -95,7 +95,7 @@ function chawa_display_wallet() {
 
 				$amount = number_format($amount, 2, '.', ' '); // Add two decimals
 				$amount = $amount + 0.44; // Fixed transaction costs
-				settype($amount, "string"); // Convert to string for Mollie API
+				settype($amount, "string"); // Convert to string for Stripe API
 
 				/*
 				* Payment parameters:
@@ -107,12 +107,12 @@ function chawa_display_wallet() {
 				*   metadata      Custom metadata that is stored with the payment.
 				*   issuer        The customer's bank. If empty the customer can select it later.
 				*/
-				$payment = $mollie->payments->create([
+				$payment = $stripe->payments->create([
 					"amount" => [
 						"currency" => "EUR",
 						"value" => $amount // You must send the correct number of decimals, thus we enforce the use of strings
 					],
-					"method" => \Mollie\Api\Types\PaymentMethod::IDEAL,
+					"method" => \Stripe\Api\Types\PaymentMethod::IDEAL,
 					"description" => 'Wallet ' . __('Transaction','chawa') . ' #{$orderId}',
 					"redirectUrl" => "{$protocol}://{$hostname}{$path}/payments/return.php?order_id={$orderId}",
 					"webhookUrl" => "{$protocol}://{$hostname}{$path}/payments/webhook.php",
@@ -133,7 +133,7 @@ function chawa_display_wallet() {
 			} ?>
 
 			<?php echo ob_get_clean(); // use return if shortcode
-			} catch (\Mollie\Api\Exceptions\ApiException $e) {
+			} catch (\Stripe\Api\Exceptions\ApiException $e) {
 				echo "API call failed: " . htmlspecialchars($e->getMessage());
 			}
 

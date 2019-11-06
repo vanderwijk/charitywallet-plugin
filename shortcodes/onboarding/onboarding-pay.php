@@ -11,41 +11,41 @@ $user_wallet = get_user_meta($user_id, 'wallet', true);
 $recurring = $user_wallet[0]['recurring'];
 $amount = $user_wallet[0]['amount'];
 
-$mollie_amount = number_format($amount, 2, '.', ' '); // Add two decimals
-$mollie_amount = $mollie_amount + 0.44; // Fixed transaction costs
-settype($mollie_amount, "string"); // Convert to string for Mollie API
+$stripe_amount = number_format($amount, 2, '.', ' '); // Add two decimals
+$stripe_amount = $stripe_amount + 0.44; // Fixed transaction costs
+settype($stripe_amount, "string"); // Convert to string for Stripe API
 
 $hostname = $_SERVER['HTTP_HOST'];
 $path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
 
 try {
-	require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-mollie.php';
+	require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-stripe.php';
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		if ( $recurring === 'true' ) {
 			// Subscription
 
-			$customer = $mollie->customers->page(null, 1)[0];
+			$customer = $stripe->customers->page(null, 1)[0];
 
 			$mandate = $customer->createMandate([
-				"method" => \Mollie\Api\Types\MandateMethod::DIRECTDEBIT,
+				"method" => \Stripe\Api\Types\MandateMethod::DIRECTDEBIT,
 				"consumerAccount" => 'NL34ABNA0243341423',
 				"consumerName" => 'B. A. Example',
 			]);
 
 			echo "<p>Mandate created with id " . $mandate->id . " for customer " . $customer->name . "</p>";
 /*
-			$customer = $mollie->customers->create([
+			$customer = $stripe->customers->create([
 				"name" => "Customer A",
 				"email" => "customer@example.org",
 			]);
 
-			$customer = $mollie->customers->get("cst_NQ4knepKKb");
+			$customer = $stripe->customers->get("cst_NQ4knepKKb");
 			$customer->createSubscription([
 			"amount" => [
 					"currency" => "EUR",
-					"value" => $mollie_amount,
+					"value" => $stripe_amount,
 			],
 			"interval" => "1 months",
 			"description" => "Maandelijkse opwaardering wallet",
@@ -68,12 +68,12 @@ try {
 			*   metadata      Custom metadata that is stored with the payment.
 			*   issuer        The customer's bank. If empty the customer can select it later.
 			*/
-			$payment = $mollie->payments->create([
+			$payment = $stripe->payments->create([
 				"amount" => [
 					"currency" => "EUR",
-					"value" => $mollie_amount // You must send the correct number of decimals, thus we enforce the use of strings
+					"value" => $stripe_amount // You must send the correct number of decimals, thus we enforce the use of strings
 				],
-				"method" => \Mollie\Api\Types\PaymentMethod::IDEAL,
+				"method" => \Stripe\Api\Types\PaymentMethod::IDEAL,
 				"description" => 'Wallet ' . __('Transaction','chawa') . ' #{$orderId}',
 				"redirectUrl" => "https://{$hostname}{$path}/payments/return.php?order_id={$orderId}",
 				"webhookUrl" => "https://{$hostname}{$path}/payments/webhook.php",
@@ -174,7 +174,7 @@ try {
 			<p><strong><?php _e('Kies je bank', 'chawa'); ?></strong></p>
 			<p>
 			<?php
-				$method = $mollie->methods->get(\Mollie\Api\Types\PaymentMethod::IDEAL, ["include" => "issuers"]);
+				$method = $stripe->methods->get(\Stripe\Api\Types\PaymentMethod::IDEAL, ["include" => "issuers"]);
 				echo '<select name="issuer" id="issuer">';
 				echo '<option value="">' . __('Choose your bank','chawa') . '</option>';
 				foreach ($method->issuers() as $issuer) {
@@ -196,7 +196,7 @@ try {
 	</main>
 </section>
 
-<?php } catch (\Mollie\Api\Exceptions\ApiException $e) {
+<?php } catch (\Stripe\Api\Exceptions\ApiException $e) {
 	echo "API call failed: " . htmlspecialchars($e->getMessage());
 } ?>
 

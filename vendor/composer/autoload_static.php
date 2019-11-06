@@ -14,13 +14,13 @@ class ComposerStaticInitb4e14f2efb0339ccaba829ca4c76baf0
     );
 
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Stripe\\' => 7,
+        ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
-        ),
-        'M' => 
-        array (
-            'Mollie\\Api\\' => 11,
         ),
         'G' => 
         array (
@@ -28,20 +28,16 @@ class ComposerStaticInitb4e14f2efb0339ccaba829ca4c76baf0
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
-        'C' => 
-        array (
-            'Composer\\CaBundle\\' => 18,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Stripe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
-        ),
-        'Mollie\\Api\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/mollie/mollie-api-php/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -54,10 +50,6 @@ class ComposerStaticInitb4e14f2efb0339ccaba829ca4c76baf0
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
-        ),
-        'Composer\\CaBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
         ),
     );
 
