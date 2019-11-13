@@ -5,32 +5,23 @@ jQuery(document).ready(function($) {
 		$('#step-7').show();
 	});
 
-	$("input[name='payment-type']").on("change paste keyup", function() {
-		payment_type = jQuery("input[name='payment-type']:checked").val();
-		if ( payment_type === 'ideal' ) {
-			jQuery('.bank').toggleClass('up');
-		} else {
-			jQuery('.bank').toggleClass('up');
-		}
-	})
-
 });
 
 function pay( user_id ) {
 
-	payment_type = jQuery("input[name='payment-type']:checked").val();
-	bank = jQuery("#issuer :selected").val();
-	accept = jQuery("input[name='accept']:checked").val();
+	bank = jQuery('select[name=bank]').val();
+	accept = jQuery('input[name=accept]:checked').val();
 
 	// Validation
 	jQuery('#notice').removeClass('error');
-	if (!bank) {
+	if (bank == '') {
 		event.preventDefault();
 		console.log('Geen bank');
 		jQuery('#notice').html( chawa_localize_onboarding.choose_bank ).addClass('error');;
-	} else if (!accept) {
+	} 
+	if (!accept) {
 		event.preventDefault();
-		console.log('Geen bank');
+		console.log('Voorwaarden niet geaccepteerd');
 		jQuery('#notice').html( chawa_localize_onboarding.accept ).addClass('error');;
 	}
 

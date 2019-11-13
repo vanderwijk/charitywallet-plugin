@@ -194,6 +194,8 @@ function chawa_rewrite_rules() {
 	add_rewrite_rule( 'onboarding/account/?$', 'index.php?onboarding=account', 'top' );
 	add_rewrite_rule( 'onboarding/wallet/?$', 'index.php?onboarding=wallet', 'top' );
 	add_rewrite_rule( 'onboarding/pay/?$', 'index.php?onboarding=pay', 'top' );
+	add_rewrite_rule( 'onboarding/pay/charge/?$', 'index.php?onboarding=pay-charge', 'top' );
+	add_rewrite_rule( 'webhook/charge/?$', 'index.php?onboarding=webhook-charge', 'top' );
 }
 add_action('init', 'chawa_rewrite_rules');
 
@@ -219,6 +221,14 @@ function chawa_onboarding_template_include($template) {
 	
 	if ($page_value && $page_value == "pay") {
         return plugin_dir_path(__FILE__).'shortcodes/onboarding/onboarding-pay.php';
+	}
+	
+	if ($page_value && $page_value == "pay-charge") {
+        return plugin_dir_path(__FILE__).'shortcodes/onboarding/onboarding-pay-charge.php';
+	}
+	
+	if ($page_value && $page_value == "webhook-charge") {
+        return plugin_dir_path(__FILE__).'functions/webhook-charge.php';
     }
 
     return $template;

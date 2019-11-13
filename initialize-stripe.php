@@ -17,5 +17,5 @@ require_once __DIR__ . "/vendor/autoload.php";
 //$charge = \Stripe\Charge::create(['amount' => 2000, 'currency' => 'usd', 'source' => 'tok_189fqt2eZvKYlo2CTGBeg6Uq']);
 //echo $charge;
 
-$balance = \Stripe\Balance::retrieve();
-echo $balance;
+//$balance = \Stripe\Balance::retrieve();
+//echo $balance;

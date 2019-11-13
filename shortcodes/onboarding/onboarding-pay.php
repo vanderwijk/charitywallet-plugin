@@ -11,17 +11,20 @@ $user_wallet = get_user_meta($user_id, 'wallet', true);
 $recurring = $user_wallet[0]['recurring'];
 $amount = $user_wallet[0]['amount'];
 
-$stripe_amount = number_format($amount, 2, '.', ' '); // Add two decimals
-$stripe_amount = $stripe_amount + 0.44; // Fixed transaction costs
-settype($stripe_amount, "string"); // Convert to string for Stripe API
+$stripe_amount = number_format($amount, 0, '', '') * 100; // Stripe requires an amount in cents
+$stripe_amount = $stripe_amount + 44; // Fixed transaction costs
 
 $hostname = $_SERVER['HTTP_HOST'];
 $path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
 
-try {
-	require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-stripe.php';
+require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-stripe.php';
 
-	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ( $_SERVER["REQUEST_METHOD"] == "POST" ) {
+
+	if ( ! isset( $_POST['pay_nonce'] ) || ! wp_verify_nonce( $_POST['pay_nonce'], 'pay' ) ) {
+		print __('Sorry, your nonce did not verify.', 'chawa');
+		exit;
+	} else {
 
 		if ( $recurring === 'true' ) {
 			// Subscription
@@ -58,41 +61,39 @@ try {
 
 			$orderId = time();
 
-			/*
-			* Payment parameters:
-			*   amount        Amount in EUROs. This example creates a € 27.50 payment.
-			*   method        Payment method "ideal".
-			*   description   Description of the payment.
-			*   redirectUrl   Redirect location. The customer will be redirected there after the payment.
-			*   webhookUrl    Webhook location, used to report when the payment changes state.
-			*   metadata      Custom metadata that is stored with the payment.
-			*   issuer        The customer's bank. If empty the customer can select it later.
-			*/
-			$payment = $stripe->payments->create([
-				"amount" => [
-					"currency" => "EUR",
-					"value" => $stripe_amount // You must send the correct number of decimals, thus we enforce the use of strings
+			$charge = \Stripe\Source::create([
+				"type" => "ideal",
+				"amount" => $stripe_amount,
+				"currency" => "eur",
+				"ideal" => [
+					"bank" => $_POST["bank"]
 				],
-				"method" => \Stripe\Api\Types\PaymentMethod::IDEAL,
-				"description" => 'Wallet ' . __('Transaction','chawa') . ' #{$orderId}',
-				"redirectUrl" => "https://{$hostname}{$path}/payments/return.php?order_id={$orderId}",
-				"webhookUrl" => "https://{$hostname}{$path}/payments/webhook.php",
-				"metadata" => [
-					"order_id" => $orderId,
+				"statement_descriptor" => __('Transaction', 'chawa') . ' ' . $orderId . ' ' . __('Account', 'chawa') . ' ' . $user_id ,
+				"owner" => [
+					"name" => "CharityWallet",
+					"email" => "info@charitwallet.com"
 				],
-				"issuer" => !empty($_POST["issuer"]) ? $_POST["issuer"] : null
+				"redirect" => [
+					"return_url" => "https://" . $hostname . $path . "/pay/charge/"
+				]
 			]);
+
+			// Save source ID to usermeta
+			$source_id = $charge['id'];
+
 			/*
-			* In this example we store the order with its payment status in a database.
+			Tot hier ben ik woensdag 6/11 gekomen.
+			Wat moet er nog gebeuren?
+			- Source ID moet worden opgeslagen in deze stap
+			- Webhook moet worden getest op https://charitywallet.com
+			- Bij webhook moet het te betalen bedrag worden toegevoegd
+			- Bij webhook moet wallet transaction worden opgeslagen in usermeta (in array?)
 			*/
-			//save_transaction($orderId, $payment->status);
-			/*
-			* Send the customer off to complete the payment.
-			* This request should always be a GET, thus we enforce 303 http response code
-			*/
-			header("Location: " . $payment->getCheckoutUrl(), true, 303);
+
+			header('Location: ' . $charge['redirect']['url']);
 		}
-	} ?>
+	}
+} ?>
 
 <?php get_header(); ?>
 
@@ -150,8 +151,6 @@ try {
 	}
 </style>
 
-
-
 <div class="step" id="step-6">
 	<h1><?php _e('Wallet opwaarderen', 'chawa'); ?></h1>
 	<p><strong><?php _e('We gaan nu je wallet opwaarderen.', 'chawa'); ?></strong></p>
@@ -173,15 +172,11 @@ try {
 		<span class="bank">
 			<p><strong><?php _e('Kies je bank', 'chawa'); ?></strong></p>
 			<p>
-			<?php
-				$method = $stripe->methods->get(\Stripe\Api\Types\PaymentMethod::IDEAL, ["include" => "issuers"]);
-				echo '<select name="issuer" id="issuer">';
-				echo '<option value="">' . __('Choose your bank','chawa') . '</option>';
-				foreach ($method->issuers() as $issuer) {
-					echo '<option value="' . htmlspecialchars($issuer->id) . '">' . htmlspecialchars($issuer->name) . '</option>';
-				}
-				echo '</select>';
-			?>
+				<select name="bank">
+					<option value=""><?php _e('Kies je bank', 'chawa'); ?></option>
+					<option value="abn_amro">ABN AMRO</option>
+					<option value="asn_bank">ASN Bank</option>
+				</select>
 			</p>
 		</span>
 		<p>
@@ -189,15 +184,12 @@ try {
 		</p>
 		<p><small><?php _e('Per transatie rekenen we € 0,44 transactiekosten bovenop het donatiegeld.', 'chawa'); ?></small></p>
 		<p><input type="submit" id="submit" class="next" id="next-4" value="<?php _e('Akkoord & betalen', 'chawa'); ?>"></p>
+		<?php wp_nonce_field( 'pay', 'pay_nonce' ); ?>
 	</form>
 </div>
 
 		</div>
 	</main>
 </section>
-
-<?php } catch (\Stripe\Api\Exceptions\ApiException $e) {
-	echo "API call failed: " . htmlspecialchars($e->getMessage());
-} ?>
 
 <?php get_footer(); ?>
