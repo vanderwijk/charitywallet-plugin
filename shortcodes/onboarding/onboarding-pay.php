@@ -79,7 +79,14 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" ) {
 			]);
 
 			// Save source ID to usermeta
-			$source_id = $charge['id'];
+			//$wallet_transactions = get_user_meta($user_id, 'wallet_transactions', true);
+
+
+			$source_array['source_id'] = $charge['id'];
+			$source_array['source_amount'] = $charge['amount'];
+			$source_array['source_status'] = $charge['status'];
+
+			update_user_meta( $user_id, 'wallet_transactions', $source_array );
 
 			/*
 			Tot hier ben ik woensdag 6/11 gekomen.

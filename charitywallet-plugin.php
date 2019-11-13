@@ -22,6 +22,9 @@ define( 'CHAWA_PLUGIN_DIR', plugin_dir_url( __FILE__ ) );
 define( 'CHAWA_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) ); // Relative path
 define( 'CHAWA_PLUGIN_VER', '1.0.1' );
 
+// create database tables
+register_activation_hook( __FILE__, 'cha_install' );
+
 function chawa_load_textdomain() {
 	load_plugin_textdomain( 'chawa', false, basename( CHAWA_PLUGIN_DIR ) . '/languages' );
 }
