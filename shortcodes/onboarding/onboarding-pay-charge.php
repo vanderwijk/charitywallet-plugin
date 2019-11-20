@@ -1,5 +1,5 @@
 <?php 
-// Make sure user is logged in
+// make sure user is logged in
 if (!is_user_logged_in()) {
 	global $wp;
 	$redirect = home_url($wp->request);
@@ -7,32 +7,51 @@ if (!is_user_logged_in()) {
 }
 
 if (!empty($_GET['source'])) {
-
+	// stripe source exists, retrieve and save to database
 	require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-stripe.php';
 
+	$source = \Stripe\Source::retrieve(
+		$_GET['source']
+	);
+
+	$transaction_id = $source['metadata']['transaction_id'];
+	$user_id = $source['metadata']['user_id'];
+
+	$wpdb->update( 
+		CHAWA_TABLE_TRANSACTIONS, 
+		array(
+			'source_id' => sanitize_key($source['id']),
+			'status' => sanitize_key($source['status'])
+		),
+		['transaction_id' => $transaction_id]
+	);
+
+	// move this to webhook?
+	/*
 	$charge = \Stripe\Charge::create([
-		'amount' => 1344,
+		'amount' => $source['amount'],
 		'currency' => 'eur',
 		'source' => $_GET['source'],
+		'metadata' => [
+			'transaction_id' => sanitize_key($transaction_id),
+			'user_id' => sanitize_key($user_id)
+		],
 	]);
+
+	$wpdb->update( 
+		CHAWA_TABLE_TRANSACTIONS, 
+		array(
+			'charge_id' => $charge['id'],
+			'status' => $charge['status']
+		),
+		['transaction_id' => sanitize_key($transaction_id)]
+	);
 
 	echo '<pre>';
 	echo $charge;
 	echo '</pre>';
 
-	$charge_status = $charge['status'];
-
-	$user_id = get_current_user_id();
-	$user_wallet = get_user_meta($user_id, 'wallet', true);
-	$recurring = $user_wallet[0]['recurring'];
-	$amount = $user_wallet[0]['amount'];
-
-	$stripe_amount = number_format($amount, 0, '', '') * 100; // Stripe requires an amount in cents
-	$stripe_amount = $stripe_amount + 44; // Fixed transaction costs
-
-	$hostname = $_SERVER['HTTP_HOST'];
-	$path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
-
+	$charge_status = $charge['status']; */
 } ?>
 
 <?php get_header(); ?>
@@ -41,26 +60,24 @@ if (!empty($_GET['source'])) {
 	<main id="main" class="site-main">
 		<div id="post-wrap">
 
-<style>
-
-</style>
-
-<div class="step" id="step-8">
-	<h1><?php _e('Pay Charge', 'chawa'); ?></h1>
-	<div class="notice" id="notice">
-		<?php _e('Payment', 'chawa');
-		echo ' ';
-		if ( $charge_status === 'succeeded' ) {
-			_e('succeeded', 'chawa');
-		}
-		if ( $charge_status === 'failed' ) {
-			_e('failed', 'chawa');
-		}
-		if ( $charge_status === 'expired' ) {
-			_e('expired', 'chawa');
-		} ?>
-	</div>
-</div>
+			<div class="step" id="step-8">
+				<h1><?php _e('Pay Charge', 'chawa'); ?></h1>
+				<div class="notice" id="notice">
+					<?php _e('Payment', 'chawa');
+					echo ' ';
+					if (isset($charge_status)) {
+						if ($charge_status === 'succeeded') {
+							_e('succeeded', 'chawa');
+						}
+						if ($charge_status === 'failed') {
+							_e('failed', 'chawa');
+						}
+						if ($charge_status === 'expired') {
+							_e('expired', 'chawa');
+						}
+					} ?>
+				</div>
+			</div>
 
 		</div>
 	</main>

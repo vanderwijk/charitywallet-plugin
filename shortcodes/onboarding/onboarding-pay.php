@@ -57,9 +57,9 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" ) {
 			*/
 			
 		} else {
-			// One-off payment
+			// Create Stripe source for one-off payment
 
-			$orderId = time();
+			$transaction_id = 'chawa_' . bin2hex(random_bytes(10)); // unique transaction ID
 
 			$charge = \Stripe\Source::create([
 				"type" => "ideal",
@@ -68,34 +68,33 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" ) {
 				"ideal" => [
 					"bank" => $_POST["bank"]
 				],
-				"statement_descriptor" => __('Transaction', 'chawa') . ' ' . $orderId . ' ' . __('Account', 'chawa') . ' ' . $user_id ,
+				"statement_descriptor" => __('Transaction', 'chawa') . ' ' . $transaction_id . ' ' . __('Account', 'chawa') . ' ' . $user_id ,
 				"owner" => [
 					"name" => "CharityWallet",
 					"email" => "info@charitwallet.com"
+				],
+				"metadata" => [
+					"transaction_id" => $transaction_id,
+					"user_id" => $user_id
 				],
 				"redirect" => [
 					"return_url" => "https://" . $hostname . $path . "/pay/charge/"
 				]
 			]);
 
-			// Save source ID to usermeta
-			//$wallet_transactions = get_user_meta($user_id, 'wallet_transactions', true);
-
-
-			$source_array['source_id'] = $charge['id'];
-			$source_array['source_amount'] = $charge['amount'];
-			$source_array['source_status'] = $charge['status'];
-
-			update_user_meta( $user_id, 'wallet_transactions', $source_array );
-
-			/*
-			Tot hier ben ik woensdag 6/11 gekomen.
-			Wat moet er nog gebeuren?
-			- Source ID moet worden opgeslagen in deze stap
-			- Webhook moet worden getest op https://charitywallet.com
-			- Bij webhook moet het te betalen bedrag worden toegevoegd
-			- Bij webhook moet wallet transaction worden opgeslagen in usermeta (in array?)
-			*/
+			// Save transaction_id to database
+			$wpdb->insert(
+				CHAWA_TABLE_TRANSACTIONS,
+				array(
+					'time' => current_time('mysql'),
+					'user_id' => sanitize_key($user_id),
+					'amount' => sanitize_key($stripe_amount),
+					'recurring' => FALSE,
+					'transaction_type' => 'CREDIT',
+					'transaction_id' => sanitize_key($transaction_id),
+					'status' => 'initiated'
+				)
+			);
 
 			header('Location: ' . $charge['redirect']['url']);
 		}
