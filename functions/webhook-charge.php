@@ -1,5 +1,12 @@
 <?php
 
+$body = @file_get_contents('php://input');
+$event_json = json_decode($body);
+
+echo '<pre>';
+print_r($event_json);
+echo '</pre>';
+
 if (!empty($_GET['source'])) {
 
 	require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-stripe.php';
