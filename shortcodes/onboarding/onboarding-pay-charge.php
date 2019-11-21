@@ -7,7 +7,7 @@ if (!is_user_logged_in()) {
 }
 
 if (!empty($_GET['source'])) {
-	// stripe source exists, retrieve and save to database
+	// stripe source exists, retrieve and save to database with the status
 	require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-stripe.php';
 
 	$source = \Stripe\Source::retrieve(
@@ -26,35 +26,38 @@ if (!empty($_GET['source'])) {
 		['transaction_id' => $transaction_id]
 	);
 
-	// move this to webhook?
-	/*
-	$charge = \Stripe\Charge::create([
-		'amount' => $source['amount'],
-		'currency' => 'eur',
-		'source' => $_GET['source'],
-		'metadata' => [
-			'transaction_id' => sanitize_key($transaction_id),
-			'user_id' => sanitize_key($user_id)
-		],
-	]);
+	// if the source is chargable, make the charge and save it to the db
+	if ($source['status'] === 'chargeable') { 
+		$charge = \Stripe\Charge::create([
+			'amount' => $source['amount'],
+			'currency' => 'eur',
+			'source' => $_GET['source'],
+			'metadata' => [
+				'transaction_id' => sanitize_key($transaction_id),
+				'user_id' => sanitize_key($user_id)
+			],
+		]);
 
-	$wpdb->update( 
-		CHAWA_TABLE_TRANSACTIONS, 
-		array(
-			'charge_id' => $charge['id'],
-			'status' => $charge['status']
-		),
-		['transaction_id' => sanitize_key($transaction_id)]
-	);
+		$wpdb->update( 
+			CHAWA_TABLE_TRANSACTIONS, 
+			array(
+				'charge_id' => $charge['id'],
+				'status' => $charge['status']
+			),
+			['transaction_id' => sanitize_key($transaction_id)]
+		);
+
+	}
 
 	echo '<pre>';
 	echo $charge;
 	echo '</pre>';
 
-	$charge_status = $charge['status']; */
-} ?>
+	// get the status of the charge and display the appropriate message
+	$charge_status = $charge['status'];
+}
 
-<?php get_header(); ?>
+get_header(); ?>
 
 <section id="primary" class="content-area">
 	<main id="main" class="site-main">
