@@ -26,7 +26,7 @@ try {
 switch ($event->type) {
 	case 'charge.succeeded':
 		$paymentIntent = $event->data->object; // contains a StripePaymentIntent
-		handlePaymentIntentSucceeded($paymentIntent);
+		chargeSucceeded($paymentIntent);
 		break;
 	default:
 		// Unexpected event type
@@ -40,9 +40,7 @@ echo '<pre>';
 print_r($paymentIntent);
 echo '</pre>';
 
-if (!empty($_GET['source'])) {
-
-	require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-stripe.php';
+function chargeSucceeded() {
 
 	$source = \Stripe\Source::retrieve(
 		$_GET['source']
