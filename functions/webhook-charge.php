@@ -36,12 +36,13 @@ switch ($event->type) {
 
 http_response_code(200);
 
-echo '<pre>';
-print_r($paymentIntent);
-echo '</pre>';
-
 function chargeSucceeded($paymentIntent) {
 
+
+	echo '<pre>';
+	print_r($paymentIntent);
+	echo '</pre>';
+/*
 	$charge = \Stripe\Charge::create([
 		'amount' => $paymentIntent['amount'],
 		'currency' => 'eur',
@@ -60,7 +61,7 @@ function chargeSucceeded($paymentIntent) {
 		),
 		['transaction_id' => $paymentIntent['metadata']['transaction_id']]
 	);
-
+*/
 	status_header(200);
 	return 'Webhook connected';
 
