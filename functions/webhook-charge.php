@@ -25,6 +25,7 @@ try {
 // Handle the event
 switch ($event->type) {
 	case 'charge.succeeded':
+		// IF THE CHARGE HAS SUCCEEDED, NO NEED TO CHARGE AGAIN -> THIS IS WRONG - TODO
 		$paymentIntent = $event->data->object; // contains a StripePaymentIntent
 		chargeSucceeded($paymentIntent);
 		break;

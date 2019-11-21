@@ -49,11 +49,12 @@ if (!empty($_GET['source'])) {
 
 	}
 
+	// on fail there is no charge, so add a check for that TODO!
 	echo '<pre>';
 	echo $charge;
 	echo '</pre>';
 
-	// get the status of the charge and display the appropriate message
+	// get the status of the charge and display the appropriate message -> THIS DOES NOT WORK ON FAIL
 	$charge_status = $charge['status'];
 }
 
