@@ -40,19 +40,15 @@ echo '<pre>';
 print_r($paymentIntent);
 echo '</pre>';
 
-function chargeSucceeded() {
-
-	$source = \Stripe\Source::retrieve(
-		$_GET['source']
-	);
+function chargeSucceeded($paymentIntent) {
 
 	$charge = \Stripe\Charge::create([
-		'amount' => $source['amount'],
+		'amount' => $paymentIntent['amount'],
 		'currency' => 'eur',
-		'source' => $_GET['source'],
+		'source' => $paymentIntent['source']['id'],
 		'metadata' => [
-			'transaction_id' => $source['metadata']['transaction_id'],
-			'user_id' => $source['metadata']['user_id']
+			'transaction_id' => $paymentIntent['metadata']['transaction_id'],
+			'user_id' => $paymentIntent['metadata']['user_id']
 		],
 	]);
 
@@ -62,7 +58,7 @@ function chargeSucceeded() {
 			'charge_id' => $charge['id'],
 			'status' => $charge['status']
 		),
-		['transaction_id' => $source['metadata']['transaction_id']]
+		['transaction_id' => $paymentIntent['metadata']['transaction_id']]
 	);
 
 	status_header(200);
