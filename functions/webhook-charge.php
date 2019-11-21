@@ -1,5 +1,7 @@
 <?php
 
+require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-stripe.php';
+
 $endpoint_secret = 'whsec_Osmz6cCN3tAXq54kmcdfn2kq2L2jVWBP';
 
 $payload = @file_get_contents('php://input');
