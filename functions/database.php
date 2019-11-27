@@ -49,7 +49,7 @@ function chawa_install_data() {
 			'transaction_id' => 'chawa_000000000000000000000000', 
 			'source_id' => 'src_000000000000000000000000', 
 			'charge_id' => 'py_000000000000000000000000', 
-			'status' => 'succeeded', 
+			'status' => 'type.status', 
 		) 
 	);
 }

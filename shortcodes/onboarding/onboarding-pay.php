@@ -71,7 +71,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 					'recurring' => FALSE,
 					'transaction_type' => 'CREDIT',
 					'transaction_id' => sanitize_key($transaction_id),
-					'status' => 'initiated'
+					'status' => 'transaction.initiated'
 				)
 			);
 
