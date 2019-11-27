@@ -14,39 +14,43 @@ if (!empty($_GET['source'])) {
 		$_GET['source']
 	);
 
-	$transaction_id = $source['metadata']['transaction_id'];
-	$user_id = $source['metadata']['user_id'];
+	// security check, make sure src_client_secret matches
+	if ($_GET['client_secret'] === $source['client_secret']) {
 
-	$wpdb->update( 
-		CHAWA_TABLE_TRANSACTIONS, 
-		array(
-			'source_id' => sanitize_key($source['id']),
-			'source_status' => sanitize_key($source['status'])
-		),
-		['transaction_id' => $transaction_id]
-	);
-
-	// if the source is chargable, make the charge and save it to the db
-	if ($source['status'] === 'chargeable') { 
-		$charge = \Stripe\Charge::create([
-			'amount' => $source['amount'],
-			'currency' => 'eur',
-			'source' => $_GET['source'],
-			'metadata' => [
-				'transaction_id' => sanitize_key($transaction_id),
-				'user_id' => sanitize_key($user_id)
-			],
-		]);
+		$transaction_id = $source['metadata']['transaction_id'];
+		$user_id = $source['metadata']['user_id'];
 
 		$wpdb->update( 
 			CHAWA_TABLE_TRANSACTIONS, 
 			array(
-				'charge_id' => $charge['id'],
-				'charge_status' => $charge['status']
+				'source_id' => sanitize_key($source['id']),
+				'source_status' => sanitize_key($source['status'])
 			),
-			['transaction_id' => sanitize_key($transaction_id)]
+			['transaction_id' => $transaction_id]
 		);
 
+		// if the source is chargable, make the charge and save it to the db
+		if ($source['status'] === 'chargeable') { 
+			$charge = \Stripe\Charge::create([
+				'amount' => $source['amount'],
+				'currency' => 'eur',
+				'source' => $_GET['source'],
+				'metadata' => [
+					'transaction_id' => sanitize_key($transaction_id),
+					'user_id' => sanitize_key($user_id)
+				],
+			]);
+
+			$wpdb->update( 
+				CHAWA_TABLE_TRANSACTIONS, 
+				array(
+					'charge_id' => $charge['id'],
+					'charge_status' => $charge['status']
+				),
+				['transaction_id' => sanitize_key($transaction_id)]
+			);
+
+		}
 	}
 }
 
@@ -69,6 +73,7 @@ get_header(); ?>
 						echo $source;
 						echo '</pre>';
 						if ($source_status != 'chargeable') {
+							_e('Source', 'chawa');
 							echo $source_status;
 						}
 					}
@@ -80,11 +85,8 @@ get_header(); ?>
 						echo '<pre>';
 						echo $charge;
 						echo '</pre>';
-
-						_e('Payment', 'chawa');
-						echo ' ';
-
 						if ($charge_status) {
+							_e('Charge', 'chawa');
 							echo $charge_status;
 						}
 					} ?>
