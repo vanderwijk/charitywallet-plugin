@@ -200,16 +200,20 @@ function page_templates( $template ) {
 /* Rewrite Rules */
 
 function chawa_rewrite_rules() {
+	add_rewrite_rule('wallet/' . _x('transactions','rewrite rule','chawa') . '/?$', 'index.php?wallet=transactions', 'top' );
 	add_rewrite_rule('onboarding/account/?$', 'index.php?onboarding=account', 'top' );
 	add_rewrite_rule('onboarding/wallet/?$', 'index.php?onboarding=wallet', 'top' );
 	add_rewrite_rule('onboarding/pay/?$', 'index.php?onboarding=pay', 'top' );
 	add_rewrite_rule('onboarding/pay/charge/?$', 'index.php?onboarding=pay-charge', 'top' );
-	add_rewrite_rule('webhook/charge/?$', 'index.php?onboarding=webhook-charge', 'top' );
+	add_rewrite_rule('webhook/charge/?$', 'index.php?webhook=charge', 'top' );
 }
 add_action('init', 'chawa_rewrite_rules');
 
 /* Query Vars */
 function chawa_register_query_var( $vars ) {
+	$vars[] = 'wallet';
+	$vars[] = 'account';
+	$vars[] = 'webhook';
 	$vars[] = 'onboarding';
 	return $vars;
 }
@@ -221,28 +225,49 @@ function chawa_onboarding_template_include($template) {
 	
 	if ( isset($wp_query->query_vars['onboarding'])) {
 
-		$page_value = $wp_query->query_vars['onboarding'];
+		$query_var = $wp_query->query_vars['onboarding'];
 
-		if ($page_value && $page_value == 'account') {
+		if ($query_var && $query_var === 'account') {
 			return plugin_dir_path(__FILE__).'shortcodes/onboarding/onboarding-account.php';
 		}
 		
-		if ($page_value && $page_value == 'wallet') {
+		if ($query_var && $query_var === 'wallet') {
 			return plugin_dir_path(__FILE__).'shortcodes/onboarding/onboarding-wallet.php';
 		}
 		
-		if ($page_value && $page_value == 'pay') {
+		if ($query_var && $query_var === 'pay') {
 			return plugin_dir_path(__FILE__).'shortcodes/onboarding/onboarding-pay.php';
 		}
 		
-		if ($page_value && $page_value == 'pay-charge') {
+		if ($query_var && $query_var === 'pay-charge') {
 			return plugin_dir_path(__FILE__).'shortcodes/onboarding/onboarding-pay-charge.php';
 		}
 		
-		if ($page_value && $page_value == 'webhook-charge') {
+		
+	} else if ( isset($wp_query->query_vars['wallet'])) {
+
+		$query_var = $wp_query->query_vars['wallet'];
+
+		if ($query_var && $query_var === 'transactions') {
+			return plugin_dir_path(__FILE__).'templates/wallet/transactions.php';
+		}
+
+	} else if ( isset($wp_query->query_vars['webhook'])) {
+
+		$query_var = $wp_query->query_vars['webhook'];
+
+		if ($query_var && $query_var === 'charge') {
 			return plugin_dir_path(__FILE__).'functions/webhook-charge.php';
 		}
-		
+
+	} else if ( isset($wp_query->query_vars['account'])) {
+
+		$query_var = $wp_query->query_vars['account'];
+
+		if ($query_var && $query_var === 'account') {
+			return plugin_dir_path(__FILE__).'templates/account/account.php';
+		}
+
 	}
 
 	return $template;

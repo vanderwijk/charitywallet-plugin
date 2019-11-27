@@ -19,7 +19,7 @@ $path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SER
 
 require_once CHAWA_PLUGIN_DIR_PATH . 'initialize-stripe.php';
 
-if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 
 	if ( !isset( $_POST['pay_nonce'] ) || !wp_verify_nonce( $_POST['pay_nonce'], 'pay' )) {
 		print __('Sorry, your nonce did not verify.', 'chawa');
@@ -40,7 +40,8 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 			]);
 
 			echo '<p>Mandate created with id ' . $mandate->id . ' for customer ' . $customer->name . '</p>';
-/*
+			
+			/*
 			$customer = $stripe->customers->create([
 				'name' => 'Customer A',
 				'email' => 'customer@example.org',
@@ -113,84 +114,72 @@ wp_localize_script( 'onboarding_pay', 'WP_API_Settings', array( 'root' => esc_ur
 	<main id="main" class="site-main">
 		<div id="post-wrap">
 
-			<style>
-				.entry-title { display: none; }
-				.col-1,
-				.col-2 {
-					margin-bottom: 3%;
-				}
-				.col-2 {
-					display: flex;
-					justify-content: space-between;
-				}
-				.col-2 .col {
-					width: 48%;
-				}
-				input[type="text"].parsley-error {
-					border-color: #FE6C61;
-				}
-				ul.parsley-errors-list {
-					list-style: none;
-					margin: 0;
-					color: #FE6C61;
-					padding: 0;
-				}
-				.pay input[type="radio"],
-				.pay input[type="checkbox"] {
-					margin-right: 5px;
-				}
-				ul.parsley-errors-list li {
-					margin-bottom: -10px;
-				}
-				#pay label {
-					display: inline;
-					margin-right: 5px;
-				}
-				.error {
-					border: 1px solid #FE6C61;
-					display: block;
-					margin-bottom: 3%;
-					padding: 1% 2%;
-					border-radius: 3px;
-					background-color: rgba(254,108,97,0.8);
-					color: #fff;
-					font-weight: 600;
-				}
-			</style>
-
 			<div class="step" id="step-6">
-				<h1><?php _e('Wallet opwaarderen', 'chawa'); ?></h1>
-				<p><strong><?php _e('We gaan nu je wallet opwaarderen.', 'chawa'); ?></strong></p>
+				<h1><?php _e('Top-up wallet', 'chawa'); ?></h1>
+				<p><strong><?php _e('We are now going to top-up your wallet', 'chawa'); ?>.</strong></p>
 				<p><button class="button next" id="next-7"><?php _e('Next', 'chawa'); ?></button></p>
 			</div>
 
 			<div class="step" id="step-7" style="display: none;">
-				<h1><?php _e('Wallet opwaarderen', 'chawa'); ?></h1>
+				<h1><?php _e('Top-up wallet', 'chawa'); ?></h1>
 				<div class="notice" id="notice"></div>
 				
-				<form method="post" class="pay" id="pay" onSubmit="pay(<?php echo get_current_user_id(); ?>)">
+				<form method="post" autocomplete="off" class="pay" id="pay" onSubmit="pay(<?php echo get_current_user_id(); ?>)">
 					<p>
 						<strong>
-							<?php _e('Je wilt', 'chawa');
-							if ( $recurring === 'true' ) { echo 'maandelijks'; } 
-							echo ' € ' . $amount . ',00' . __('(<a href="/onboarding/wallet/">wijzig</a>) donatiegeld storten op je wallet.', 'chawa'); ?>
+							<?php _e('You chose to', 'chawa');
+							if ( $recurring === 'true' ) { 
+								echo ' ' . _x('monthly add', 'comes after \'You chose to\'', 'chawa');
+							} else {
+								echo ' ' . _x('add', 'comes after \'You chose to\'', 'chawa');
+							}
+							echo ' € ' . $amount . ',00 ';
+							printf(
+								'(<a href="%s">%s</a>)',
+								'/onboarding/wallet/',
+								__( 'change', 'chawa' )
+							);
+							echo ' ' . __('to your wallet', 'chawa') . '.'; ?>
 						</strong>
 					</p>
 					<span class="bank">
-						<p><strong><?php _e('Kies je bank', 'chawa'); ?></strong></p>
+						<p><strong><?php _e('Choose your bank', 'chawa'); ?></strong></p>
 						<p>
 							<select name="bank">
-								<option value=""><?php _e('Kies je bank', 'chawa'); ?></option>
+								<option value=""><?php _e('Bank', 'chawa'); ?></option>
 								<option value="abn_amro">ABN AMRO</option>
 								<option value="asn_bank">ASN Bank</option>
+								<option value="bunq">Bunq</option>
+								<option value="handelsbanken">Handelsbanken</option>
+								<option value="ing">ING</option>
+								<option value="knab">Knab</option>
+								<option value="moneyou">Moneyou</option>
+								<option value="rabobank">Rabobank</option>
+								<option value="regiobank">RegioBank</option>
+								<option value="sns_bank">SNS Bank (De Volksbank)</option>
+								<option value="triodos_bank">Triodos Bank</option>
+								<option value="van_lanschot">Van Lanschot</option>
 							</select>
 						</p>
 					</span>
 					<p>
-						<label><input type="checkbox" name="accept" value="accept"><?php _e('Ik ga akkoord met de <a href="">algemene voorwaarden</a> en het <a href="">privacy statement</a>.', 'chawa'); ?></label>
+						<label><input type="checkbox" name="accept" value="accept">
+							<?php _e('I agree with the', 'chawa');
+							printf(
+								' <a href="%s">%s</a> ',
+								stripslashes('\/terms\/'),
+								__( 'terms and conditions', 'chawa' )
+							);
+							_e('and the', 'chawa' );
+							printf(
+								' <a href="%s">%s</a> ',
+								stripslashes('\/privacy\/'),
+								__( 'privacy statement', 'chawa' )
+							); ?>
+						</label>
 					</p>
-					<p><small><?php _e('Per transatie rekenen we € 0,44 transactiekosten bovenop het donatiegeld.', 'chawa'); ?></small></p>
-					<p><input type="submit" id="submit" class="next" id="next-4" value="<?php _e('Akkoord & betalen', 'chawa'); ?>"></p>
+					<p><small><?php _e('For each transaction we charge € 0.44 transaction costs on top of the donation money.', 'chawa'); ?></small></p>
+					<p><input type="submit" id="submit" class="next" id="next-4" value="<?php _e('Agree & pay', 'chawa'); ?>"></p>
 					<?php wp_nonce_field( 'pay', 'pay_nonce' ); ?>
 				</form>
 			</div>

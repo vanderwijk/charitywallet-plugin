@@ -14,7 +14,7 @@ function pay( user_id ) {
 
 	// Validation
 	jQuery('#notice').removeClass('error');
-	if (bank == '') {
+	if (bank === '') {
 		event.preventDefault();
 		console.log('Geen bank');
 		jQuery('#notice').html( chawa_localize_onboarding.choose_bank ).addClass('error');;

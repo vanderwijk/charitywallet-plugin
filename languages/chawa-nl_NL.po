@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2019-10-16 14:37+0200\n"
-"PO-Revision-Date: 2019-10-16 14:38+0200\n"
+"POT-Creation-Date: 2019-11-27 16:39+0100\n"
+"PO-Revision-Date: 2019-11-27 16:39+0100\n"
 "Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -21,58 +21,64 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: charitywallet-plugin.php:49 shortcodes/account/shortcode-account.php:22
+#: charitywallet-plugin.php:58 shortcodes/account/shortcode-account.php:22
 #: shortcodes/account/shortcode-account.php:29
+#: templates/wallet/transactions.php:12
 msgid "Date"
 msgstr "Datum"
 
-#: charitywallet-plugin.php:50
+#: charitywallet-plugin.php:59
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: charitywallet-plugin.php:51
+#: charitywallet-plugin.php:60
 msgid "Would you like to remove"
 msgstr "Wil je"
 
-#: charitywallet-plugin.php:52
+#: charitywallet-plugin.php:61
 msgid "from your basket?"
 msgstr "uit je mandje verwijderen?"
 
-#: charitywallet-plugin.php:53
+#: charitywallet-plugin.php:62
 msgid "Your basket is empty"
 msgstr "Je mandje is leeg"
 
-#: charitywallet-plugin.php:60 charitywallet-plugin.php:67
-#: charitywallet-plugin.php:74 charitywallet-plugin.php:89
-#: charitywallet-plugin.php:97
+#: charitywallet-plugin.php:69 charitywallet-plugin.php:76
+#: charitywallet-plugin.php:83 charitywallet-plugin.php:98
+#: charitywallet-plugin.php:106
 msgid "The top-up amount is too low."
 msgstr "Het opwaardeerbedrag is te laag."
 
-#: charitywallet-plugin.php:61 charitywallet-plugin.php:68
-#: charitywallet-plugin.php:75 charitywallet-plugin.php:90
-#: charitywallet-plugin.php:98
+#: charitywallet-plugin.php:70 charitywallet-plugin.php:77
+#: charitywallet-plugin.php:84 charitywallet-plugin.php:99
+#: charitywallet-plugin.php:107
 msgid "Please choose your amount"
 msgstr "Kies je bedrag"
 
-#: charitywallet-plugin.php:81
+#: charitywallet-plugin.php:90
 msgid "Please choose a payment type."
 msgstr "Kies je betaalmethode."
 
-#: charitywallet-plugin.php:82
+#: charitywallet-plugin.php:91
 msgid "Please choose your bank."
 msgstr "Kies je je bank."
 
-#: charitywallet-plugin.php:83
+#: charitywallet-plugin.php:92
 msgid "Please accept the terms and privacy statement."
 msgstr "Accepteer de algemene voorwaarden en het privacy statement."
 
-#: charitywallet-plugin.php:91
+#: charitywallet-plugin.php:100
 msgid "Please choose your frequency"
 msgstr "Kies je frequentie"
 
-#: charitywallet-plugin.php:110
+#: charitywallet-plugin.php:119
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
+
+#: charitywallet-plugin.php:203
+msgctxt "rewrite rule"
+msgid "transactions"
+msgstr "transacties"
 
 #: shortcodes/account/shortcode-account.php:16
 msgid "Wallet"
@@ -97,6 +103,7 @@ msgstr "Omschrijving"
 #: shortcodes/account/shortcode-account.php:31
 #: shortcodes/wallet/shortcode-wallet.php:31
 #: shortcodes/wallet/shortcode-wallet.php:32
+#: templates/wallet/transactions.php:14
 msgid "Amount"
 msgstr "Bedrag"
 
@@ -172,119 +179,222 @@ msgstr "Toevoegen"
 msgid "Charity Basket"
 msgstr "Goede doelen mandje"
 
-#: shortcodes/onboarding/onboarding-account.php:63
-msgid "Leuk dat je er bent!"
-msgstr ""
+#: shortcodes/onboarding/onboarding-account.php:10
+msgid "Great to have you here!"
+msgstr "Leuk dat je er bent!"
 
-#: shortcodes/onboarding/onboarding-account.php:64
-msgid "Ben je klaar voor het nieuwe doneren of wil je eerst even rondkijken?"
-msgstr ""
+#: shortcodes/onboarding/onboarding-account.php:11
+msgid "Are you ready to start donating or do you first like to look around?"
+msgstr "Ben je klaar voor het nieuwe doneren of wil je eerst even rondkijken?"
 
-#: shortcodes/onboarding/onboarding-account.php:65
-msgid "Ik wil doneren"
-msgstr ""
+#: shortcodes/onboarding/onboarding-account.php:12
+msgid "I want to donate"
+msgstr "Ik wil doneren"
 
-#: shortcodes/onboarding/onboarding-account.php:66
-msgid "Ik kijk nog even rond"
-msgstr ""
+#: shortcodes/onboarding/onboarding-account.php:13
+msgid "I would like to look around first."
+msgstr "Ik wil eerst even rondkijken."
 
-#: shortcodes/onboarding/onboarding-account.php:70
-#: shortcodes/onboarding/onboarding-account.php:77
-msgid "Account maken"
-msgstr ""
+#: shortcodes/onboarding/onboarding-account.php:17
+#: shortcodes/onboarding/onboarding-account.php:24
+msgid "Create account"
+msgstr "Account maken"
 
-#: shortcodes/onboarding/onboarding-account.php:71
-msgid ""
+#: shortcodes/onboarding/onboarding-account.php:18
+#, fuzzy
+#| msgid "Good idea to donate from today without a doorbell or signature!"
+msgid "Great idea to start donating without a doorbell or signature!"
+msgstr ""
 "Goed idee om vanaf vandaag te gaan doneren zonder deurbel of handtekening!"
-msgstr ""
 
-#: shortcodes/onboarding/onboarding-account.php:72
-msgid "We gaan eerst een account voor je aanmaken."
-msgstr ""
+#: shortcodes/onboarding/onboarding-account.php:19
+msgid "We will first create an account for you."
+msgstr "We gaan eerst een account voor je aanmaken."
 
-#: shortcodes/onboarding/onboarding-account.php:73
-#: shortcodes/onboarding/onboarding-pay.php:64
-#: shortcodes/onboarding/onboarding-wallet.php:68
-#: shortcodes/onboarding/onboarding-wallet.php:88
+#: shortcodes/onboarding/onboarding-account.php:20
+#: shortcodes/onboarding/onboarding-pay.php:120
+#: shortcodes/onboarding/onboarding-success.php:68
+#: shortcodes/onboarding/onboarding-wallet.php:35
+#: shortcodes/onboarding/onboarding-wallet.php:55
 msgid "Next"
 msgstr "Volgende"
 
-#: shortcodes/onboarding/onboarding-pay.php:62
-#: shortcodes/onboarding/onboarding-pay.php:68
+#: shortcodes/onboarding/onboarding-pay-charge.php:64
+msgid "Pay Charge"
+msgstr "Pay Charge"
+
+#: shortcodes/onboarding/onboarding-pay-charge.php:76
+msgid "Source"
+msgstr "Source"
+
+#: shortcodes/onboarding/onboarding-pay-charge.php:88
+msgid "Charge"
+msgstr "Charge"
+
+#: shortcodes/onboarding/onboarding-pay.php:25
+msgid "Sorry, your nonce did not verify."
+msgstr "Sorry, u beveiligings-id is niet geldig."
+
+#: shortcodes/onboarding/onboarding-pay.php:85
+msgid "Wallet top-up transaction"
+msgstr "Wallet opwaardeertransactie"
+
+#: shortcodes/onboarding/onboarding-pay.php:102
+msgid "Something went wrong, please try again later"
+msgstr "Er is iets fout gegaan, probeer het later opnieuw"
+
+#: shortcodes/onboarding/onboarding-pay.php:118
+#: shortcodes/onboarding/onboarding-pay.php:124
+msgid "Top-up wallet"
+msgstr "Wallet opwaarderen"
+
+#: shortcodes/onboarding/onboarding-pay.php:119
+msgid "We are now going to top-up your wallet"
+msgstr "We gaan nu je wallet opwaarderen"
+
+#: shortcodes/onboarding/onboarding-pay.php:130
+msgid "You chose to"
+msgstr "Je hebt gekozen om"
+
+#: shortcodes/onboarding/onboarding-pay.php:132
+msgctxt "comes after 'You chose to'"
+msgid "monthly add"
+msgstr "maandelijks"
+
+#: shortcodes/onboarding/onboarding-pay.php:134
+msgctxt "comes after 'You chose to'"
+msgid "add"
+msgstr "eenmalig"
+
+#: shortcodes/onboarding/onboarding-pay.php:140
+msgid "change"
+msgstr "wijzig"
+
+#: shortcodes/onboarding/onboarding-pay.php:142
+msgid "to your wallet"
+msgstr "in je wallet te storten"
+
+#: shortcodes/onboarding/onboarding-pay.php:146
+#: shortcodes/onboarding/onboarding-success.php:89
+#: shortcodes/wallet/shortcode-wallet.php:67
+msgid "Choose your bank"
+msgstr "Kies je bank"
+
+#: shortcodes/onboarding/onboarding-pay.php:149
+msgid "Bank"
+msgstr "Bank"
+
+#: shortcodes/onboarding/onboarding-pay.php:167
+msgid "I agree with the"
+msgstr "Ik ga akkoord met de"
+
+#: shortcodes/onboarding/onboarding-pay.php:171
+msgid "terms and conditions"
+msgstr "algemene voorwaarden"
+
+#: shortcodes/onboarding/onboarding-pay.php:173
+msgid "and the"
+msgstr "en de"
+
+#: shortcodes/onboarding/onboarding-pay.php:177
+msgid "privacy statement"
+msgstr "privacyverklaring"
+
+#: shortcodes/onboarding/onboarding-pay.php:181
+msgid ""
+"For each transaction we charge € 0.44 transaction costs on top of the "
+"donation money."
+msgstr ""
+"Per transactie rekenen we € 0,44 transactiekosten bovenop het donatiegeld."
+
+#: shortcodes/onboarding/onboarding-pay.php:182
+msgid "Agree & pay"
+msgstr "Akkoord & betalen"
+
+#: shortcodes/onboarding/onboarding-success.php:66
+#: shortcodes/onboarding/onboarding-success.php:72
 msgid "Wallet opwaarderen"
 msgstr ""
 
-#: shortcodes/onboarding/onboarding-pay.php:63
+#: shortcodes/onboarding/onboarding-success.php:67
 msgid "We gaan nu je wallet opwaarderen."
 msgstr ""
 
-#: shortcodes/onboarding/onboarding-pay.php:71
+#: shortcodes/onboarding/onboarding-success.php:76
 msgid "Je wilt"
 msgstr ""
 
-#: shortcodes/onboarding/onboarding-pay.php:77
+#: shortcodes/onboarding/onboarding-success.php:82
 msgid ""
 "(<a href=\"/onboarding/wallet/\">wijzig</a>) donatiegeld storten op je "
 "wallet."
 msgstr ""
 
-#: shortcodes/onboarding/onboarding-pay.php:78
-msgid "Hoe wil je betalen?"
-msgstr ""
-
-#: shortcodes/onboarding/onboarding-pay.php:83
+#: shortcodes/onboarding/onboarding-success.php:84
 msgid "Kies je bank"
 msgstr ""
 
-#: shortcodes/onboarding/onboarding-pay.php:90
+#: shortcodes/onboarding/onboarding-success.php:98
 msgid ""
 "Ik ga akkoord met de <a href=\"\">algemene voorwaarden</a> en het <a href="
 "\"\">privacy statement</a>."
 msgstr ""
 
-#: shortcodes/onboarding/onboarding-pay.php:92
+#: shortcodes/onboarding/onboarding-success.php:100
 msgid ""
 "Per transatie rekenen we € 0,44 transactiekosten bovenop het donatiegeld."
 msgstr ""
 
-#: shortcodes/onboarding/onboarding-pay.php:93
+#: shortcodes/onboarding/onboarding-success.php:101
 msgid "Akkoord & betalen"
 msgstr ""
 
-#: shortcodes/onboarding/onboarding-wallet.php:65
-msgid "Wallet activeren"
-msgstr ""
+#: shortcodes/onboarding/onboarding-wallet.php:32
+msgid "Activate wallet"
+msgstr "Wallet activeren"
 
-#: shortcodes/onboarding/onboarding-wallet.php:66
+#: shortcodes/onboarding/onboarding-wallet.php:33
 msgid ""
+"To be able to donate via CharityWallet, we will first make a digital wallet "
+"(your Wallet) for you to which you can transfer a one-off or monthly "
+"donation."
+msgstr ""
 "Om te kunnen doneren via CharityWallet, gaan we nu eerst een digitale "
 "portemonnee (je Wallet) voor je maken waar je eenmalig of maandelijks "
 "donatiegeld naar kunt overmaken."
-msgstr ""
 
-#: shortcodes/onboarding/onboarding-wallet.php:67
-msgid "We gaan nu je wallet activeren."
-msgstr ""
+#: shortcodes/onboarding/onboarding-wallet.php:34
+msgid "We are now going to activate your wallet."
+msgstr "We gaan nu je wallet activeren."
 
-#: shortcodes/onboarding/onboarding-wallet.php:72
-msgid "Donatiebedrag kiezen"
-msgstr ""
+#: shortcodes/onboarding/onboarding-wallet.php:39
+msgid "Choose top-up amount"
+msgstr "Kies je opwaardeerbedrag"
 
-#: shortcodes/onboarding/onboarding-wallet.php:75
-msgid "Wil je eenmalig of maandelijks donatiegeld overmaken naar je wallet?"
-msgstr ""
+#: shortcodes/onboarding/onboarding-wallet.php:42
+msgid "Would you like to top-up your wallet montly or only one time?"
+msgstr "Wil je eenmalig of maandelijks donatiegeld overmaken naar je wallet?"
 
-#: shortcodes/onboarding/onboarding-wallet.php:80
-msgid "Welk donatiebedrag wil je overmaken naar je wallet?"
-msgstr ""
+#: shortcodes/onboarding/onboarding-wallet.php:44
+msgid "once"
+msgstr "eenmalig"
 
-#: shortcodes/onboarding/onboarding-wallet.php:85
-msgid "Kies zelf een bedrag"
-msgstr ""
+#: shortcodes/onboarding/onboarding-wallet.php:45
+#: shortcodes/wallet/shortcode-wallet.php:54
+msgid "monthly"
+msgstr "maandelijks"
 
-#: shortcodes/onboarding/onboarding-wallet.php:87
-msgid "Wat je ook kiest, je kunt het later altijd nog aanpassen."
-msgstr ""
+#: shortcodes/onboarding/onboarding-wallet.php:47
+msgid "Which amount would you like to transfer to your wallet?"
+msgstr "Welk bedrag wil je overmaken naar je wallet?"
+
+#: shortcodes/onboarding/onboarding-wallet.php:52
+msgid "Choose another amount"
+msgstr "Kies zelf een bedrag"
+
+#: shortcodes/onboarding/onboarding-wallet.php:54
+msgid "Whatever you choose, you can always adjust it later."
+msgstr "Wat je ook kiest, je kunt het later altijd nog aanpassen."
 
 #: shortcodes/wallet/shortcode-wallet.php:21
 msgid "Close"
@@ -303,10 +413,6 @@ msgid "Pay"
 msgstr "Betalen"
 
 #: shortcodes/wallet/shortcode-wallet.php:54
-msgid "monthly"
-msgstr "maandelijks"
-
-#: shortcodes/wallet/shortcode-wallet.php:54
 msgid "to my wallet"
 msgstr "toe aan mijn wallet"
 
@@ -322,10 +428,6 @@ msgstr "Herhaal deze transactie elke maand automatisch."
 msgid "Your bank"
 msgstr "Je bank"
 
-#: shortcodes/wallet/shortcode-wallet.php:67
-msgid "Choose your bank"
-msgstr "Kies je bank"
-
 #: shortcodes/wallet/shortcode-wallet.php:74
 msgid "Complete payment"
 msgstr "Voltooi betaling"
@@ -337,6 +439,26 @@ msgstr "44 cent transactiekosten zullen worden toegevoegd"
 #: shortcodes/wallet/shortcode-wallet.php:116
 msgid "Transaction"
 msgstr "Transactie"
+
+#: templates/wallet/transactions.php:7
+msgid "Wallet transactions"
+msgstr "Wallet-transacties"
+
+#: templates/wallet/transactions.php:8
+msgid "These are your wallet transactions."
+msgstr "Dit zijn je wallet-transacties."
+
+#: templates/wallet/transactions.php:13
+msgid "Type"
+msgstr "Soort"
+
+#: templates/wallet/transactions.php:15
+msgid "Status"
+msgstr "Status"
+
+#: templates/wallet/transactions.php:42
+msgid "Wallet balance"
+msgstr "Walletsaldo"
 
 #. Plugin Name of the plugin/theme
 msgid "Charity Wallet"
@@ -387,9 +509,6 @@ msgstr "http://thewebworks.nl"
 
 #~ msgid "Donate"
 #~ msgstr "Doneer"
-
-#~ msgid "Other amount"
-#~ msgstr "Ander bedrag"
 
 #~ msgid "Please add"
 #~ msgstr "Voeg"
