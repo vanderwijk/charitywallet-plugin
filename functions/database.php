@@ -1,7 +1,7 @@
 <?php
 
 global $chawa_db_version;
-$chawa_db_version = '1.0';
+$chawa_db_version = '1.1';
 
 // create database table for chawa_transactions
 function chawa_install() {
