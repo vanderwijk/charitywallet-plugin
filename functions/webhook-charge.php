@@ -77,8 +77,8 @@ function chargeFailed($paymentIntent) {
 	$wpdb->update( 
 		CHAWA_TABLE_TRANSACTIONS, 
 		array(
-			'charge_id' => $charge['id'],
-			'status' => $charge['status']
+			'charge_id' => $paymentIntent['id'],
+			'status' => $paymentIntent['status']
 		),
 		['transaction_id' => $paymentIntent['metadata']['transaction_id']]
 	);
@@ -90,8 +90,8 @@ function chargeSucceeded($paymentIntent) {
 	$wpdb->update( 
 		CHAWA_TABLE_TRANSACTIONS, 
 		array(
-			'charge_id' => $charge['id'],
-			'status' => $charge['status']
+			'charge_id' => $paymentIntent['id'],
+			'status' => $paymentIntent['status']
 		),
 		['transaction_id' => $paymentIntent['metadata']['transaction_id']]
 	);
