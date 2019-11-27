@@ -22,7 +22,8 @@ function chawa_install() {
 		transaction_id varchar(255) NOT NULL,
 		source_id varchar(255) NOT NULL,
 		charge_id varchar(255) NOT NULL,
-		status varchar(25) NOT NULL,
+		source_status varchar(25) NOT NULL,
+		charge_status varchar(25) NOT NULL,
 		PRIMARY KEY (id)
 	) $charset_collate;";
 
@@ -49,7 +50,8 @@ function chawa_install_data() {
 			'transaction_id' => 'chawa_000000000000000000000000', 
 			'source_id' => 'src_000000000000000000000000', 
 			'charge_id' => 'py_000000000000000000000000', 
-			'status' => 'type.status', 
+			'source_status' => 'status',
+			'charge_status' => 'status'
 		) 
 	);
 }
@@ -72,7 +74,8 @@ if ($installed_ver != $chawa_db_version) {
 		transaction_id varchar(255) NOT NULL,
 		source_id varchar(255) NOT NULL,
 		charge_id varchar(255) NOT NULL,
-		status varchar(25) NOT NULL,
+		source_status varchar(25) NOT NULL,
+		charge_status varchar(25) NOT NULL,
 		PRIMARY KEY (id)
 	);";
 
