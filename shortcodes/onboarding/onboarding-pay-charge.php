@@ -62,16 +62,15 @@ get_header(); ?>
 					<?php _e('Payment', 'chawa');
 					echo ' ';
 					$source_status = $source['status'];
+					echo '<h2>Source object</h2>';
+					echo '<pre>';
+					echo $source;
+					echo '</pre>';
 					$charge_status = $charge['status'];
 					if (isset($charge_status)) {
 
 						// canceled, chargeable, consumed, failed, or pending. 
 						// Only chargeable sources can be used to create a charge.
-
-						echo '<h2>Source object</h2>';
-						echo '<pre>';
-						echo $source;
-						echo '</pre>';
 
 						echo '<h2>Charge object</h2>';
 						echo '<pre>';
