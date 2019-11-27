@@ -1,5 +1,4 @@
-<?php 
-// Make sure user is logged in
+<?php // make sure user is logged in
 if (!is_user_logged_in()) {
 	global $wp;
 	$redirect = home_url($wp->request);
