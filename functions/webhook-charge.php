@@ -59,7 +59,7 @@ function chargePending($paymentIntent) {
 			'user_id' => $paymentIntent['metadata']['user_id']
 		],
 	]);
-
+	global $wpdb;
 	$wpdb->update( 
 		CHAWA_TABLE_TRANSACTIONS, 
 		array(
@@ -73,6 +73,7 @@ function chargePending($paymentIntent) {
 }
 
 function chargeFailed($paymentIntent) {
+	global $wpdb;
 	$wpdb->update( 
 		CHAWA_TABLE_TRANSACTIONS, 
 		array(
@@ -85,6 +86,7 @@ function chargeFailed($paymentIntent) {
 }
 
 function chargeSucceeded($paymentIntent) {
+	global $wpdb;
 	$wpdb->update( 
 		CHAWA_TABLE_TRANSACTIONS, 
 		array(
