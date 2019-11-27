@@ -68,8 +68,8 @@ get_header(); ?>
 						echo '<pre>';
 						echo $source;
 						echo '</pre>';
-						if ($source_status === 'canceled') {
-							_e('canceled', 'chawa');
+						if ($source_status != 'chargeable') {
+							echo $source_status;
 						}
 					}
 					
@@ -84,20 +84,8 @@ get_header(); ?>
 						_e('Payment', 'chawa');
 						echo ' ';
 
-						if ($charge_status === 'canceled') {
-							_e('canceled', 'chawa');
-						}
-						if ($charge_status === 'chargeable') {
-							_e('chargeable', 'chawa');
-						}
-						if ($charge_status === 'consumed') {
-							_e('consumed', 'chawa');
-						}
-						if ($charge_status === 'failed') {
-							_e('failed', 'chawa');
-						}
-						if ($charge_status === 'pending') {
-							_e('pending', 'chawa');
+						if ($charge_status) {
+							echo $charge_status;
 						}
 					} ?>
 				</div>
