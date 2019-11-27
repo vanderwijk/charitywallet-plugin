@@ -6,7 +6,7 @@ $endpoint_secret = 'whsec_Osmz6cCN3tAXq54kmcdfn2kq2L2jVWBP';
 
 $payload = @file_get_contents('php://input');
 
-$sig_header = isset($_SERVER['HTTP_STRIPE_SIGNATURE']);
+$sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
 $event = null;
 
 try {
