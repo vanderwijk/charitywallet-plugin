@@ -49,12 +49,8 @@ if (!empty($_GET['source'])) {
 
 	}
 
-	// on fail there is no charge, so add a check for that TODO!
-	echo '<pre>';
-	echo $charge;
-	echo '</pre>';
-
 	// get the status of the charge and display the appropriate message -> THIS DOES NOT WORK ON FAIL
+	$source_status = $source['status'];
 	$charge_status = $charge['status'];
 }
 
@@ -70,14 +66,34 @@ get_header(); ?>
 					<?php _e('Payment', 'chawa');
 					echo ' ';
 					if (isset($charge_status)) {
-						if ($charge_status === 'succeeded') {
-							_e('succeeded', 'chawa');
+
+						// canceled, chargeable, consumed, failed, or pending. 
+						// Only chargeable sources can be used to create a charge.
+
+						echo '<h2>Source object</h2>';
+						echo '<pre>';
+						echo $source;
+						echo '</pre>';
+
+						echo '<h2>Charge object</h2>';
+						echo '<pre>';
+						echo $charge;
+						echo '</pre>';
+
+						if ($charge_status === 'canceled') {
+							_e('canceled', 'chawa');
+						}
+						if ($charge_status === 'chargeable') {
+							_e('chargeable', 'chawa');
+						}
+						if ($charge_status === 'consumed') {
+							_e('consumed', 'chawa');
 						}
 						if ($charge_status === 'failed') {
 							_e('failed', 'chawa');
 						}
-						if ($charge_status === 'expired') {
-							_e('expired', 'chawa');
+						if ($charge_status === 'pending') {
+							_e('pending', 'chawa');
 						}
 					} ?>
 				</div>
