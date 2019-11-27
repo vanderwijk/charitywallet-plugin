@@ -59,16 +59,14 @@ get_header(); ?>
 			<div class="step" id="step-8">
 				<h1><?php _e('Pay Charge', 'chawa'); ?></h1>
 				<div class="notice" id="notice">
-					<?php _e('Payment', 'chawa');
-					echo ' ';
-					$source_status = $source['status'];
+					<?php $source_status = $source['status'];
 					echo '<h2>Source object</h2>';
 					echo '<pre>';
 					echo $source;
 					echo '</pre>';
-					$charge_status = $charge['status'];
-					if (isset($charge_status)) {
-
+					
+					if (isset($charge)) {
+						$charge_status = $charge['status'];
 						// canceled, chargeable, consumed, failed, or pending. 
 						// Only chargeable sources can be used to create a charge.
 
@@ -76,6 +74,9 @@ get_header(); ?>
 						echo '<pre>';
 						echo $charge;
 						echo '</pre>';
+
+						_e('Payment', 'chawa');
+						echo ' ';
 
 						if ($charge_status === 'canceled') {
 							_e('canceled', 'chawa');
