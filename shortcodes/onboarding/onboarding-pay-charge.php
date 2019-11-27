@@ -21,7 +21,7 @@ if (!empty($_GET['source'])) {
 		CHAWA_TABLE_TRANSACTIONS, 
 		array(
 			'source_id' => sanitize_key($source['id']),
-			'status' => sanitize_key($source['status'])
+			'status' => 'source.' . sanitize_key($source['status'])
 		),
 		['transaction_id' => $transaction_id]
 	);
@@ -42,7 +42,7 @@ if (!empty($_GET['source'])) {
 			CHAWA_TABLE_TRANSACTIONS, 
 			array(
 				'charge_id' => $charge['id'],
-				'status' => $charge['status']
+				'status' => 'charge.' . $charge['status']
 			),
 			['transaction_id' => sanitize_key($transaction_id)]
 		);
@@ -59,17 +59,23 @@ get_header(); ?>
 			<div class="step" id="step-8">
 				<h1><?php _e('Pay Charge', 'chawa'); ?></h1>
 				<div class="notice" id="notice">
-					<?php $source_status = $source['status'];
-					echo '<h2>Source object</h2>';
-					echo '<pre>';
-					echo $source;
-					echo '</pre>';
+
+					<?php if (isset($source)) {
+						$source_status = $source['status'];
+						// canceled, chargeable, consumed, failed, or pending
+						// only chargeable sources can be used to create a charge
+						echo '<h2>Source object</h2>';
+						echo '<pre>';
+						echo $source;
+						echo '</pre>';
+						if ($source_status === 'canceled') {
+							_e('canceled', 'chawa');
+						}
+					}
 					
 					if (isset($charge)) {
 						$charge_status = $charge['status'];
-						// canceled, chargeable, consumed, failed, or pending. 
-						// Only chargeable sources can be used to create a charge.
-
+						// captured, expired, failed, pending, refunded, succeeded, updated (dispute, refund)
 						echo '<h2>Charge object</h2>';
 						echo '<pre>';
 						echo $charge;
