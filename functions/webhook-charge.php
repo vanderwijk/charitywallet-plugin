@@ -24,8 +24,15 @@ try {
 
 // Handle the event
 switch ($event->type) {
+	case 'charge.pending':
+		$paymentIntent = $event->data->object;
+		chargePending($paymentIntent);
+		break;
+	case 'charge.failed':
+		$paymentIntent = $event->data->object;
+		chargeFailed($paymentIntent);
+		break;
 	case 'charge.succeeded':
-		// IF THE CHARGE HAS SUCCEEDED, NO NEED TO CHARGE AGAIN -> THIS IS WRONG - TODO
 		$paymentIntent = $event->data->object; // contains a StripePaymentIntent
 		chargeSucceeded($paymentIntent);
 		break;
@@ -37,7 +44,7 @@ switch ($event->type) {
 
 http_response_code(200);
 
-function chargeSucceeded($paymentIntent) {
+function chargePending($paymentIntent) {
 
 	echo '<pre>';
 	print_r($paymentIntent);
@@ -63,6 +70,28 @@ function chargeSucceeded($paymentIntent) {
 	);
 
 	status_header(200);
-	return 'Webhook connected';
+}
 
+function chargeFailed($paymentIntent) {
+	$wpdb->update( 
+		CHAWA_TABLE_TRANSACTIONS, 
+		array(
+			'charge_id' => $charge['id'],
+			'status' => $charge['status']
+		),
+		['transaction_id' => $paymentIntent['metadata']['transaction_id']]
+	);
+	status_header(200);
+}
+
+function chargeSucceeded($paymentIntent) {
+	$wpdb->update( 
+		CHAWA_TABLE_TRANSACTIONS, 
+		array(
+			'charge_id' => $charge['id'],
+			'status' => $charge['status']
+		),
+		['transaction_id' => $paymentIntent['metadata']['transaction_id']]
+	);
+	status_header(200);
 }
