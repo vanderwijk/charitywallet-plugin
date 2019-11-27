@@ -257,7 +257,7 @@ function chawa_onboarding_template_include($template) {
 		$query_var = $wp_query->query_vars['webhook'];
 
 		if ($query_var && $query_var === 'charge') {
-			return plugin_dir_path(__FILE__).'functions/webhook-charge.php';
+			return plugin_dir_path(__FILE__).'webhooks/charge.php';
 		}
 
 	} else if ( isset($wp_query->query_vars['account'])) {

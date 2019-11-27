@@ -1,5 +1,7 @@
 <?php
 
+// DIT BESTAND WORDT (NOG) NIET GEBRUIKT
+
 require __DIR__ . '/vendor/autoload.php';
 
 use Postmark\PostmarkClient;
