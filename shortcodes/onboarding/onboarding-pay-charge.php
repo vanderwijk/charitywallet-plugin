@@ -72,7 +72,7 @@ get_header(); ?>
 						echo '<pre>';
 						echo $source;
 						echo '</pre>';
-						if ($source_status != 'chargeable') {
+						if ($source_status) {
 							echo __('Source', 'chawa') . ' ' . $source_status;
 						}
 					}
