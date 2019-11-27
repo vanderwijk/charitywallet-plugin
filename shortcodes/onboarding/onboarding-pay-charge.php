@@ -21,7 +21,7 @@ if (!empty($_GET['source'])) {
 		CHAWA_TABLE_TRANSACTIONS, 
 		array(
 			'source_id' => sanitize_key($source['id']),
-			'status' => 'source.' . sanitize_key($source['status'])
+			'source_status' => sanitize_key($source['status'])
 		),
 		['transaction_id' => $transaction_id]
 	);
@@ -42,7 +42,7 @@ if (!empty($_GET['source'])) {
 			CHAWA_TABLE_TRANSACTIONS, 
 			array(
 				'charge_id' => $charge['id'],
-				'status' => 'charge.' . $charge['status']
+				'charge_status' => $charge['status']
 			),
 			['transaction_id' => sanitize_key($transaction_id)]
 		);

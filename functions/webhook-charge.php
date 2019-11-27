@@ -64,7 +64,7 @@ function chargePending($paymentIntent) {
 		CHAWA_TABLE_TRANSACTIONS, 
 		array(
 			'charge_id' => $charge['id'],
-			'status' => 'charge.' . $charge['status']
+			'charge_status' => $charge['status']
 		),
 		['transaction_id' => $paymentIntent['metadata']['transaction_id']]
 	);
@@ -78,7 +78,7 @@ function chargeFailed($paymentIntent) {
 		CHAWA_TABLE_TRANSACTIONS, 
 		array(
 			'charge_id' => $paymentIntent['id'],
-			'status' => 'charge.' . $paymentIntent['status']
+			'charge_status' => $paymentIntent['status']
 		),
 		['transaction_id' => $paymentIntent['metadata']['transaction_id']]
 	);
@@ -91,7 +91,7 @@ function chargeSucceeded($paymentIntent) {
 		CHAWA_TABLE_TRANSACTIONS, 
 		array(
 			'charge_id' => $paymentIntent['id'],
-			'status' => 'charge.' . $paymentIntent['status']
+			'charge_status' => $paymentIntent['status']
 		),
 		['transaction_id' => $paymentIntent['metadata']['transaction_id']]
 	);
