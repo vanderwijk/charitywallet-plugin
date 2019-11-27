@@ -48,10 +48,6 @@ if (!empty($_GET['source'])) {
 		);
 
 	}
-
-	// get the status of the charge and display the appropriate message -> THIS DOES NOT WORK ON FAIL
-	$source_status = $source['status'];
-	$charge_status = $charge['status'];
 }
 
 get_header(); ?>
@@ -65,6 +61,8 @@ get_header(); ?>
 				<div class="notice" id="notice">
 					<?php _e('Payment', 'chawa');
 					echo ' ';
+					$source_status = $source['status'];
+					$charge_status = $charge['status'];
 					if (isset($charge_status)) {
 
 						// canceled, chargeable, consumed, failed, or pending. 
