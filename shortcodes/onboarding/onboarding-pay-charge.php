@@ -73,8 +73,7 @@ get_header(); ?>
 						echo $source;
 						echo '</pre>';
 						if ($source_status != 'chargeable') {
-							_e('Source', 'chawa');
-							echo $source_status;
+							echo __('Source', 'chawa') . ' ' . $source_status;
 						}
 					}
 					
@@ -86,10 +85,10 @@ get_header(); ?>
 						echo $charge;
 						echo '</pre>';
 						if ($charge_status) {
-							_e('Charge', 'chawa');
-							echo $charge_status;
+							echo __('Charge', 'chawa') . ' ' . $charge_status;
 						}
 					} ?>
+
 				</div>
 			</div>
 
