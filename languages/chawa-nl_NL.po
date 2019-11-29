@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2019-11-29 15:22+0100\n"
-"PO-Revision-Date: 2019-11-29 15:25+0100\n"
+"POT-Creation-Date: 2019-11-29 17:09+0100\n"
+"PO-Revision-Date: 2019-11-29 17:09+0100\n"
 "Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -84,62 +84,66 @@ msgstr "transacties"
 msgid "Transaction costs"
 msgstr "Transactiekosten"
 
-#: functions/translations.php:6
+#: functions/translations.php:4
+msgid "Donation"
+msgstr "Donatie"
+
+#: functions/translations.php:7
 msgctxt "source status"
 msgid "canceled"
 msgstr "geannuleerd"
 
-#: functions/translations.php:7
+#: functions/translations.php:8
 msgctxt "source status"
 msgid "chargeable"
 msgstr "uitvoerbaar"
 
-#: functions/translations.php:8
+#: functions/translations.php:9
 msgctxt "source status"
 msgid "consumed"
 msgstr "gebruikt"
 
-#: functions/translations.php:9
+#: functions/translations.php:10
 msgctxt "source status"
 msgid "failed"
 msgstr "mislukt"
 
-#: functions/translations.php:10
+#: functions/translations.php:11
 msgctxt "source status"
 msgid "pending"
 msgstr "in behandeling"
 
-#: functions/translations.php:13
+#: functions/translations.php:14
 msgctxt "charge status"
 msgid "captured"
 msgstr "opgeslagen"
 
-#: functions/translations.php:14
+#: functions/translations.php:15
 msgctxt "charge status"
 msgid "expired"
 msgstr "verlopen"
 
-#: functions/translations.php:15
+#: functions/translations.php:16
 msgctxt "charge status"
 msgid "failed"
 msgstr "mislukt"
 
-#: functions/translations.php:16
+#: functions/translations.php:17
 msgctxt "charge status"
 msgid "pending"
 msgstr "in behandeling"
 
-#: functions/translations.php:17
+#: functions/translations.php:18
 msgctxt "charge status"
 msgid "refunded"
 msgstr "terugbetaald"
 
-#: functions/translations.php:18
+#: functions/translations.php:19
 msgctxt "charge status"
 msgid "succeeded"
 msgstr "uitgevoerd"
 
-#: functions/translations.php:19
+#: functions/translations.php:20
 msgctxt "charge status"
 msgid "updated"
 msgstr "bijgewerkt"
@@ -483,7 +487,7 @@ msgstr "Soort"
 msgid "Status"
 msgstr "Status"
 
-#: templates/wallet/transactions.php:50
+#: templates/wallet/transactions.php:74
 msgid "Wallet balance"
 msgstr "Walletsaldo"
 
@@ -533,9 +537,6 @@ msgstr "http://thewebworks.nl"
 
 #~ msgid "to access your wallet."
 #~ msgstr "voor toegang tot je wallet."
-
-#~ msgid "Donate"
-#~ msgstr "Doneer"
 
 #~ msgid "Please add"
 #~ msgstr "Voeg"

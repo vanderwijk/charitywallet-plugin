@@ -1,6 +1,7 @@
 <?php // Translation strings for Stripe API
 
 __('Transaction costs', 'chawa');
+__('Donation', 'chawa');
 
 //canceled, chargeable, consumed, failed, or pending
 _x('canceled', 'source status', 'chawa');
