@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2019-11-29 17:17+0100\n"
-"PO-Revision-Date: 2019-11-29 17:17+0100\n"
+"POT-Creation-Date: 2019-11-29 17:32+0100\n"
+"PO-Revision-Date: 2019-11-29 17:32+0100\n"
 "Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: charitywallet-plugin.php:59 shortcodes/account/shortcode-account.php:22
 #: shortcodes/account/shortcode-account.php:29
-#: templates/wallet/transactions.php:20
+#: templates/wallet/transactions.php:19
 msgid "Date"
 msgstr "Datum"
 
@@ -171,7 +171,7 @@ msgstr "Omschrijving"
 #: shortcodes/account/shortcode-account.php:31
 #: shortcodes/wallet/shortcode-wallet.php:31
 #: shortcodes/wallet/shortcode-wallet.php:32
-#: templates/wallet/transactions.php:22
+#: templates/wallet/transactions.php:21
 msgid "Amount"
 msgstr "Bedrag"
 
@@ -479,17 +479,17 @@ msgstr "Wallet-transacties"
 msgid "These are your wallet transactions."
 msgstr "Dit zijn je wallet-transacties."
 
-#: templates/wallet/transactions.php:15
-msgid "Wallet Balance"
-msgstr "Walletsaldo"
-
-#: templates/wallet/transactions.php:21
+#: templates/wallet/transactions.php:20
 msgid "Type"
 msgstr "Soort"
 
-#: templates/wallet/transactions.php:23
+#: templates/wallet/transactions.php:22
 msgid "Status"
 msgstr "Status"
+
+#: templates/wallet/transactions.php:76
+msgid "Your Wallet Balance"
+msgstr "Je walletsaldo"
 
 #. Plugin Name of the plugin/theme
 msgid "Charity Wallet"

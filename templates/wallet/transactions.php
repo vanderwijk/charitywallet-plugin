@@ -12,7 +12,6 @@ get_header(); ?>
 
 			<h1><?php _e('Wallet transactions', 'chawa'); ?></h1>
 			<p><?php _e('These are your wallet transactions.', 'chawa'); ?></p>
-			<?php echo '<h2>' . __('Wallet Balance', 'chawa') . ' €' . number_format_i18n($wallet_balance/100, 2) . '</h2>'; ?></td>
 
 			<table>
 				<thead>
@@ -27,10 +26,11 @@ get_header(); ?>
 
 					<?php
 					$user_id = get_current_user_id();
+					$wallet_balance = 0;
 					$transactions = $wpdb->get_results (
 						"SELECT * FROM " . CHAWA_TABLE_TRANSACTIONS . " where user_id =" . $user_id . " ORDER BY time DESC"
 					);
-					$wallet_balance = 0;
+					
 					foreach ($transactions as $transaction) {
 						//print_r($transaction);
 						if ($transaction -> transaction_type === 'iDEAL' ) {
@@ -72,6 +72,8 @@ get_header(); ?>
 
 				</tbody>
 			</table>
+
+			<?php echo '<h2>' . __('Your Wallet Balance', 'chawa') . ' €' . number_format_i18n($wallet_balance/100, 2) . '</h2>'; ?></td>
 
 		</div>
 	</main>

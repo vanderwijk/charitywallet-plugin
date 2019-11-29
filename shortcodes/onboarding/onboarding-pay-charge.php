@@ -49,6 +49,25 @@ if (!empty($_GET['source'])) {
 				['transaction_id' => sanitize_key($transaction_id)]
 			);
 
+			if ( $charge['status'] === 'succeeded' ) {
+				// If charge has succeeded, save transaction for costs to database.
+				// If it is still pending, do this in the webhook.
+				$transaction_id_costs = 'chawa_' . bin2hex(random_bytes(10)); // unique transaction ID for costs
+				$wpdb->insert(
+					CHAWA_TABLE_TRANSACTIONS,
+					array(
+						'time' => current_time('mysql'),
+						'user_id' => $source['metadata']['user_id'],
+						'amount' => 44,
+						'recurring' => FALSE,
+						'transaction_id' => sanitize_key($transaction_id_costs),
+						'transaction_type' => 'Transaction costs',
+						'transaction_status' => 'succeeded',
+						'charge_id' => $charge['id']
+					)
+				);
+
+			}
 		}
 	}
 }
