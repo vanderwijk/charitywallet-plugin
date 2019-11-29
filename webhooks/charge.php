@@ -97,6 +97,7 @@ function chargeSucceeded($paymentIntent) {
 		['transaction_id' => $paymentIntent['metadata']['transaction_id']]
 	);
 
+	$user_id = get_current_user_id();
 	$transaction_id = 'chawa_' . bin2hex(random_bytes(10)); // unique transaction ID
 
 	$wpdb->insert(
