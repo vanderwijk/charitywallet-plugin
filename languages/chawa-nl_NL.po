@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2019-11-27 17:12+0100\n"
-"PO-Revision-Date: 2019-11-27 17:12+0100\n"
+"POT-Creation-Date: 2019-11-29 15:14+0100\n"
+"PO-Revision-Date: 2019-11-29 15:14+0100\n"
 "Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -419,7 +419,11 @@ msgstr "Soort"
 msgid "Status"
 msgstr "Status"
 
-#: templates/wallet/transactions.php:48
+#: templates/wallet/transactions.php:32
+msgid "Transaction costs"
+msgstr "Transactiekosten"
+
+#: templates/wallet/transactions.php:51
 msgid "Wallet balance"
 msgstr "Walletsaldo"
 

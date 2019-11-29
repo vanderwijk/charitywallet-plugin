@@ -33,7 +33,7 @@ get_header(); ?>
 						//print_r($transaction);
 						echo '<tr>';
 						echo '<td>' . date_i18n(get_option('date_format') . ' - ' . get_option('time_format'), strtotime($transaction -> time)) . '</td>';
-						echo '<td>' . $transaction -> transaction_type . '</td>';
+						echo '<td>' . __($transaction -> transaction_type, 'chawa') . '</td>';
 						echo '<td>' . '€' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
 						echo '<td>' . $transaction -> charge_status . '</td>';
 						echo '</tr>';
