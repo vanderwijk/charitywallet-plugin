@@ -12,6 +12,8 @@ get_header(); ?>
 
 			<h1><?php _e('Wallet transactions', 'chawa'); ?></h1>
 			<p><?php _e('These are your wallet transactions.', 'chawa'); ?></p>
+			<?php echo '<h2>' . __('Wallet Balance', 'chawa') . ' €' . number_format_i18n($wallet_balance/100, 2) . '</h2>'; ?></td>
+
 			<table>
 				<thead>
 					<tr>
@@ -69,12 +71,6 @@ get_header(); ?>
 					} ?>
 
 				</tbody>
-				</foot>
-					<tr>
-						<td colspan="3" class="text-align-right"><?php echo '<h2>' . __('Your Wallet Balance', 'chawa') . ' €' . number_format_i18n($wallet_balance/100, 2) . '</h2>'; ?></td>
-						<td></td>
-					</tr>
-				</tfoot>
 			</table>
 
 		</div>
