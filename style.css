@@ -359,3 +359,6 @@ ul.parsley-errors-list li {
 	color: #fff;
 	font-weight: 600;
 }
+.alignright {
+	text-align: right;
+}
