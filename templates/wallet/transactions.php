@@ -71,7 +71,8 @@ get_header(); ?>
 				</tbody>
 				</foot>
 					<tr>
-						<td colspan="4"><?php echo '<h2>' . __('Wallet balance', 'chawa') . ' €' . number_format_i18n($wallet_balance/100, 2) . '</h2>'; ?></td>
+						<td colspan="3" class="text-align-right"><?php echo '<h2>' . __('Your Wallet Balance', 'chawa') . ' €' . number_format_i18n($wallet_balance/100, 2) . '</h2>'; ?></td>
+						<td></td>
 					</tr>
 				</tfoot>
 			</table>
