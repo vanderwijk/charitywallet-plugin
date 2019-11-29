@@ -37,7 +37,7 @@ require 'shortcodes/donate/shortcode-donate.php';
 //require 'shortcodes/wallet/shortcode-wallet.php';
 require 'shortcodes/charity/shortcode-charity.php';
 require 'shortcodes/account/shortcode-account.php';
-require 'functions/database.php';
+require 'functions/database-transactions.php';
 require 'functions/translations.php';
 
 // create database tables

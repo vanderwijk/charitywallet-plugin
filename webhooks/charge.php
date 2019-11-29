@@ -92,7 +92,8 @@ function chargeSucceeded($paymentIntent) {
 		CHAWA_TABLE_TRANSACTIONS, 
 		array(
 			'charge_id' => $paymentIntent['id'],
-			'charge_status' => $paymentIntent['status']
+			'charge_status' => $paymentIntent['status'],
+			'transaction_status' => $paymentIntent['status']
 		),
 		['transaction_id' => $paymentIntent['metadata']['transaction_id']]
 	);
@@ -106,8 +107,9 @@ function chargeSucceeded($paymentIntent) {
 			'user_id' => $paymentIntent['metadata']['user_id'],
 			'amount' => 44,
 			'recurring' => FALSE,
-			'transaction_type' => 'Transaction costs',
 			'transaction_id' => sanitize_key($transaction_id),
+			'transaction_type' => 'Transaction costs',
+			'transaction_status' => $paymentIntent['status'],
 			'charge_id' => $paymentIntent['id']
 		)
 	);
