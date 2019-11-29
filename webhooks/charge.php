@@ -93,12 +93,13 @@ function chargeSucceeded($paymentIntent) {
 		array(
 			'charge_id' => $paymentIntent['id'],
 			'charge_status' => $paymentIntent['status'],
-			'transaction_status' => $paymentIntent['status']
+			'transaction_status' => 'succeeded'
 		),
 		['transaction_id' => $paymentIntent['metadata']['transaction_id']]
 	);
 
-	$transaction_id = 'chawa_' . bin2hex(random_bytes(10)); // unique transaction ID
+	// Saving transaction for costs to database (does this need to be done earlier?)
+	$transaction_id_costs = 'chawa_' . bin2hex(random_bytes(10)); // unique transaction ID for costs
 
 	$wpdb->insert(
 		CHAWA_TABLE_TRANSACTIONS,
@@ -107,9 +108,9 @@ function chargeSucceeded($paymentIntent) {
 			'user_id' => $paymentIntent['metadata']['user_id'],
 			'amount' => 44,
 			'recurring' => FALSE,
-			'transaction_id' => sanitize_key($transaction_id),
+			'transaction_id' => sanitize_key($transaction_id_costs),
 			'transaction_type' => 'Transaction costs',
-			'transaction_status' => $paymentIntent['status'],
+			'transaction_status' => 'succeeded',
 			'charge_id' => $paymentIntent['id']
 		)
 	);
