@@ -35,7 +35,7 @@ get_header(); ?>
 						echo '<td>' . date_i18n(get_option('date_format') . ' - ' . get_option('time_format'), strtotime($transaction -> time)) . '</td>';
 						echo '<td>' . __($transaction -> transaction_type, 'chawa') . '</td>';
 						echo '<td class="text-align-right">' . '€' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
-						echo '<td>' . __($transaction -> charge_status, 'chawa') . '</td>';
+						echo '<td>' . _x($transaction -> charge_status,'charge status', 'chawa') . '</td>';
 						echo '</tr>';
 						if ($transaction -> transaction_type === 'iDEAL') {
 							$wallet_balance = $wallet_balance + $transaction -> amount;
