@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2019-11-29 15:14+0100\n"
-"PO-Revision-Date: 2019-11-29 15:14+0100\n"
+"POT-Creation-Date: 2019-11-29 15:22+0100\n"
+"PO-Revision-Date: 2019-11-29 15:25+0100\n"
 "Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -21,64 +21,128 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: charitywallet-plugin.php:58 shortcodes/account/shortcode-account.php:22
+#: charitywallet-plugin.php:59 shortcodes/account/shortcode-account.php:22
 #: shortcodes/account/shortcode-account.php:29
 #: templates/wallet/transactions.php:18
 msgid "Date"
 msgstr "Datum"
 
-#: charitywallet-plugin.php:59
+#: charitywallet-plugin.php:60
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: charitywallet-plugin.php:60
+#: charitywallet-plugin.php:61
 msgid "Would you like to remove"
 msgstr "Wil je"
 
-#: charitywallet-plugin.php:61
+#: charitywallet-plugin.php:62
 msgid "from your basket?"
 msgstr "uit je mandje verwijderen?"
 
-#: charitywallet-plugin.php:62
+#: charitywallet-plugin.php:63
 msgid "Your basket is empty"
 msgstr "Je mandje is leeg"
-
-#: charitywallet-plugin.php:69 charitywallet-plugin.php:76
-#: charitywallet-plugin.php:83 charitywallet-plugin.php:98
-#: charitywallet-plugin.php:106
-msgid "The top-up amount is too low."
-msgstr "Het opwaardeerbedrag is te laag."
 
 #: charitywallet-plugin.php:70 charitywallet-plugin.php:77
 #: charitywallet-plugin.php:84 charitywallet-plugin.php:99
 #: charitywallet-plugin.php:107
+msgid "The top-up amount is too low."
+msgstr "Het opwaardeerbedrag is te laag."
+
+#: charitywallet-plugin.php:71 charitywallet-plugin.php:78
+#: charitywallet-plugin.php:85 charitywallet-plugin.php:100
+#: charitywallet-plugin.php:108
 msgid "Please choose your amount"
 msgstr "Kies je bedrag"
 
-#: charitywallet-plugin.php:90
+#: charitywallet-plugin.php:91
 msgid "Please choose a payment type."
 msgstr "Kies je betaalmethode."
 
-#: charitywallet-plugin.php:91
+#: charitywallet-plugin.php:92
 msgid "Please choose your bank."
 msgstr "Kies je je bank."
 
-#: charitywallet-plugin.php:92
+#: charitywallet-plugin.php:93
 msgid "Please accept the terms and privacy statement."
 msgstr "Accepteer de algemene voorwaarden en het privacy statement."
 
-#: charitywallet-plugin.php:100
+#: charitywallet-plugin.php:101
 msgid "Please choose your frequency"
 msgstr "Kies je frequentie"
 
-#: charitywallet-plugin.php:119
+#: charitywallet-plugin.php:120
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
 
-#: charitywallet-plugin.php:203
+#: charitywallet-plugin.php:204
 msgctxt "rewrite rule"
 msgid "transactions"
 msgstr "transacties"
+
+#: functions/translations.php:3
+msgid "Transaction costs"
+msgstr "Transactiekosten"
+
+#: functions/translations.php:6
+msgctxt "source status"
+msgid "canceled"
+msgstr "geannuleerd"
+
+#: functions/translations.php:7
+msgctxt "source status"
+msgid "chargeable"
+msgstr "uitvoerbaar"
+
+#: functions/translations.php:8
+msgctxt "source status"
+msgid "consumed"
+msgstr "gebruikt"
+
+#: functions/translations.php:9
+msgctxt "source status"
+msgid "failed"
+msgstr "mislukt"
+
+#: functions/translations.php:10
+msgctxt "source status"
+msgid "pending"
+msgstr "in behandeling"
+
+#: functions/translations.php:13
+msgctxt "charge status"
+msgid "captured"
+msgstr "opgeslagen"
+
+#: functions/translations.php:14
+msgctxt "charge status"
+msgid "expired"
+msgstr "verlopen"
+
+#: functions/translations.php:15
+msgctxt "charge status"
+msgid "failed"
+msgstr "mislukt"
+
+#: functions/translations.php:16
+msgctxt "charge status"
+msgid "pending"
+msgstr "in behandeling"
+
+#: functions/translations.php:17
+msgctxt "charge status"
+msgid "refunded"
+msgstr "terugbetaald"
+
+#: functions/translations.php:18
+msgctxt "charge status"
+msgid "succeeded"
+msgstr "uitgevoerd"
+
+#: functions/translations.php:19
+msgctxt "charge status"
+msgid "updated"
+msgstr "bijgewerkt"
 
 #: shortcodes/account/shortcode-account.php:16
 msgid "Wallet"
@@ -419,11 +483,7 @@ msgstr "Soort"
 msgid "Status"
 msgstr "Status"
 
-#: templates/wallet/transactions.php:32
-msgid "Transaction costs"
-msgstr "Transactiekosten"
-
-#: templates/wallet/transactions.php:51
+#: templates/wallet/transactions.php:50
 msgid "Wallet balance"
 msgstr "Walletsaldo"
 
