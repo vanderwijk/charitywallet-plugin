@@ -17,8 +17,8 @@ get_header(); ?>
 					<tr>
 						<th><?php _e('Date', 'chawa'); ?></th>
 						<th><?php _e('Type', 'chawa'); ?></th>
-						<th class="alignright"><?php _e('Amount', 'chawa'); ?></th>
-						<th class="alignright"><?php _e('Status', 'chawa'); ?></th>
+						<th class="text-align-right"><?php _e('Amount', 'chawa'); ?></th>
+						<th class="text-align-right"><?php _e('Status', 'chawa'); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -34,8 +34,8 @@ get_header(); ?>
 						echo '<tr>';
 						echo '<td>' . date_i18n(get_option('date_format') . ' - ' . get_option('time_format'), strtotime($transaction -> time)) . '</td>';
 						echo '<td>' . __($transaction -> transaction_type, 'chawa') . '</td>';
-						echo '<td class="alignright">' . '€' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
-						echo '<td class="alignright">' . __($transaction -> charge_status, 'chawa') . '</td>';
+						echo '<td class="text-align-right">' . '€' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
+						echo '<td class="text-align-right">' . __($transaction -> charge_status, 'chawa') . '</td>';
 						echo '</tr>';
 						if ($transaction -> transaction_type === 'iDEAL') {
 							$wallet_balance = $wallet_balance + $transaction -> amount;
