@@ -31,16 +31,34 @@ get_header(); ?>
 					$wallet_balance = 0;
 					foreach ($transactions as $transaction) {
 						//print_r($transaction);
-						echo '<tr>';
-						echo '<td>' . date_i18n(get_option('date_format') . ' - ' . get_option('time_format'), strtotime($transaction -> time)) . '</td>';
-						echo '<td>' . __($transaction -> transaction_type, 'chawa') . '</td>';
-						echo '<td class="text-align-right">' . '€' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
-						echo '<td>' . _x($transaction -> transaction_status,'charge status', 'chawa') . '</td>';
-						echo '</tr>';
-						if ($transaction -> transaction_status === 'succeeded' ) {
-							if ($transaction -> transaction_type === 'iDEAL' ) {
+						if ($transaction -> transaction_type === 'iDEAL' ) {
+							echo '<tr>';
+							echo '<td>' . date_i18n(get_option('date_format') . ' - ' . get_option('time_format'), strtotime($transaction -> time)) . '</td>';
+							echo '<td>' . __($transaction -> transaction_type, 'chawa') . '</td>';
+							echo '<td class="text-align-right">' . '€' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
+							echo '<td>' . _x($transaction -> charge_status,'charge status', 'chawa') . '</td>';
+							echo '</tr>';
+							if ($transaction -> charge_status === 'succeeded' ) {
 								$wallet_balance = $wallet_balance + $transaction -> amount;
-							} else if ($transaction -> transaction_type === 'Transaction costs') {
+							}
+						} else if ($transaction -> transaction_type === 'Transaction costs' ) {
+							echo '<tr>';
+							echo '<td>' . date_i18n(get_option('date_format') . ' - ' . get_option('time_format'), strtotime($transaction -> time)) . '</td>';
+							echo '<td>' . __($transaction -> transaction_type, 'chawa') . '</td>';
+							echo '<td class="text-align-right">' . '€' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
+							echo '<td>' . _x($transaction -> transaction_status,'charge status', 'chawa') . '</td>';
+							echo '</tr>';
+							if ($transaction -> transaction_status === 'succeeded' ) {
+								$wallet_balance = $wallet_balance - $transaction -> amount;
+							}
+						} else if ($transaction -> transaction_type === 'Donation' ) {
+							echo '<tr>';
+							echo '<td>' . date_i18n(get_option('date_format') . ' - ' . get_option('time_format'), strtotime($transaction -> time)) . '</td>';
+							echo '<td>' . __($transaction -> transaction_type, 'chawa') . '</td>';
+							echo '<td class="text-align-right">' . '€' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
+							echo '<td>' . _x($transaction -> transaction_status,'charge status', 'chawa') . '</td>';
+							echo '</tr>';
+							if ($transaction -> transaction_status === 'succeeded' ) {
 								$wallet_balance = $wallet_balance - $transaction -> amount;
 							}
 						}
