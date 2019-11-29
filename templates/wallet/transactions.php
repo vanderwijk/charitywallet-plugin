@@ -37,8 +37,10 @@ get_header(); ?>
 						echo '<td>' . '€' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
 						echo '<td>' . $transaction -> charge_status . '</td>';
 						echo '</tr>';
-						if ($transaction -> transaction_type === 'CREDIT') {
+						if ($transaction -> transaction_type === 'iDEAL') {
 							$wallet_balance = $wallet_balance + $transaction -> amount;
+						} else if ($transaction -> transaction_type === 'Transaction costs') {
+							$wallet_balance = $wallet_balance - $transaction -> amount;
 						}
 					} ?>
 

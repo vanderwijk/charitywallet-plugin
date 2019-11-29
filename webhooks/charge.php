@@ -96,5 +96,21 @@ function chargeSucceeded($paymentIntent) {
 		),
 		['transaction_id' => $paymentIntent['metadata']['transaction_id']]
 	);
+
+	$transaction_id = 'chawa_' . bin2hex(random_bytes(10)); // unique transaction ID
+
+	$wpdb->insert(
+		CHAWA_TABLE_TRANSACTIONS,
+		array(
+			'time' => current_time('mysql'),
+			'user_id' => sanitize_key($user_id),
+			'amount' => 44,
+			'recurring' => FALSE,
+			'transaction_type' => 'Transaction costs',
+			'transaction_id' => sanitize_key($transaction_id),
+			'charge_id' => $paymentIntent['id']
+		)
+	);
+
 	status_header(200);
 }

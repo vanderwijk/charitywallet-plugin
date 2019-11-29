@@ -59,7 +59,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 			*/
 			
 		} else {
-			// Create Stripe source for one-off payment
+			// Create Stripe source for one-off iDEAL payment
 
 			// Save transaction_id to database
 			$wpdb->insert(
@@ -69,7 +69,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 					'user_id' => sanitize_key($user_id),
 					'amount' => sanitize_key($stripe_amount),
 					'recurring' => FALSE,
-					'transaction_type' => 'CREDIT',
+					'transaction_type' => 'iDEAL',
 					'transaction_id' => sanitize_key($transaction_id),
 				)
 			);
