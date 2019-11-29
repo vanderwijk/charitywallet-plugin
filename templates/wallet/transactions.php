@@ -18,7 +18,7 @@ get_header(); ?>
 					<tr>
 						<th><?php _e('Date', 'chawa'); ?></th>
 						<th><?php _e('Type', 'chawa'); ?></th>
-						<th class="text-align-right"><?php _e('Amount', 'chawa'); ?></th>
+						<th class="text-align-right"><?php _e('Amount', 'chawa'); ?> (EUR)</th>
 						<th><?php _e('Status', 'chawa'); ?></th>
 					</tr>
 				</thead>
