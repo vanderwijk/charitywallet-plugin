@@ -21,9 +21,11 @@ if ( ! defined('WPINC' )) {
 define('CHAWA_PLUGIN_DIR', plugin_dir_url(__FILE__));
 define('CHAWA_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__)); // Relative path
 define('CHAWA_PLUGIN_VER', '1.0.1');
+define('CHAWA_DATABASE_VER', '1.1.4');
 
 // Database
 define('CHAWA_TABLE_TRANSACTIONS', $wpdb->prefix . 'chawa_transactions');
+define('CHAWA_TABLE_DONATIONS', $wpdb->prefix . 'chawa_donations');
 //define('CHAWA_TABLE_DONORS', $wpdb->prefix . 'donate_mollie_donors');
 //define('CHAWA_TABLE_SUBSCRIPTIONS', $wpdb->prefix . 'donate_mollie_subscriptions');
 
@@ -38,10 +40,14 @@ require 'shortcodes/donate/shortcode-donate.php';
 require 'shortcodes/charity/shortcode-charity.php';
 require 'shortcodes/account/shortcode-account.php';
 require 'functions/database-transactions.php';
+require 'functions/database-donations.php';
 require 'functions/translations.php';
+require 'functions/post-type-charity.php';
+require 'functions/template-charity-single.php';
 
 // create database tables
-register_activation_hook( __FILE__, 'chawa_install' );
+register_activation_hook( __FILE__, 'chawa_db_transactions_install' );
+register_activation_hook( __FILE__, 'chawa_db_donations_install' );
 
 function chawa_enqueue_styles() {
 	wp_enqueue_style('select2', CHAWA_PLUGIN_DIR . 'vendor/select2/select2/dist/css/select2.min.css', '', CHAWA_PLUGIN_VER );

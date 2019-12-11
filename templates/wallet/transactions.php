@@ -39,9 +39,9 @@ get_header(); ?>
 							echo '<td>' . __($transaction -> transaction_type, 'chawa') . '</td>';
 							echo '<td class="text-align-right">' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
 							if ($transaction -> charge_status) {
-								echo '<td>' . _x($transaction -> charge_status,'charge status', 'chawa') . '</td>';
+								echo '<td>' . _x($transaction -> charge_status, 'charge status', 'chawa') . '</td>';
 							} else {
-								echo '<td>' . _x($transaction -> source_status,'charge status', 'chawa') . '</td>';
+								echo '<td>' . _x($transaction -> source_status, 'charge status', 'chawa') . '</td>';
 							}
 							echo '</tr>';
 							if ($transaction -> charge_status === 'succeeded' ) {
@@ -52,7 +52,7 @@ get_header(); ?>
 							echo '<td>' . date_i18n(get_option('date_format') . ' - ' . get_option('time_format'), strtotime($transaction -> time)) . '</td>';
 							echo '<td>' . __($transaction -> transaction_type, 'chawa') . '</td>';
 							echo '<td class="text-align-right"> - ' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
-							echo '<td>' . _x($transaction -> transaction_status,'charge status', 'chawa') . '</td>';
+							echo '<td>' . _x($transaction -> transaction_status, 'charge status', 'chawa') . '</td>';
 							echo '</tr>';
 							if ($transaction -> transaction_status === 'succeeded' ) {
 								$wallet_balance = $wallet_balance - $transaction -> amount;
@@ -62,8 +62,26 @@ get_header(); ?>
 							echo '<td>' . date_i18n(get_option('date_format') . ' - ' . get_option('time_format'), strtotime($transaction -> time)) . '</td>';
 							echo '<td>' . __($transaction -> transaction_type, 'chawa') . '</td>';
 							echo '<td class="text-align-right"> - ' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
-							echo '<td>' . _x($transaction -> transaction_status,'charge status', 'chawa') . '</td>';
+							echo '<td>' . _x($transaction -> transaction_status, 'charge status', 'chawa') . '</td>';
 							echo '</tr>';
+
+							$donations = $wpdb->get_results (
+								"SELECT * FROM " . CHAWA_TABLE_DONATIONS . " where transaction_id ='" . $transaction -> transaction_id . "' ORDER BY time DESC"
+							);
+
+							foreach ($donations as $donation) {
+								echo '<tr>';
+								echo '<td></td>';
+								echo '<td>';
+								//print_r($donation);
+								echo get_the_title($donation -> charity_id);
+								echo '</td>';
+								echo '<td class="text-align-right">' . number_format_i18n($donation -> amount/100, 2) . '</td>';
+								echo '</td>';
+								echo '<td></td>';
+								echo '</tr>';
+							}
+
 							if ($transaction -> transaction_status === 'succeeded' ) {
 								$wallet_balance = $wallet_balance - $transaction -> amount;
 							}

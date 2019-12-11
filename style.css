@@ -362,3 +362,8 @@ ul.parsley-errors-list li {
 .text-align-right {
 	text-align: right;
 }
+
+/* Transactions */
+tbody td {
+	font-size: 16px;
+}

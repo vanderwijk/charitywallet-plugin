@@ -1,86 +1,75 @@
 <?php
 
-global $chawa_db_version;
-$chawa_db_version = '1.0.2';
+global $chawa_table_ver_donations;
+$chawa_table_ver_donations = CHAWA_DATABASE_VER;
 
-// create database table for chawa_transactions
-function chawa_install() {
+// create database table for chawa_donations
+function chawa_db_donations_install() {
 	global $wpdb;
-	global $chawa_db_version;
+	global $chawa_table_ver_donations;
 
-	$table_name = $wpdb->prefix . 'chawa_transactions';
+	$table_name_transactions = $wpdb->prefix . 'chawa_transactions';
+	$table_name_donations = $wpdb->prefix . 'chawa_donations';
 	
 	$charset_collate = $wpdb->get_charset_collate();
 
-	$sql = "CREATE TABLE $table_name (
-		id mediumint(9) NOT NULL AUTO_INCREMENT,
+	$sql = "CREATE TABLE $table_name_donations (
+		donation_id mediumint(9) NOT NULL AUTO_INCREMENT,
+		transaction_id varchar(50) NOT NULL,
+		charity_id varchar(50) NOT NULL,
+		amount varchar(50) NOT NULL,
 		time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
-		user_id mediumint(9) NOT NULL,
-		amount varchar(10) NOT NULL,
-		recurring BOOLEAN,
-		transaction_type varchar(255) NOT NULL,
-		transaction_id varchar(255) NOT NULL,
-		source_id varchar(255) NOT NULL,
-		charge_id varchar(255) NOT NULL,
-		source_status varchar(25) NOT NULL,
-		charge_status varchar(25) NOT NULL,
-		PRIMARY KEY (id)
+		PRIMARY KEY (donation_id),
+		FOREIGN KEY (transaction_id) 
+			REFERENCES wp_chawa_transactions (transaction_id) 
+			ON DELETE NULL
 	) $charset_collate;";
 
 	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 	dbDelta($sql);
 
-	add_option('chawa_db_version', $chawa_db_version);
+	add_option('chawa_table_ver_donations', $chawa_table_ver_donations);
 }
 
 // load first database table row
-function chawa_install_data() {
+function chawa_db_donations_data() {
 	global $wpdb;
 	
-	$table_name = $wpdb->prefix . 'chawa_transactions';
+	$table_name_donations = $wpdb->prefix . 'chawa_donations';
 	
 	$wpdb->insert(
-		$table_name, 
+		$table_name_donations, 
 		array(
-			'time' => current_time('mysql'), 
-			'user_id' => 0,
+			'transaction_id' => 'chawa_000000000000000000000000',
+			'charity_id' => '0',
 			'amount' => 0, 
-			'recurring' => FALSE, 
-			'transaction_type' => 'DEBIT',
-			'transaction_id' => 'chawa_000000000000000000000000', 
-			'source_id' => 'src_000000000000000000000000', 
-			'charge_id' => 'py_000000000000000000000000', 
-			'source_status' => 'status',
-			'charge_status' => 'status'
+			'time' => current_time('mysql')
 		) 
 	);
 }
 
 // update database tables
 global $wpdb;
-$installed_ver = get_option('chawa_db_version');
+$installed_ver = get_option('chawa_table_ver_donations');
 
-if ($installed_ver != $chawa_db_version) {
+if ($installed_ver != $chawa_table_ver_donations) {
 
-	$table_name = $wpdb->prefix . 'chawa_transactions';
+	$table_name_donations = $wpdb->prefix . 'chawa_donations';
 
-	$sql = "CREATE TABLE $table_name (
-		id mediumint(9) NOT NULL AUTO_INCREMENT,
+	$sql = "CREATE TABLE $table_name_donations (
+		donation_id mediumint(9) NOT NULL AUTO_INCREMENT,
+		transaction_id varchar(50) NOT NULL,
+		charity_id varchar(50) NOT NULL,
+		amount varchar(50) NOT NULL,
 		time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
-		user_id mediumint(9) NOT NULL,
-		amount varchar(10) NOT NULL,
-		recurring BOOLEAN,
-		transaction_type varchar(255) NOT NULL,
-		transaction_id varchar(255) NOT NULL,
-		source_id varchar(255) NOT NULL,
-		charge_id varchar(255) NOT NULL,
-		source_status varchar(25) NOT NULL,
-		charge_status varchar(25) NOT NULL,
-		PRIMARY KEY (id)
+		PRIMARY KEY (donation_id),
+		FOREIGN KEY (transaction_id) 
+			REFERENCES wp_chawa_transactions (transaction_id) 
+			ON DELETE NULL
 	);";
 
 	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 	dbDelta($sql);
 
-	update_option('chawa_db_version', $chawa_db_version);
+	update_option('chawa_table_ver_donations', $chawa_table_ver_donations);
 }

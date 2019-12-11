@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2019-11-29 17:32+0100\n"
-"PO-Revision-Date: 2019-11-29 17:32+0100\n"
-"Last-Translator: Johan van der Wijk <johan@vanderwijk.nl>\n"
+"POT-Creation-Date: 2019-12-11 12:25+0100\n"
+"PO-Revision-Date: 2019-12-11 12:25+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
@@ -19,66 +19,184 @@ msgstr ""
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
 "_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
 
-#: charitywallet-plugin.php:59 shortcodes/account/shortcode-account.php:22
+#: charitywallet-plugin.php:60 shortcodes/account/shortcode-account.php:22
 #: shortcodes/account/shortcode-account.php:29
 #: templates/wallet/transactions.php:19
 msgid "Date"
 msgstr "Datum"
 
-#: charitywallet-plugin.php:60
+#: charitywallet-plugin.php:61
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: charitywallet-plugin.php:61
+#: charitywallet-plugin.php:62
 msgid "Would you like to remove"
 msgstr "Wil je"
 
-#: charitywallet-plugin.php:62
+#: charitywallet-plugin.php:63
 msgid "from your basket?"
 msgstr "uit je mandje verwijderen?"
 
-#: charitywallet-plugin.php:63
+#: charitywallet-plugin.php:64
 msgid "Your basket is empty"
 msgstr "Je mandje is leeg"
-
-#: charitywallet-plugin.php:70 charitywallet-plugin.php:77
-#: charitywallet-plugin.php:84 charitywallet-plugin.php:99
-#: charitywallet-plugin.php:107
-msgid "The top-up amount is too low."
-msgstr "Het opwaardeerbedrag is te laag."
 
 #: charitywallet-plugin.php:71 charitywallet-plugin.php:78
 #: charitywallet-plugin.php:85 charitywallet-plugin.php:100
 #: charitywallet-plugin.php:108
+msgid "The top-up amount is too low."
+msgstr "Het opwaardeerbedrag is te laag."
+
+#: charitywallet-plugin.php:72 charitywallet-plugin.php:79
+#: charitywallet-plugin.php:86 charitywallet-plugin.php:101
+#: charitywallet-plugin.php:109
 msgid "Please choose your amount"
 msgstr "Kies je bedrag"
 
-#: charitywallet-plugin.php:91
+#: charitywallet-plugin.php:92
 msgid "Please choose a payment type."
 msgstr "Kies je betaalmethode."
 
-#: charitywallet-plugin.php:92
+#: charitywallet-plugin.php:93
 msgid "Please choose your bank."
 msgstr "Kies je je bank."
 
-#: charitywallet-plugin.php:93
+#: charitywallet-plugin.php:94
 msgid "Please accept the terms and privacy statement."
 msgstr "Accepteer de algemene voorwaarden en het privacy statement."
 
-#: charitywallet-plugin.php:101
+#: charitywallet-plugin.php:102
 msgid "Please choose your frequency"
 msgstr "Kies je frequentie"
 
-#: charitywallet-plugin.php:120
+#: charitywallet-plugin.php:121
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
 
-#: charitywallet-plugin.php:204
+#: charitywallet-plugin.php:205
 msgctxt "rewrite rule"
 msgid "transactions"
 msgstr "transacties"
+
+#: functions/post-type-charity.php:7
+msgctxt "Post Type General Name"
+msgid "Charities"
+msgstr "Goede doelen"
+
+#: functions/post-type-charity.php:8
+msgctxt "Post Type Singular Name"
+msgid "Charity"
+msgstr "Goed doel"
+
+#: functions/post-type-charity.php:9 functions/post-type-charity.php:43
+#: shortcodes/donate/shortcode-donate.php:60
+msgid "Charities"
+msgstr "Goede doelen"
+
+#: functions/post-type-charity.php:10 functions/post-type-charity.php:42
+msgid "Charity"
+msgstr "Goed doel"
+
+#: functions/post-type-charity.php:11
+msgid "Charity Archives"
+msgstr "Goede doelen archieven"
+
+#: functions/post-type-charity.php:12
+msgid "Charity Attributes"
+msgstr "Kenmerken van goed doel"
+
+#: functions/post-type-charity.php:13
+msgid "Parent Charity:"
+msgstr "Bovenliggend goede doel:"
+
+#: functions/post-type-charity.php:14
+msgid "All Charities"
+msgstr "Alle goede doelen"
+
+#: functions/post-type-charity.php:15
+msgid "Add New Charity"
+msgstr "Nieuw goed doel toevoegen"
+
+#: functions/post-type-charity.php:16
+msgid "Add New"
+msgstr "Nieuwe toevoegen"
+
+#: functions/post-type-charity.php:17
+msgid "New Charity"
+msgstr "Nieuw goed doel"
+
+#: functions/post-type-charity.php:18
+msgid "Edit Charity"
+msgstr "Goed doel bewerken"
+
+#: functions/post-type-charity.php:19
+msgid "Update Charity"
+msgstr "Goed doel bijwerken"
+
+#: functions/post-type-charity.php:20 functions/post-type-charity.php:21
+msgid "View Charity"
+msgstr "Bekijk goed doel"
+
+#: functions/post-type-charity.php:22
+msgid "Search Charity"
+msgstr "Zoek goed doel"
+
+#: functions/post-type-charity.php:23
+msgid "Not found"
+msgstr "Niet gevonden"
+
+#: functions/post-type-charity.php:24
+msgid "Not found in Trash"
+msgstr "Niet gevonden in de prullenbak"
+
+#: functions/post-type-charity.php:25
+msgid "Featured Image"
+msgstr "Uitgelichte afbeelding"
+
+#: functions/post-type-charity.php:26
+msgid "Set featured image"
+msgstr "Uitgelichte afbeelding instellen"
+
+#: functions/post-type-charity.php:27
+msgid "Remove featured image"
+msgstr "Verwijder uitgelichte afbeelding"
+
+#: functions/post-type-charity.php:28
+msgid "Use as featured image"
+msgstr "Gebruik als uitgelichte afbeelding"
+
+#: functions/post-type-charity.php:29
+msgid "Insert into charity"
+msgstr "Invoegen in goed doel"
+
+#: functions/post-type-charity.php:30
+msgid "Uploaded to this charity"
+msgstr "Geüpload naar dit goede doel"
+
+#: functions/post-type-charity.php:31
+msgid "Charities list"
+msgstr "Goede doelen lijst"
+
+#: functions/post-type-charity.php:32
+msgid "Charities list navigation"
+msgstr "Goede doelen lijst navigatie"
+
+#: functions/post-type-charity.php:33
+msgid "Filter charities list"
+msgstr "Filter goede doelen lijst"
+
+#: functions/post-type-charity.php:36
+msgctxt "permalink for single charity"
+msgid "donate"
+msgstr "doneren"
+
+#: functions/post-type-charity.php:56
+msgctxt "permalink for charities archive"
+msgid "charities"
+msgstr "goede-doelen"
 
 #: functions/translations.php:3
 msgid "Transaction costs"
@@ -232,10 +350,6 @@ msgstr "mandje"
 msgid "Add to basket"
 msgstr "In mandje"
 
-#: shortcodes/donate/shortcode-donate.php:60
-msgid "Charities"
-msgstr "Goede doelen"
-
 #: shortcodes/donate/shortcode-donate.php:66
 #: shortcodes/donate/shortcode-donate.php:70
 #: shortcodes/donate/shortcode-donate.php:74
@@ -285,15 +399,15 @@ msgstr "We gaan eerst een account voor je aanmaken."
 msgid "Next"
 msgstr "Volgende"
 
-#: shortcodes/onboarding/onboarding-pay-charge.php:63
+#: shortcodes/onboarding/onboarding-pay-charge.php:82
 msgid "Pay Charge"
 msgstr "Pay Charge"
 
-#: shortcodes/onboarding/onboarding-pay-charge.php:75
+#: shortcodes/onboarding/onboarding-pay-charge.php:94
 msgid "Source"
 msgstr "Source"
 
-#: shortcodes/onboarding/onboarding-pay-charge.php:87
+#: shortcodes/onboarding/onboarding-pay-charge.php:106
 msgid "Charge"
 msgstr "Charge"
 
@@ -510,36 +624,3 @@ msgstr "Johan van der Wijk"
 #. Author URI of the plugin/theme
 msgid "https://thewebworks.nl"
 msgstr "http://thewebworks.nl"
-
-#~ msgid "What is your name?"
-#~ msgstr "Hoe heet je?"
-
-#~ msgid "Enter your first name."
-#~ msgstr "Vul je voornaam in."
-
-#~ msgid "First name"
-#~ msgstr "Voornaam"
-
-#~ msgid "Enter your last name."
-#~ msgstr "Vul je achternaam in."
-
-#~ msgid "Last name"
-#~ msgstr "Achternaam"
-
-#~ msgid "What is your e-mail address?"
-#~ msgstr "Wat is je e-mailadres?"
-
-#~ msgid "This value should be a valid e-mail address."
-#~ msgstr "Deze waarde moet een geldig e-mailadres zijn."
-
-#~ msgid "E-mail address"
-#~ msgstr "E-mailadres"
-
-#~ msgid "to access your wallet."
-#~ msgstr "voor toegang tot je wallet."
-
-#~ msgid "Please add"
-#~ msgstr "Voeg"
-
-#~ msgid "Type your amount"
-#~ msgstr "Typ het te betalen bedrag"
