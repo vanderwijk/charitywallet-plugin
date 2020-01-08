@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2019-12-11 12:25+0100\n"
-"PO-Revision-Date: 2019-12-11 12:25+0100\n"
+"POT-Creation-Date: 2019-12-18 14:33+0100\n"
+"PO-Revision-Date: 2019-12-18 14:34+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -22,61 +22,61 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 
-#: charitywallet-plugin.php:60 shortcodes/account/shortcode-account.php:22
+#: charitywallet-plugin.php:65 shortcodes/account/shortcode-account.php:22
 #: shortcodes/account/shortcode-account.php:29
 #: templates/wallet/transactions.php:19
 msgid "Date"
 msgstr "Datum"
 
-#: charitywallet-plugin.php:61
+#: charitywallet-plugin.php:66
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: charitywallet-plugin.php:62
+#: charitywallet-plugin.php:67
 msgid "Would you like to remove"
 msgstr "Wil je"
 
-#: charitywallet-plugin.php:63
+#: charitywallet-plugin.php:68
 msgid "from your basket?"
 msgstr "uit je mandje verwijderen?"
 
-#: charitywallet-plugin.php:64
+#: charitywallet-plugin.php:69
 msgid "Your basket is empty"
 msgstr "Je mandje is leeg"
 
-#: charitywallet-plugin.php:71 charitywallet-plugin.php:78
-#: charitywallet-plugin.php:85 charitywallet-plugin.php:100
-#: charitywallet-plugin.php:108
+#: charitywallet-plugin.php:76 charitywallet-plugin.php:83
+#: charitywallet-plugin.php:90 charitywallet-plugin.php:105
+#: charitywallet-plugin.php:113
 msgid "The top-up amount is too low."
 msgstr "Het opwaardeerbedrag is te laag."
 
-#: charitywallet-plugin.php:72 charitywallet-plugin.php:79
-#: charitywallet-plugin.php:86 charitywallet-plugin.php:101
-#: charitywallet-plugin.php:109
+#: charitywallet-plugin.php:77 charitywallet-plugin.php:84
+#: charitywallet-plugin.php:91 charitywallet-plugin.php:106
+#: charitywallet-plugin.php:114
 msgid "Please choose your amount"
 msgstr "Kies je bedrag"
 
-#: charitywallet-plugin.php:92
+#: charitywallet-plugin.php:97
 msgid "Please choose a payment type."
 msgstr "Kies je betaalmethode."
 
-#: charitywallet-plugin.php:93
+#: charitywallet-plugin.php:98
 msgid "Please choose your bank."
 msgstr "Kies je je bank."
 
-#: charitywallet-plugin.php:94
+#: charitywallet-plugin.php:99
 msgid "Please accept the terms and privacy statement."
 msgstr "Accepteer de algemene voorwaarden en het privacy statement."
 
-#: charitywallet-plugin.php:102
+#: charitywallet-plugin.php:107
 msgid "Please choose your frequency"
 msgstr "Kies je frequentie"
 
-#: charitywallet-plugin.php:121
+#: charitywallet-plugin.php:126
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
 
-#: charitywallet-plugin.php:205
+#: charitywallet-plugin.php:211 templates/wallet/wallet.php:42
 msgctxt "rewrite rule"
 msgid "transactions"
 msgstr "transacties"
@@ -84,65 +84,66 @@ msgstr "transacties"
 #: functions/post-type-charity.php:7
 msgctxt "Post Type General Name"
 msgid "Charities"
-msgstr "Goede doelen"
+msgstr "Organisaties"
 
 #: functions/post-type-charity.php:8
 msgctxt "Post Type Singular Name"
 msgid "Charity"
-msgstr "Goed doel"
+msgstr "Organisatie"
 
 #: functions/post-type-charity.php:9 functions/post-type-charity.php:43
 #: shortcodes/donate/shortcode-donate.php:60
 msgid "Charities"
-msgstr "Goede doelen"
+msgstr "Organisaties"
 
 #: functions/post-type-charity.php:10 functions/post-type-charity.php:42
 msgid "Charity"
-msgstr "Goed doel"
+msgstr "Organisatie"
 
 #: functions/post-type-charity.php:11
 msgid "Charity Archives"
-msgstr "Goede doelen archieven"
+msgstr "Organisaties archieven"
 
 #: functions/post-type-charity.php:12
 msgid "Charity Attributes"
-msgstr "Kenmerken van goed doel"
+msgstr "Kenmerken van organisatie"
 
 #: functions/post-type-charity.php:13
 msgid "Parent Charity:"
-msgstr "Bovenliggend goede doel:"
+msgstr "Bovenliggende organisatie:"
 
 #: functions/post-type-charity.php:14
 msgid "All Charities"
-msgstr "Alle goede doelen"
+msgstr "Alle organisaties"
 
 #: functions/post-type-charity.php:15
 msgid "Add New Charity"
-msgstr "Nieuw goed doel toevoegen"
+msgstr "Nieuwe organisatie toevoegen"
 
 #: functions/post-type-charity.php:16
+msgctxt "add new charity"
 msgid "Add New"
-msgstr "Nieuwe toevoegen"
+msgstr "Nieuwe organisatie"
 
 #: functions/post-type-charity.php:17
 msgid "New Charity"
-msgstr "Nieuw goed doel"
+msgstr "Nieuwe organisatie"
 
 #: functions/post-type-charity.php:18
 msgid "Edit Charity"
-msgstr "Goed doel bewerken"
+msgstr "Organisatie bewerken"
 
 #: functions/post-type-charity.php:19
 msgid "Update Charity"
-msgstr "Goed doel bijwerken"
+msgstr "Organisatie bijwerken"
 
 #: functions/post-type-charity.php:20 functions/post-type-charity.php:21
 msgid "View Charity"
-msgstr "Bekijk goed doel"
+msgstr "Bekijk organisatie"
 
 #: functions/post-type-charity.php:22
 msgid "Search Charity"
-msgstr "Zoek goed doel"
+msgstr "Zoek organisatie"
 
 #: functions/post-type-charity.php:23
 msgid "Not found"
@@ -170,33 +171,120 @@ msgstr "Gebruik als uitgelichte afbeelding"
 
 #: functions/post-type-charity.php:29
 msgid "Insert into charity"
-msgstr "Invoegen in goed doel"
+msgstr "Invoegen in organisatie"
 
 #: functions/post-type-charity.php:30
 msgid "Uploaded to this charity"
-msgstr "Geüpload naar dit goede doel"
+msgstr "Geüpload naar deze organisatie"
 
 #: functions/post-type-charity.php:31
 msgid "Charities list"
-msgstr "Goede doelen lijst"
+msgstr "Organisatielijst"
 
 #: functions/post-type-charity.php:32
 msgid "Charities list navigation"
-msgstr "Goede doelen lijst navigatie"
+msgstr "Organisatielijst navigatie"
 
 #: functions/post-type-charity.php:33
 msgid "Filter charities list"
-msgstr "Filter goede doelen lijst"
+msgstr "Filter organisatielijst"
 
 #: functions/post-type-charity.php:36
 msgctxt "permalink for single charity"
-msgid "donate"
-msgstr "doneren"
+msgid "charity"
+msgstr "organisatie"
 
 #: functions/post-type-charity.php:56
 msgctxt "permalink for charities archive"
 msgid "charities"
-msgstr "goede-doelen"
+msgstr "organisaties"
+
+#: functions/post-type-charity.php:76
+msgctxt "Taxonomy General Name"
+msgid "Sectors"
+msgstr "Sectoren"
+
+#: functions/post-type-charity.php:77
+msgctxt "Taxonomy Singular Name"
+msgid "Sector"
+msgstr "Sector"
+
+#: functions/post-type-charity.php:78
+msgid "Sectors"
+msgstr "Sectoren"
+
+#: functions/post-type-charity.php:79
+msgid "All Sectors"
+msgstr "Alle sectoren"
+
+#: functions/post-type-charity.php:80
+msgid "Parent Sector"
+msgstr "Bovenliggende sector"
+
+#: functions/post-type-charity.php:81
+msgid "Parent Sector:"
+msgstr "Bovenliggende sector:"
+
+#: functions/post-type-charity.php:82
+msgid "New Sector Name"
+msgstr "Nieuwe sector naam"
+
+#: functions/post-type-charity.php:83
+msgid "Add New Sector"
+msgstr "Nieuwe sector toevoegen"
+
+#: functions/post-type-charity.php:84
+msgid "Edit Sector"
+msgstr "Sector bewerken"
+
+#: functions/post-type-charity.php:85
+msgid "Update Sector"
+msgstr "Sector bijwerken"
+
+#: functions/post-type-charity.php:86
+msgid "View Sector"
+msgstr "Bekijk sector"
+
+#: functions/post-type-charity.php:87
+msgid "Separate sectors with commas"
+msgstr "Scheid sectoren met komma's"
+
+#: functions/post-type-charity.php:88
+msgid "Add or remove sectors"
+msgstr "Sectoren toevoegen of verwijderen"
+
+#: functions/post-type-charity.php:89
+msgid "Choose from the most used"
+msgstr "Kies uit de meest gebruikte"
+
+#: functions/post-type-charity.php:90
+msgid "Popular Sectors"
+msgstr "Populaire sectoren"
+
+#: functions/post-type-charity.php:91
+msgid "Search Sectors"
+msgstr "Zoek sectoren"
+
+#: functions/post-type-charity.php:92
+msgid "Not Found"
+msgstr "Niet gevonden"
+
+#: functions/post-type-charity.php:93
+msgid "No sectors"
+msgstr "Geen sectoren"
+
+#: functions/post-type-charity.php:94
+msgid "Sectors list"
+msgstr "Lijst van sectoren"
+
+#: functions/post-type-charity.php:95
+msgid "Sectors list navigation"
+msgstr "Sectoren lijst navigatie"
+
+#: functions/post-type-charity.php:98
+msgctxt "permalink for sector taxonomy"
+msgid "sector"
+msgstr "sector"
 
 #: functions/translations.php:3
 msgid "Transaction costs"
@@ -266,7 +354,7 @@ msgctxt "charge status"
 msgid "updated"
 msgstr "bijgewerkt"
 
-#: shortcodes/account/shortcode-account.php:16
+#: shortcodes/account/shortcode-account.php:16 templates/wallet/wallet.php:22
 msgid "Wallet"
 msgstr "Wallet"
 
@@ -432,25 +520,25 @@ msgstr "Wallet opwaarderen"
 msgid "We are now going to top-up your wallet"
 msgstr "We gaan nu je wallet opwaarderen"
 
-#: shortcodes/onboarding/onboarding-pay.php:129
+#: shortcodes/onboarding/onboarding-pay.php:129 templates/wallet/wallet.php:27
 msgid "You chose to"
 msgstr "Je hebt gekozen om"
 
-#: shortcodes/onboarding/onboarding-pay.php:131
+#: shortcodes/onboarding/onboarding-pay.php:131 templates/wallet/wallet.php:29
 msgctxt "comes after 'You chose to'"
 msgid "monthly add"
 msgstr "maandelijks"
 
-#: shortcodes/onboarding/onboarding-pay.php:133
+#: shortcodes/onboarding/onboarding-pay.php:133 templates/wallet/wallet.php:31
 msgctxt "comes after 'You chose to'"
 msgid "add"
 msgstr "eenmalig"
 
-#: shortcodes/onboarding/onboarding-pay.php:139
+#: shortcodes/onboarding/onboarding-pay.php:139 templates/wallet/wallet.php:37
 msgid "change"
 msgstr "wijzig"
 
-#: shortcodes/onboarding/onboarding-pay.php:141
+#: shortcodes/onboarding/onboarding-pay.php:141 templates/wallet/wallet.php:39
 msgid "to your wallet"
 msgstr "in je wallet te storten"
 
@@ -601,9 +689,17 @@ msgstr "Soort"
 msgid "Status"
 msgstr "Status"
 
-#: templates/wallet/transactions.php:76
+#: templates/wallet/transactions.php:94
 msgid "Your Wallet Balance"
 msgstr "Je walletsaldo"
+
+#: templates/wallet/wallet.php:24
+msgid "Your Wallet Balance is"
+msgstr "Je walletsaldo bedraagt"
+
+#: templates/wallet/wallet.php:42
+msgid "View your wallet transactions."
+msgstr "Bekijk je wallet-transacties."
 
 #. Plugin Name of the plugin/theme
 msgid "Charity Wallet"
@@ -624,3 +720,10 @@ msgstr "Johan van der Wijk"
 #. Author URI of the plugin/theme
 msgid "https://thewebworks.nl"
 msgstr "http://thewebworks.nl"
+
+#~ msgctxt "permalink for single charity"
+#~ msgid "donate"
+#~ msgstr "doneren"
+
+#~ msgid "Sector"
+#~ msgstr "Sector"

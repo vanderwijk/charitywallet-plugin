@@ -4,13 +4,17 @@ if (!is_user_logged_in()) {
 	$redirect = home_url($wp->request);
 	wp_redirect(wp_login_url($redirect));
 }
-get_header(); ?>
+get_header();
+$user_id = get_current_user_id(); ?>
 
 <section id="primary" class="content-area">
 	<main id="main" class="site-main">
 		<div id="post-wrap">
 
 			<h1><?php _e('Wallet transactions', 'chawa'); ?></h1>
+
+			<p><?php echo '<h2>' . __('Your Wallet Balance', 'chawa') . ' €' . get_wallet_balance($user_id) . '</h2>'; ?></p>
+
 			<p><?php _e('These are your wallet transactions.', 'chawa'); ?></p>
 
 			<table>
@@ -25,8 +29,6 @@ get_header(); ?>
 				<tbody>
 
 					<?php
-					$user_id = get_current_user_id();
-					$wallet_balance = 0;
 					$transactions = $wpdb->get_results (
 						"SELECT * FROM " . CHAWA_TABLE_TRANSACTIONS . " where user_id =" . $user_id . " ORDER BY time DESC"
 					);
@@ -44,9 +46,6 @@ get_header(); ?>
 								echo '<td>' . _x($transaction -> source_status, 'charge status', 'chawa') . '</td>';
 							}
 							echo '</tr>';
-							if ($transaction -> charge_status === 'succeeded' ) {
-								$wallet_balance = $wallet_balance + $transaction -> amount;
-							}
 						} else if ($transaction -> transaction_type === 'Transaction costs' ) {
 							echo '<tr>';
 							echo '<td>' . date_i18n(get_option('date_format') . ' - ' . get_option('time_format'), strtotime($transaction -> time)) . '</td>';
@@ -54,9 +53,6 @@ get_header(); ?>
 							echo '<td class="text-align-right"> - ' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
 							echo '<td>' . _x($transaction -> transaction_status, 'charge status', 'chawa') . '</td>';
 							echo '</tr>';
-							if ($transaction -> transaction_status === 'succeeded' ) {
-								$wallet_balance = $wallet_balance - $transaction -> amount;
-							}
 						} else if ($transaction -> transaction_type === 'Donation' ) {
 							echo '<tr>';
 							echo '<td>' . date_i18n(get_option('date_format') . ' - ' . get_option('time_format'), strtotime($transaction -> time)) . '</td>';
@@ -81,17 +77,11 @@ get_header(); ?>
 								echo '<td></td>';
 								echo '</tr>';
 							}
-
-							if ($transaction -> transaction_status === 'succeeded' ) {
-								$wallet_balance = $wallet_balance - $transaction -> amount;
-							}
 						}
 					} ?>
 
 				</tbody>
 			</table>
-
-			<?php echo '<h2>' . __('Your Wallet Balance', 'chawa') . ' €' . number_format_i18n($wallet_balance/100, 2) . '</h2>'; ?></td>
 
 		</div>
 	</main>

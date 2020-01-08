@@ -15,6 +15,7 @@ function chawa_db_donations_install() {
 
 	$sql = "CREATE TABLE $table_name_donations (
 		donation_id mediumint(9) NOT NULL AUTO_INCREMENT,
+		donation_status varchar(50) NOT NULL,
 		transaction_id varchar(50) NOT NULL,
 		charity_id varchar(50) NOT NULL,
 		amount varchar(50) NOT NULL,
@@ -41,6 +42,7 @@ function chawa_db_donations_data() {
 		$table_name_donations, 
 		array(
 			'transaction_id' => 'chawa_000000000000000000000000',
+			'donation_status' => 'status',
 			'charity_id' => '0',
 			'amount' => 0, 
 			'time' => current_time('mysql')
@@ -58,6 +60,7 @@ if ($installed_ver != $chawa_table_ver_donations) {
 
 	$sql = "CREATE TABLE $table_name_donations (
 		donation_id mediumint(9) NOT NULL AUTO_INCREMENT,
+		donation_status varchar(50) NOT NULL,
 		transaction_id varchar(50) NOT NULL,
 		charity_id varchar(50) NOT NULL,
 		amount varchar(50) NOT NULL,

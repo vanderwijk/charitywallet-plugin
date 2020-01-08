@@ -13,7 +13,7 @@
  * Domain Path:       /languages
  */
 
-// If this file is called directly, abort.
+// if this file is called directly, abort.
 if ( ! defined('WPINC' )) {
 	die;
 }
@@ -21,9 +21,9 @@ if ( ! defined('WPINC' )) {
 define('CHAWA_PLUGIN_DIR', plugin_dir_url(__FILE__));
 define('CHAWA_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__)); // Relative path
 define('CHAWA_PLUGIN_VER', '1.0.1');
-define('CHAWA_DATABASE_VER', '1.1.4');
+define('CHAWA_DATABASE_VER', '1.1.5');
 
-// Database
+// database
 define('CHAWA_TABLE_TRANSACTIONS', $wpdb->prefix . 'chawa_transactions');
 define('CHAWA_TABLE_DONATIONS', $wpdb->prefix . 'chawa_donations');
 //define('CHAWA_TABLE_DONORS', $wpdb->prefix . 'donate_mollie_donors');
@@ -32,16 +32,16 @@ define('CHAWA_TABLE_DONATIONS', $wpdb->prefix . 'chawa_donations');
 function chawa_load_textdomain() {
 	load_plugin_textdomain('chawa', false, basename( CHAWA_PLUGIN_DIR ) . '/languages' );
 }
-add_action('init', 'chawa_load_textdomain' );
+add_action('plugins_loaded', 'chawa_load_textdomain' );
 
 require 'shortcodes/basket/shortcode-basket.php';
 require 'shortcodes/donate/shortcode-donate.php';
 //require 'shortcodes/wallet/shortcode-wallet.php';
 require 'shortcodes/charity/shortcode-charity.php';
-require 'shortcodes/account/shortcode-account.php';
 require 'functions/database-transactions.php';
 require 'functions/database-donations.php';
 require 'functions/translations.php';
+require 'functions/wallet-balance.php';
 require 'functions/post-type-charity.php';
 require 'functions/template-charity-single.php';
 
@@ -85,14 +85,14 @@ function chawa_enqueue_scripts() {
 	);
 	wp_localize_script('basket', 'chawa_localize_basket', $translation_array );
 
-	wp_register_script('onboarding_account', CHAWA_PLUGIN_DIR . 'shortcodes/onboarding/onboarding-account.js', array('jquery' ), CHAWA_PLUGIN_VER );
+	wp_register_script('onboarding_account', CHAWA_PLUGIN_DIR . 'templates/onboarding/account.js', array('jquery' ), CHAWA_PLUGIN_VER );
 	$translation_array = array(
 		'top_up_amount_too_low' => __('The top-up amount is too low.', 'chawa'),
 		'choose_amount' => __('Please choose your amount', 'chawa'),
 	);
 	wp_localize_script('onboarding_account', 'chawa_localize_onboarding', $translation_array );
 
-	wp_register_script('onboarding_pay', CHAWA_PLUGIN_DIR . 'shortcodes/onboarding/onboarding-pay.js', array('jquery' ), CHAWA_PLUGIN_VER );
+	wp_register_script('onboarding_pay', CHAWA_PLUGIN_DIR . 'templates/onboarding/pay.js', array('jquery' ), CHAWA_PLUGIN_VER );
 	$translation_array = array(
 		'choose_payment_type' => __('Please choose a payment type.', 'chawa'),
 		'choose_bank' => __('Please choose your bank.', 'chawa'),
@@ -100,7 +100,7 @@ function chawa_enqueue_scripts() {
 	);
 	wp_localize_script('onboarding_pay', 'chawa_localize_onboarding', $translation_array );
 
-	wp_register_script('onboarding_wallet', CHAWA_PLUGIN_DIR . 'shortcodes/onboarding/onboarding-wallet.js', array('jquery' ), CHAWA_PLUGIN_VER );
+	wp_register_script('onboarding_wallet', CHAWA_PLUGIN_DIR . 'templates/onboarding/wallet.js', array('jquery' ), CHAWA_PLUGIN_VER );
 	$translation_array = array(
 		'top_up_amount_too_low' => __('The top-up amount is too low.', 'chawa'),
 		'choose_amount' => __('Please choose your amount', 'chawa'),
@@ -108,7 +108,7 @@ function chawa_enqueue_scripts() {
 	);
 	wp_localize_script('onboarding_wallet', 'chawa_localize_onboarding', $translation_array );
 
-	wp_register_script('user', CHAWA_PLUGIN_DIR . 'shortcodes/onboarding/user.js', array('jquery' ), CHAWA_PLUGIN_VER );
+	wp_register_script('user', CHAWA_PLUGIN_DIR . 'templates/onboarding/user.js', array('jquery' ), CHAWA_PLUGIN_VER );
 	$translation_array = array(
 		'top_up_amount_too_low' => __('The top-up amount is too low.', 'chawa'),
 		'choose_amount' => __('Please choose your amount', 'chawa'),
@@ -129,17 +129,17 @@ function chawa_enqueue_scripts() {
 }
 add_action('wp_enqueue_scripts', 'chawa_enqueue_scripts' );
 
-function script_basket(){
+function script_basket() {
 	wp_enqueue_script('basket' );
 }
 add_action('start_shortcode_basket', 'script_basket', 10);
 
-function script_donate(){
+function script_donate() {
 	wp_enqueue_script('donate' );
 }
 add_action('start_shortcode_donate', 'script_donate', 10);
 
-function script_charity(){
+function script_charity() {
 	//wp_enqueue_script('charity' );
 }
 add_action('start_shortcode_charity', 'script_charity', 10);
@@ -164,10 +164,7 @@ function nLbwuEa8_modify_create_user_route() {
 };
 //add_action('rest_api_init', 'nLbwuEa8_modify_create_user_route' );
 
-add_action('gform_user_registered', 'wpc_gravity_registration_autologin',  10, 4 );
-/**
- * Auto login after registration.
- */
+// auto login after registration.
 function wpc_gravity_registration_autologin( $user_id, $user_config, $entry, $password ) {
 	$user = get_userdata( $user_id );
 	$user_login = $user->user_login;
@@ -181,8 +178,9 @@ function wpc_gravity_registration_autologin( $user_id, $user_config, $entry, $pa
 
 	));
 }
+add_action('gform_user_registered', 'wpc_gravity_registration_autologin',  10, 4 );
 
-// Remove admin bar
+// remove admin bar
 function remove_admin_bar() {
 	if (!current_user_can('administrator') && !is_admin()) {
 	show_admin_bar(false);
@@ -194,7 +192,7 @@ add_action('after_setup_theme', 'remove_admin_bar');
 function page_templates( $template ) {
 
 	if ( is_front_page()) {
-		$new_template = locate_template( array('/shortcodes/onboarding/onboarding-account.php' ));
+		$new_template = locate_template( array('/templates/onboarding/account.php' ));
 		if ( !empty( $new_template )) {
 			return $new_template;
 		}
@@ -204,19 +202,23 @@ function page_templates( $template ) {
 }
 //add_filter('template_include', 'page_templates', 99 );
 
-/* Rewrite Rules */
-
+// rewrite rules
 function chawa_rewrite_rules() {
+	add_rewrite_rule('wallet/?$', 'index.php?wallet=wallet', 'top' );
 	add_rewrite_rule('wallet/' . _x('transactions','rewrite rule','chawa') . '/?$', 'index.php?wallet=transactions', 'top' );
+
+	add_rewrite_rule('account/?$', 'index.php?account=account', 'top' );
+
+	add_rewrite_rule('webhook/charge/?$', 'index.php?webhook=charge', 'top' );
+
 	add_rewrite_rule('onboarding/account/?$', 'index.php?onboarding=account', 'top' );
 	add_rewrite_rule('onboarding/wallet/?$', 'index.php?onboarding=wallet', 'top' );
 	add_rewrite_rule('onboarding/pay/?$', 'index.php?onboarding=pay', 'top' );
 	add_rewrite_rule('onboarding/pay/charge/?$', 'index.php?onboarding=pay-charge', 'top' );
-	add_rewrite_rule('webhook/charge/?$', 'index.php?webhook=charge', 'top' );
 }
 add_action('init', 'chawa_rewrite_rules');
 
-/* Query Vars */
+// query vars
 function chawa_register_query_var( $vars ) {
 	$vars[] = 'wallet';
 	$vars[] = 'account';
@@ -226,7 +228,7 @@ function chawa_register_query_var( $vars ) {
 }
 add_filter('query_vars', 'chawa_register_query_var' );
 
-/* Template Include */
+// template include
 function chawa_onboarding_template_include($template) {
 	global $wp_query;
 	
@@ -235,25 +237,29 @@ function chawa_onboarding_template_include($template) {
 		$query_var = $wp_query->query_vars['onboarding'];
 
 		if ($query_var && $query_var === 'account') {
-			return plugin_dir_path(__FILE__).'shortcodes/onboarding/onboarding-account.php';
+			return plugin_dir_path(__FILE__).'templates/onboarding/account.php';
 		}
 		
 		if ($query_var && $query_var === 'wallet') {
-			return plugin_dir_path(__FILE__).'shortcodes/onboarding/onboarding-wallet.php';
+			return plugin_dir_path(__FILE__).'templates/onboarding/wallet.php';
 		}
 		
 		if ($query_var && $query_var === 'pay') {
-			return plugin_dir_path(__FILE__).'shortcodes/onboarding/onboarding-pay.php';
+			return plugin_dir_path(__FILE__).'templates/onboarding/pay.php';
 		}
 		
 		if ($query_var && $query_var === 'pay-charge') {
-			return plugin_dir_path(__FILE__).'shortcodes/onboarding/onboarding-pay-charge.php';
+			return plugin_dir_path(__FILE__).'templates/onboarding/pay-charge.php';
 		}
 		
 		
 	} else if ( isset($wp_query->query_vars['wallet'])) {
 
 		$query_var = $wp_query->query_vars['wallet'];
+
+		if ($query_var && $query_var === 'wallet') {
+			return plugin_dir_path(__FILE__).'templates/wallet/wallet.php';
+		}
 
 		if ($query_var && $query_var === 'transactions') {
 			return plugin_dir_path(__FILE__).'templates/wallet/transactions.php';
@@ -279,10 +285,9 @@ function chawa_onboarding_template_include($template) {
 
 	return $template;
 }
-add_filter('template_include', 'chawa_onboarding_template_include', 1, 1); 
+add_filter('template_include', 'chawa_onboarding_template_include', 1, 1);
 
-
-// Add rest api endpoint for 'wallet' meta field
+// add rest api endpoint for 'wallet' meta field
 function slug_register_wallet() {
 	register_rest_field('user',
 		'wallet',
@@ -302,3 +307,13 @@ function slug_get_wallet( $data, $field_name, $request ) {
 function slug_update_wallet( $value, $object, $field_name ) {
 	return update_user_meta( $object->id, $field_name, $value );
 }
+
+function add_extra_item_to_nav_menu( $items, $args ) {
+	if (is_user_logged_in() && $args->theme_location = 'primary') {
+		$items .= '<li><a href="/' . _x( 'charities', 'permalink for charities archive', 'chawa' ) . '/">' . __('Charities','chawa') . '</a></li>';
+		$items .= '<li><a href="/account/">' . __('Account','chawa') . '</a></li>';
+		$items .= '<li><a href="/wallet/">Wallet</a></li>';
+	}
+	return $items;
+}
+add_filter( 'wp_nav_menu_items', 'add_extra_item_to_nav_menu', 10, 2 );

@@ -12,6 +12,8 @@ get_header(); ?>
 
 			<h1><?php _e('Account', 'chawa'); ?></h1>
 
+			<?php echo 'user'; ?>
+
 		</div>
 	</main>
 </section>

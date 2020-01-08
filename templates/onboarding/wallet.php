@@ -40,7 +40,7 @@ get_header(); ?>
 					<p><strong><?php _e('Would you like to top-up your wallet montly or only one time?', 'chawa'); ?></strong></p>
 					<p>
 						<label><input type="radio" name="recurring" value="false" <?php if ($recurring === 'false') { echo 'checked'; } ?>><?php _e('once', 'chawa'); ?></label>
-						<label><input type="radio" name="recurring" value="true" <?php if ($recurring === 'true') { echo 'checked'; } ?>><?php _e('monthly', 'chawa'); ?></label>
+						<label><input disabled type="radio" name="recurring" value="true" <?php if ($recurring === 'true') { echo 'checked'; } ?>><?php _e('monthly', 'chawa'); ?></label>
 					</p>
 					<p><strong><?php _e('Which amount would you like to transfer to your wallet?', 'chawa'); ?></strong></p>
 					<p>
