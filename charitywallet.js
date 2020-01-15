@@ -3,14 +3,14 @@ jQuery(document).ready(function($) {
 	createWallet();
 
 	// Empty <sup> element to show total cart 
-	jQuery('#site-navigation li:nth-last-child(3) a').append(' <sup></sup>');
-	jQuery('#site-navigation li:nth-child(2) a').append(' <sup></sup>');
+	//jQuery('#site-navigation li:nth-last-child(3) a').append(' <sup></sup>');
+	//jQuery('#site-navigation li:nth-child(2) a').append(' <sup></sup>');
 
 	// Show cart total in navigation
-	totalCart();
+	//totalCart();
 
 	// Show wallet total in navigation
-	totalWallet();
+	//totalWallet();
 
 	// Remove button on basket page
 	$('#charity-basket').on('click', '.remove', function() {

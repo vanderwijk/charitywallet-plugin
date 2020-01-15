@@ -126,6 +126,12 @@ function chawa_enqueue_scripts() {
 		'are_you_sure' => __('Are you sure?', 'chawa'),
 	);
 	//wp_localize_script('charity', 'chawa_localize_charity', $translation_array );
+
+	$ajax_url = admin_url( 'admin-ajax.php' );
+	wp_register_script('update-usermeta', CHAWA_PLUGIN_DIR . 'templates/account/usermeta.js', array('jquery' ), CHAWA_PLUGIN_VER );
+	wp_localize_script('update-usermeta', 'ajax_url', $ajax_url );
+	wp_enqueue_script('update-usermeta');
+
 }
 add_action('wp_enqueue_scripts', 'chawa_enqueue_scripts' );
 
@@ -208,6 +214,7 @@ function chawa_rewrite_rules() {
 	add_rewrite_rule('wallet/' . _x('transactions','rewrite rule','chawa') . '/?$', 'index.php?wallet=transactions', 'top' );
 
 	add_rewrite_rule('account/?$', 'index.php?account=account', 'top' );
+	add_rewrite_rule('account/edit/?$', 'index.php?account=edit', 'top' );
 
 	add_rewrite_rule('webhook/charge/?$', 'index.php?webhook=charge', 'top' );
 
@@ -281,6 +288,10 @@ function chawa_onboarding_template_include($template) {
 			return plugin_dir_path(__FILE__).'templates/account/account.php';
 		}
 
+		if ($query_var && $query_var === 'edit') {
+			return plugin_dir_path(__FILE__).'templates/account/edit.php';
+		}
+
 	}
 
 	return $template;
@@ -317,3 +328,58 @@ function add_extra_item_to_nav_menu( $items, $args ) {
 	return $items;
 }
 add_filter( 'wp_nav_menu_items', 'add_extra_item_to_nav_menu', 10, 2 );
+
+function usermeta_callback() {
+
+	if ( !isset( $_POST ) || empty( $_POST ) || !is_user_logged_in() ) {
+		header( 'HTTP/1.1 400 Empty POST Values' );
+		echo 'Could Not Verify POST Values.';
+		exit;
+	}
+
+	$user_id = get_current_user_id();
+
+	if (isset($_POST['newsletter'])) {
+		$newsletter = sanitize_text_field( $_POST['newsletter'] );
+		update_user_meta( $user_id, 'communications_newsletter', $newsletter );
+	}
+
+	if (isset($_POST['wellbeing'])) {
+		$wellbeing = sanitize_text_field( $_POST['wellbeing'] );
+		update_user_meta( $user_id, 'interests_wellbeing', $wellbeing );
+	}
+
+	if (isset($_POST['health'])) {
+		$health = sanitize_text_field( $_POST['health'] );
+		update_user_meta( $user_id, 'interests_health', $health );
+	}
+
+	if (isset($_POST['animals'])) {
+		$animals = sanitize_text_field( $_POST['animals'] );
+		update_user_meta( $user_id, 'interests_animals', $animals );
+	}
+
+	if (isset($_POST['education'])) {
+		$education = sanitize_text_field( $_POST['education'] );
+		update_user_meta( $user_id, 'interests_education', $education );
+	}
+
+	if (isset($_POST['religion'])) {
+		$religion = sanitize_text_field( $_POST['religion'] );
+		update_user_meta( $user_id, 'interests_religion', $religion );
+	}
+
+	if (isset($_POST['arts_culture'])) {
+		$arts_culture = sanitize_text_field( $_POST['arts_culture'] );
+		update_user_meta( $user_id, 'interests_arts_culture', $arts_culture );
+	}
+
+	if (isset($_POST['aid_human_rights'])) {
+		$aid_human_rights = sanitize_text_field( $_POST['aid_human_rights'] );
+		update_user_meta( $user_id, 'interests_aid_human_rights', $aid_human_rights );
+	}
+
+	exit();
+}
+add_action( 'wp_ajax_nopriv_um_cb', 'usermeta_callback' );
+add_action( 'wp_ajax_um_cb', 'usermeta_callback' );
