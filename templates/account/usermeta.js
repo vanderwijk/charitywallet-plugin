@@ -79,12 +79,19 @@ jQuery('document').ready(function($) {
 			var newsletter = 'unsubscribed';
 		}
 
+		if ($('#user-communications #post').is(':checked')) {
+			var post = 'post';
+		} else {
+			var post = '';
+		}
+
 		$.ajax({
 			url : ajax_url,
 			type: 'POST',
 			data: {
 				action  : 'um_cb',
 				'newsletter': newsletter,
+				'post': post,
 			}
 		})
 		.success( function() {

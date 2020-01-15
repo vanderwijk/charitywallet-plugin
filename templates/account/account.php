@@ -79,6 +79,12 @@ get_header(); ?>
 						<label><?php _e('Newsletter', 'chawa'); ?></label>
 					</div>
 				</div>
+				<div class="pretty p-default p-curve p-pulse">
+					<input type="checkbox" id="post" <?php checked( $user_meta['communications_post'][0], 'post' ); ?> />
+					<div class="state p-primary">
+						<label><?php _e('Post', 'chawa'); ?></label>
+					</div>
+				</div>
 			</form>
 
 		</div>

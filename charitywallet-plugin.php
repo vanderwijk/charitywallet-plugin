@@ -344,6 +344,11 @@ function usermeta_callback() {
 		update_user_meta( $user_id, 'communications_newsletter', $newsletter );
 	}
 
+	if (isset($_POST['post'])) {
+		$post = sanitize_text_field( $_POST['post'] );
+		update_user_meta( $user_id, 'communications_post', $post );
+	}
+
 	if (isset($_POST['wellbeing'])) {
 		$wellbeing = sanitize_text_field( $_POST['wellbeing'] );
 		update_user_meta( $user_id, 'interests_wellbeing', $wellbeing );
