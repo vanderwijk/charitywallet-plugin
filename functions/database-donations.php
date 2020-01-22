@@ -21,8 +21,9 @@ function chawa_db_donations_install() {
 		amount varchar(50) NOT NULL,
 		time datetime DEFAULT '1970-01-01 00:00:01' NOT NULL,
 		PRIMARY KEY (donation_id),
-		FOREIGN KEY (transaction_id) 
-			REFERENCES wp_e8ab437ebb_chawa_transactions(transaction_id) 
+		CONSTRAINT fk_transaction_id
+			FOREIGN KEY (transaction_id) 
+			REFERENCES wp_e8ab437ebb_chawa_transactions (transaction_id) 
 			ON DELETE SET NULL
 	) $charset_collate;";
 
