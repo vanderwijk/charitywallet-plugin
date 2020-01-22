@@ -76,8 +76,7 @@ if ($installed_ver != $chawa_table_ver_transactions) {
 		user_id mediumint(9) NOT NULL,
 		amount varchar(50) NOT NULL,
 		recurring BOOLEAN,
-		time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
-		PRIMARY KEY (transaction_id)
+		time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL
 	);";
 
 	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
