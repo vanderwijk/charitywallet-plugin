@@ -21,7 +21,7 @@ if ( ! defined('WPINC' )) {
 define('CHAWA_PLUGIN_DIR', plugin_dir_url(__FILE__));
 define('CHAWA_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__)); // Relative path
 define('CHAWA_PLUGIN_VER', '1.0.1');
-define('CHAWA_DATABASE_VER', '1.3.6');
+define('CHAWA_DATABASE_VER', '1.3.7');
 
 // database
 define('CHAWA_TABLE_TRANSACTIONS', $wpdb->prefix . 'chawa_transactions');
