@@ -22,7 +22,7 @@ function chawa_db_donations_install() {
 		time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
 		PRIMARY KEY (donation_id),
 		FOREIGN KEY (transaction_id) 
-			REFERENCES wp_chawa_transactions (transaction_id) 
+			REFERENCES " . $table_name_transactions . " (transaction_id) 
 			ON DELETE NULL
 	) $charset_collate;";
 
