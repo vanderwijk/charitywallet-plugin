@@ -369,8 +369,40 @@ ul.parsley-errors-list li {
 }
 
 /* Transactions */
-tbody td {
-	font-size: 16px;
+table.transactions {
+	font-size: 14px;
+}
+table.transactions tr {
+	border-bottom: 1px solid #62707c;
+}
+table.transactions tr:nth-child(even) {
+	background-color: #fff;
+}
+table.transactions .details {
+	margin-left: 10px;
+	font-size: 12px;
+	color: #4eb4d9;
+	cursor: pointer;
+}
+table.transactions .collapse {
+	display: none;
+}
+
+td.date {
+	text-transform: uppercase;
+	white-space: nowrap;
+	font-size: 12px;
+	font-weight: 600;
+	color: #62707c;
+}
+td.type {
+	text-transform: uppercase;
+	font-weight: 700;
+}
+td.amount {
+	text-align: right;
+	text-transform: uppercase;
+	font-weight: 700;
 }
 
 main form {

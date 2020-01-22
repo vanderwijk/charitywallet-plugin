@@ -17,7 +17,7 @@ $user_id = get_current_user_id(); ?>
 
 			<p><?php _e('These are your wallet transactions.', 'chawa'); ?></p>
 
-			<table>
+			<table class="transactions">
 				<thead>
 					<tr>
 						<th><?php _e('Date', 'chawa'); ?></th>
@@ -37,9 +37,9 @@ $user_id = get_current_user_id(); ?>
 						//print_r($transaction);
 						if ($transaction -> transaction_type === 'iDEAL' ) {
 							echo '<tr>';
-							echo '<td>' . date_i18n(get_option('date_format') . ' - ' . get_option('time_format'), strtotime($transaction -> time)) . '</td>';
-							echo '<td>' . __($transaction -> transaction_type, 'chawa') . '</td>';
-							echo '<td class="text-align-right">' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
+							echo '<td class="date">' . date_i18n(get_option('date_format'), strtotime($transaction -> time)) . '</td>';
+							echo '<td class="type">' . __($transaction -> transaction_type, 'chawa') . '</td>';
+							echo '<td class="amount">' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
 							if ($transaction -> charge_status) {
 								echo '<td>' . _x($transaction -> charge_status, 'charge status', 'chawa') . '</td>';
 							} else {
@@ -48,16 +48,16 @@ $user_id = get_current_user_id(); ?>
 							echo '</tr>';
 						} else if ($transaction -> transaction_type === 'Transaction costs' ) {
 							echo '<tr>';
-							echo '<td>' . date_i18n(get_option('date_format') . ' - ' . get_option('time_format'), strtotime($transaction -> time)) . '</td>';
-							echo '<td>' . __($transaction -> transaction_type, 'chawa') . '</td>';
-							echo '<td class="text-align-right"> - ' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
+							echo '<td class="date">' . date_i18n(get_option('date_format'), strtotime($transaction -> time)) . '</td>';
+							echo '<td class="type">' . __($transaction -> transaction_type, 'chawa') . '</td>';
+							echo '<td class="amount"> - ' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
 							echo '<td>' . _x($transaction -> transaction_status, 'charge status', 'chawa') . '</td>';
 							echo '</tr>';
 						} else if ($transaction -> transaction_type === 'Donation' ) {
 							echo '<tr>';
-							echo '<td>' . date_i18n(get_option('date_format') . ' - ' . get_option('time_format'), strtotime($transaction -> time)) . '</td>';
-							echo '<td>' . __($transaction -> transaction_type, 'chawa') . '</td>';
-							echo '<td class="text-align-right"> - ' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
+							echo '<td class="date">' . date_i18n(get_option('date_format'), strtotime($transaction -> time)) . '</td>';
+							echo '<td class="type">' . __($transaction -> transaction_type, 'chawa') . '<span id="details" class="details">' .  __('details', 'chawa')  . '</span></td>';
+							echo '<td class="amount"> - ' . number_format_i18n($transaction -> amount/100, 2) . '</td>';
 							echo '<td>' . _x($transaction -> transaction_status, 'charge status', 'chawa') . '</td>';
 							echo '</tr>';
 
@@ -66,9 +66,9 @@ $user_id = get_current_user_id(); ?>
 							);
 
 							foreach ($donations as $donation) {
-								echo '<tr>';
+								echo '<tr class="collapse">';
 								echo '<td></td>';
-								echo '<td>';
+								echo '<td class="organisation">';
 								//print_r($donation);
 								echo get_the_title($donation -> charity_id);
 								echo '</td>';
@@ -82,6 +82,16 @@ $user_id = get_current_user_id(); ?>
 
 				</tbody>
 			</table>
+
+			<script>
+				jQuery('document').ready(function($) {
+					$('.details').on('click',function() {
+						$(this).parent().parent().nextAll('.collapse').toggle();
+					});
+
+
+				});
+				</script>
 
 		</div>
 	</main>

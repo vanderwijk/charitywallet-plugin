@@ -23,6 +23,8 @@ get_header(); ?>
 				echo '<p><a href="/account/edit/" class="button">' . __('Edit account', 'chawa') . '</a></p>';
 			?>
 
+			<hr>
+
 			<h2><?php _e('Your Interests', 'chawa'); ?></h2>
 
 			<form id="user-interests" method="post">
@@ -69,6 +71,8 @@ get_header(); ?>
 					</div>
 				</div>
 			</form>
+
+			<hr>
 
 			<h2><?php _e('Your Communication Preferences', 'chawa'); ?></h2>
 
