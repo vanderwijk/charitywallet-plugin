@@ -58,6 +58,7 @@ $installed_ver = get_option('chawa_table_ver_donations');
 if ($installed_ver != $chawa_table_ver_donations) {
 
 	$table_name_donations = $wpdb->prefix . 'chawa_donations';
+	$table_name_transactions = $wpdb->prefix . 'chawa_transactions';
 
 	$sql = "CREATE TABLE $table_name_donations (
 		donation_id mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -69,7 +70,7 @@ if ($installed_ver != $chawa_table_ver_donations) {
 		PRIMARY KEY (donation_id),
 		CONSTRAINT fk_transaction_id
 			FOREIGN KEY (transaction_id) 
-			REFERENCES wp_e8ab437ebb_chawa_transactions (transaction_id) 
+			REFERENCES $table_name_transactions (transaction_id) 
 			ON DELETE SET NULL
 	);";
 
