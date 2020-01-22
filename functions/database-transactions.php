@@ -13,7 +13,7 @@ function chawa_db_transactions_install() {
 	$charset_collate = $wpdb->get_charset_collate();
 
 	$sql = "CREATE TABLE $table_name (
-		transaction_id varchar(50) NOT NULL,
+		transaction_id varchar(50) NULL,
 		transaction_type varchar(50) NOT NULL,
 		transaction_status varchar(50) NOT NULL,
 		source_id varchar(50) NOT NULL,
@@ -23,7 +23,7 @@ function chawa_db_transactions_install() {
 		user_id mediumint(9) NOT NULL,
 		amount varchar(50) NOT NULL,
 		recurring BOOLEAN,
-		time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+		time datetime DEFAULT '1970-01-01 00:00:01' NOT NULL,
 		PRIMARY KEY (transaction_id)
 	) $charset_collate;";
 
@@ -66,7 +66,7 @@ if ($installed_ver != $chawa_table_ver_transactions) {
 	$table_name = $wpdb->prefix . 'chawa_transactions';
 
 	$sql = "CREATE TABLE $table_name (
-		transaction_id varchar(50) NOT NULL,
+		transaction_id varchar(50) NULL,
 		transaction_type varchar(50) NOT NULL,
 		transaction_status varchar(50) NOT NULL,
 		source_id varchar(50) NOT NULL,
@@ -76,7 +76,7 @@ if ($installed_ver != $chawa_table_ver_transactions) {
 		user_id mediumint(9) NOT NULL,
 		amount varchar(50) NOT NULL,
 		recurring BOOLEAN,
-		time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL
+		time datetime DEFAULT '1970-01-01 00:00:01' NOT NULL
 	);";
 
 	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
