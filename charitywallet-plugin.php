@@ -34,16 +34,18 @@ function chawa_load_textdomain() {
 }
 add_action('plugins_loaded', 'chawa_load_textdomain' );
 
-require 'shortcodes/basket/shortcode-basket.php';
-require 'shortcodes/donate/shortcode-donate.php';
-//require 'shortcodes/wallet/shortcode-wallet.php';
-require 'shortcodes/charity/shortcode-charity.php';
+require 'functions/rewrite-templates.php';
 require 'functions/database-transactions.php';
 require 'functions/database-donations.php';
 require 'functions/translations.php';
 require 'functions/wallet-balance.php';
 require 'functions/post-type-charity.php';
 require 'functions/template-charity-single.php';
+
+//require 'shortcodes/basket/shortcode-basket.php';
+require 'shortcodes/donate/shortcode-donate.php';
+//require 'shortcodes/wallet/shortcode-wallet.php';
+require 'shortcodes/charity/shortcode-charity.php';
 
 // create database tables
 register_activation_hook( __FILE__, 'chawa_db_transactions_install' );
@@ -194,7 +196,6 @@ function remove_admin_bar() {
 }
 add_action('after_setup_theme', 'remove_admin_bar');
 
-
 function page_templates( $template ) {
 
 	if ( is_front_page()) {
@@ -207,96 +208,6 @@ function page_templates( $template ) {
 	return $template;
 }
 //add_filter('template_include', 'page_templates', 99 );
-
-// rewrite rules
-function chawa_rewrite_rules() {
-	add_rewrite_rule('wallet/?$', 'index.php?wallet=wallet', 'top' );
-	add_rewrite_rule('wallet/' . _x('transactions','rewrite rule','chawa') . '/?$', 'index.php?wallet=transactions', 'top' );
-
-	add_rewrite_rule('account/?$', 'index.php?account=account', 'top' );
-	add_rewrite_rule('account/edit/?$', 'index.php?account=edit', 'top' );
-
-	add_rewrite_rule('webhook/charge/?$', 'index.php?webhook=charge', 'top' );
-
-	add_rewrite_rule('onboarding/account/?$', 'index.php?onboarding=account', 'top' );
-	add_rewrite_rule('onboarding/wallet/?$', 'index.php?onboarding=wallet', 'top' );
-	add_rewrite_rule('onboarding/pay/?$', 'index.php?onboarding=pay', 'top' );
-	add_rewrite_rule('onboarding/pay/charge/?$', 'index.php?onboarding=pay-charge', 'top' );
-}
-add_action('init', 'chawa_rewrite_rules');
-
-// query vars
-function chawa_register_query_var( $vars ) {
-	$vars[] = 'wallet';
-	$vars[] = 'account';
-	$vars[] = 'webhook';
-	$vars[] = 'onboarding';
-	return $vars;
-}
-add_filter('query_vars', 'chawa_register_query_var' );
-
-// template include
-function chawa_onboarding_template_include($template) {
-	global $wp_query;
-	
-	if ( isset($wp_query->query_vars['onboarding'])) {
-
-		$query_var = $wp_query->query_vars['onboarding'];
-
-		if ($query_var && $query_var === 'account') {
-			return plugin_dir_path(__FILE__).'templates/onboarding/account.php';
-		}
-		
-		if ($query_var && $query_var === 'wallet') {
-			return plugin_dir_path(__FILE__).'templates/onboarding/wallet.php';
-		}
-		
-		if ($query_var && $query_var === 'pay') {
-			return plugin_dir_path(__FILE__).'templates/onboarding/pay.php';
-		}
-		
-		if ($query_var && $query_var === 'pay-charge') {
-			return plugin_dir_path(__FILE__).'templates/onboarding/pay-charge.php';
-		}
-		
-		
-	} else if ( isset($wp_query->query_vars['wallet'])) {
-
-		$query_var = $wp_query->query_vars['wallet'];
-
-		if ($query_var && $query_var === 'wallet') {
-			return plugin_dir_path(__FILE__).'templates/wallet/wallet.php';
-		}
-
-		if ($query_var && $query_var === 'transactions') {
-			return plugin_dir_path(__FILE__).'templates/wallet/transactions.php';
-		}
-
-	} else if ( isset($wp_query->query_vars['webhook'])) {
-
-		$query_var = $wp_query->query_vars['webhook'];
-
-		if ($query_var && $query_var === 'charge') {
-			return plugin_dir_path(__FILE__).'webhooks/charge.php';
-		}
-
-	} else if ( isset($wp_query->query_vars['account'])) {
-
-		$query_var = $wp_query->query_vars['account'];
-
-		if ($query_var && $query_var === 'account') {
-			return plugin_dir_path(__FILE__).'templates/account/account.php';
-		}
-
-		if ($query_var && $query_var === 'edit') {
-			return plugin_dir_path(__FILE__).'templates/account/edit.php';
-		}
-
-	}
-
-	return $template;
-}
-add_filter('template_include', 'chawa_onboarding_template_include', 1, 1);
 
 // add rest api endpoint for 'wallet' meta field
 function slug_register_wallet() {

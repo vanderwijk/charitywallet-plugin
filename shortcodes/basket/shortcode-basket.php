@@ -65,7 +65,7 @@ function chawa_display_basket() {
 
 				<tfoot>
 					<tr>
-						<td>				
+					<td>				
 							<div class="pretty p-switch p-fill">
 								<input type="checkbox" class="basket-recurring" id="basket-recurring" />
 								<div class="state">
