@@ -21,24 +21,26 @@ get_header(); ?>
 
 			<h1><?php _e('Wallet', 'chawa'); ?></h1>
 
-			<?php if ( isset( $wallet_balance )) {
-				echo '<p>' . __('Your Wallet Balance is', 'chawa') . ' €' . number_format_i18n( $wallet_balance / 100, 2 ) . '</p>'; 
-			}?>
+			<?php if ( $user_wallet ) {
 
-			<p><?php _e('You chose to', 'chawa');
-				if ( $recurring === 'true' ) { 
-					echo ' ' . _x('monthly add', 'comes after \'You chose to\'', 'chawa');
-				} else {
-					echo ' ' . _x('add', 'comes after \'You chose to\'', 'chawa');
-				}
-				echo ' € ' . $amount . ',00 ';
-				printf(
-					'(<a href="%s">%s</a>)',
-					'/onboarding/wallet/',
-					__( 'change', 'chawa' )
-				);
-				echo ' ' . __('to your wallet', 'chawa') . '.'; ?>
-			</p>
+				echo '<p>' . __('Your Wallet Balance is', 'chawa') . ' €' . number_format_i18n( $wallet_balance / 100, 2 ) . '</p>'; 
+
+				echo '<p>' . __('You chose to', 'chawa');
+					if ( $recurring === 'true' ) { 
+						echo ' ' . _x('monthly add', 'comes after \'You chose to\'', 'chawa');
+					} else {
+						echo ' ' . _x('add', 'comes after \'You chose to\'', 'chawa');
+					}
+					echo ' € ' . $amount . ',00 ';
+					printf(
+						'(<a href="%s">%s</a>)',
+						'/onboarding/wallet/',
+						__( 'change', 'chawa' )
+					);
+					echo ' ' . __('to your wallet', 'chawa') . '.'; ?>
+				</p>
+
+			<?php } ?>
 
 			<p><a href="/wallet/<?php echo _x('transactions','rewrite rule','chawa'); ?>"><?php _e('View your wallet transactions.', 'chawa'); ?></a></p>
 
