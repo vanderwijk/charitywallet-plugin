@@ -29,43 +29,43 @@ get_header(); ?>
 
 			<form id="user-interests" method="post">
 				<div class="pretty p-default p-curve p-pulse">
-				<input type="checkbox" id="wellbeing" <?php checked( $user_meta['interests_wellbeing'][0], 'wellbeing' ); ?> />
+					<input type="checkbox" id="wellbeing" <?php if ( isset( $user_meta['interests_wellbeing'][0] )) { checked( $user_meta['interests_wellbeing'][0], 'wellbeing' ); } ?> />
 					<div class="state p-primary">
 						<label><?php _e('Wellbeing', 'chawa'); ?></label>
 					</div>
 				</div>
 				<div class="pretty p-default p-curve p-pulse">
-				<input type="checkbox" id="health" <?php checked( $user_meta['interests_health'][0], 'health' ); ?> />
+					<input type="checkbox" id="health" <?php if ( isset( $user_meta['interests_health'][0] )) { checked( $user_meta['interests_health'][0], 'health' ); } ?> />
 					<div class="state p-primary">
 						<label><?php _e('Health', 'chawa'); ?></label>
 					</div>
 				</div>
 				<div class="pretty p-default p-curve p-pulse">
-				<input type="checkbox" id="animals" <?php checked( $user_meta['interests_animals'][0], 'animals' ); ?> />
+					<input type="checkbox" id="animals" <?php if ( isset( $user_meta['interests_animals'][0] )) { checked( $user_meta['interests_animals'][0], 'animals' ); } ?> />
 					<div class="state p-primary">
 						<label><?php _e('Animals', 'chawa'); ?></label>
 					</div>
 				</div>
 				<div class="pretty p-default p-curve p-pulse">
-				<input type="checkbox" id="education" <?php checked( $user_meta['interests_education'][0], 'education' ); ?> />
+					<input type="checkbox" id="education" <?php if ( isset( $user_meta['interests_education'][0] )) { checked( $user_meta['interests_education'][0], 'education' ); } ?> />
 					<div class="state p-primary">
 						<label><?php _e('Education', 'chawa'); ?></label>
 					</div>
 				</div>
 				<div class="pretty p-default p-curve p-pulse">
-				<input type="checkbox" id="religion" <?php checked( $user_meta['interests_religion'][0], 'religion' ); ?> />
+					<input type="checkbox" id="religion" <?php if ( isset( $user_meta['interests_religion'][0] )) { checked( $user_meta['interests_religion'][0], 'religion' ); } ?> />
 					<div class="state p-primary">
 						<label><?php _e('Religion', 'chawa'); ?></label>
 					</div>
 				</div>
 				<div class="pretty p-default p-curve p-pulse">
-					<input type="checkbox" id="arts-culture" <?php checked( $user_meta['interests_arts_culture'][0], 'arts-culture' ); ?> />
+					<input type="checkbox" id="arts-culture" <?php if ( isset( $user_meta['interests_arts_culture'][0] )) { checked( $user_meta['interests_arts_culture'][0], 'arts-culture' ); } ?> />
 					<div class="state p-primary">
 						<label><?php _e('Arts and culture', 'chawa'); ?></label>
 					</div>
 				</div>
 				<div class="pretty p-default p-curve p-pulse">
-					<input type="checkbox" id="aid-human-rights" <?php checked( $user_meta['interests_aid_human_rights'][0], 'aid-human-rights' ); ?> />
+					<input type="checkbox" id="aid-human-rights" <?php if ( isset( $user_meta['interests_aid_human_rights'][0] )) { checked( $user_meta['interests_aid_human_rights'][0], 'aid-human-rights' ); } ?> />
 					<div class="state p-primary">
 						<label><?php _e('International aid and human rights', 'chawa'); ?></label>
 					</div>
@@ -84,7 +84,7 @@ get_header(); ?>
 					</div>
 				</div>
 				<div class="pretty p-default p-curve p-pulse">
-					<input type="checkbox" id="post" <?php checked( $user_meta['communications_post'][0], 'post' ); ?> />
+					<input type="checkbox" id="post" <?php if ( isset( $user_meta['communications_post'][0] )) { checked( $user_meta['communications_post'][0], 'post' ); } ?> />
 					<div class="state p-primary">
 						<label><?php _e('Post', 'chawa'); ?></label>
 					</div>

@@ -26,8 +26,6 @@ define('CHAWA_DATABASE_VER', '1.3.7');
 // database
 define('CHAWA_TABLE_TRANSACTIONS', $wpdb->prefix . 'chawa_transactions');
 define('CHAWA_TABLE_DONATIONS', $wpdb->prefix . 'chawa_donations');
-//define('CHAWA_TABLE_DONORS', $wpdb->prefix . 'donate_mollie_donors');
-//define('CHAWA_TABLE_SUBSCRIPTIONS', $wpdb->prefix . 'donate_mollie_subscriptions');
 
 function chawa_load_textdomain() {
 	load_plugin_textdomain('chawa', false, basename( CHAWA_PLUGIN_DIR ) . '/languages' );
