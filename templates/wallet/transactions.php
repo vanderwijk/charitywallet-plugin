@@ -13,7 +13,7 @@ $user_id = get_current_user_id(); ?>
 
 			<h1><?php _e('Wallet transactions', 'chawa'); ?></h1>
 
-			<p><?php echo '<h2>' . __('Your Wallet Balance', 'chawa') . ' €' . get_wallet_balance($user_id) . '</h2>'; ?></p>
+			<p><?php echo '<h2>' . __('Your Wallet Balance is', 'chawa') . ' €' . get_wallet_balance($user_id) . '</h2>'; ?></p>
 
 			<p><?php _e('These are your wallet transactions.', 'chawa'); ?></p>
 

@@ -21,7 +21,9 @@ get_header(); ?>
 
 			<h1><?php _e('Wallet', 'chawa'); ?></h1>
 
-			<?php echo '<p>' . __('Your Wallet Balance is', 'chawa') . ' €' . number_format_i18n($wallet_balance/100, 2) . '</p>'; ?></td>
+			<?php if ( isset( $wallet_balance )) {
+				echo '<p>' . __('Your Wallet Balance is', 'chawa') . ' €' . number_format_i18n( $wallet_balance / 100, 2 ) . '</p>'; 
+			}?>
 
 			<p><?php _e('You chose to', 'chawa');
 				if ( $recurring === 'true' ) { 
