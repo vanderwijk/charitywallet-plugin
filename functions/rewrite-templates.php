@@ -39,19 +39,19 @@ function chawa_include_templates($template) {
 		$query_var = $wp_query->query_vars['onboarding'];
 
 		if ($query_var && $query_var === 'account') {
-			return plugin_dir_path(__FILE__).'templates/onboarding/account.php';
+			return CHAWA_PLUGIN_DIR_PATH .'templates/onboarding/account.php';
 		}
 		
 		if ($query_var && $query_var === 'wallet') {
-			return plugin_dir_path(__FILE__).'templates/onboarding/wallet.php';
+			return CHAWA_PLUGIN_DIR_PATH . 'templates/onboarding/wallet.php';
 		}
 		
 		if ($query_var && $query_var === 'pay') {
-			return plugin_dir_path(__FILE__).'templates/onboarding/pay.php';
+			return CHAWA_PLUGIN_DIR_PATH . 'templates/onboarding/pay.php';
 		}
 		
 		if ($query_var && $query_var === 'pay-charge') {
-			return plugin_dir_path(__FILE__).'templates/onboarding/pay-charge.php';
+			return CHAWA_PLUGIN_DIR_PATH . 'templates/onboarding/pay-charge.php';
 		}
 
 	} else if ( isset($wp_query->query_vars['basket'])) {
@@ -59,7 +59,7 @@ function chawa_include_templates($template) {
 		$query_var = $wp_query->query_vars['basket'];
 
 		if ($query_var && $query_var === 'basket') {
-			return plugin_dir_path(__FILE__).'templates/basket/basket.php';
+			return CHAWA_PLUGIN_DIR_PATH . 'templates/basket/basket.php';
 		}
 
 	} else if ( isset($wp_query->query_vars['wallet'])) {
@@ -67,11 +67,11 @@ function chawa_include_templates($template) {
 		$query_var = $wp_query->query_vars['wallet'];
 
 		if ($query_var && $query_var === 'wallet') {
-			return plugin_dir_path(__FILE__).'templates/wallet/wallet.php';
+			return CHAWA_PLUGIN_DIR_PATH . 'templates/wallet/wallet.php';
 		}
 
 		if ($query_var && $query_var === 'transactions') {
-			return plugin_dir_path(__FILE__).'templates/wallet/transactions.php';
+			return CHAWA_PLUGIN_DIR_PATH . 'templates/wallet/transactions.php';
 		}
 
 	} else if ( isset($wp_query->query_vars['webhook'])) {
@@ -79,7 +79,7 @@ function chawa_include_templates($template) {
 		$query_var = $wp_query->query_vars['webhook'];
 
 		if ($query_var && $query_var === 'charge') {
-			return plugin_dir_path(__FILE__).'webhooks/charge.php';
+			return CHAWA_PLUGIN_DIR_PATH . 'webhooks/charge.php';
 		}
 
 	} else if ( isset($wp_query->query_vars['account'])) {
@@ -87,11 +87,11 @@ function chawa_include_templates($template) {
 		$query_var = $wp_query->query_vars['account'];
 
 		if ($query_var && $query_var === 'account') {
-			return plugin_dir_path(__FILE__).'templates/account/account.php';
+			return CHAWA_PLUGIN_DIR_PATH . 'templates/account/account.php';
 		}
 
 		if ($query_var && $query_var === 'edit') {
-			return plugin_dir_path(__FILE__).'templates/account/edit.php';
+			return CHAWA_PLUGIN_DIR_PATH . 'templates/account/edit.php';
 		}
 
 	}
