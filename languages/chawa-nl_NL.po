@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2020-10-09 12:58+0200\n"
-"PO-Revision-Date: 2020-10-09 13:00+0200\n"
+"POT-Creation-Date: 2020-10-23 12:04+0200\n"
+"PO-Revision-Date: 2020-10-23 12:05+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -22,69 +22,69 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 
-#: charitywallet-plugin.php:67 templates/wallet/transactions.php:23
+#: charitywallet-plugin.php:65 templates/wallet/transactions.php:23
 msgid "Date"
 msgstr "Datum"
 
-#: charitywallet-plugin.php:68
+#: charitywallet-plugin.php:66
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: charitywallet-plugin.php:69
+#: charitywallet-plugin.php:67
 msgid "Would you like to remove"
 msgstr "Wil je"
 
-#: charitywallet-plugin.php:70
+#: charitywallet-plugin.php:68
 msgid "from your basket?"
 msgstr "uit je mandje verwijderen?"
 
-#: charitywallet-plugin.php:71
+#: charitywallet-plugin.php:69
 msgid "Your basket is empty"
 msgstr "Je mandje is leeg"
 
-#: charitywallet-plugin.php:78 charitywallet-plugin.php:85
-#: charitywallet-plugin.php:92 charitywallet-plugin.php:107
-#: charitywallet-plugin.php:115
+#: charitywallet-plugin.php:76 charitywallet-plugin.php:83
+#: charitywallet-plugin.php:90 charitywallet-plugin.php:105
+#: charitywallet-plugin.php:113
 msgid "The top-up amount is too low."
 msgstr "Het opwaardeerbedrag is te laag."
 
-#: charitywallet-plugin.php:79 charitywallet-plugin.php:86
-#: charitywallet-plugin.php:93 charitywallet-plugin.php:108
-#: charitywallet-plugin.php:116
+#: charitywallet-plugin.php:77 charitywallet-plugin.php:84
+#: charitywallet-plugin.php:91 charitywallet-plugin.php:106
+#: charitywallet-plugin.php:114
 msgid "Please choose your amount"
 msgstr "Kies je bedrag"
 
-#: charitywallet-plugin.php:99
+#: charitywallet-plugin.php:97
 msgid "Please choose a payment type."
 msgstr "Kies je betaalmethode."
 
-#: charitywallet-plugin.php:100
+#: charitywallet-plugin.php:98
 msgid "Please choose your bank."
 msgstr "Kies je je bank."
 
-#: charitywallet-plugin.php:101
+#: charitywallet-plugin.php:99
 msgid "Please accept the terms and privacy statement."
 msgstr "Accepteer de algemene voorwaarden en het privacy statement."
 
-#: charitywallet-plugin.php:109
+#: charitywallet-plugin.php:107
 msgid "Please choose your frequency"
 msgstr "Kies je frequentie"
 
-#: charitywallet-plugin.php:128
+#: charitywallet-plugin.php:126
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
 
-#: charitywallet-plugin.php:235 functions/post-type-charity.php:56
+#: charitywallet-plugin.php:233 functions/post-type-charity.php:56
 msgctxt "permalink for charities archive"
 msgid "charities"
 msgstr "organisaties"
 
-#: charitywallet-plugin.php:235 functions/post-type-charity.php:9
+#: charitywallet-plugin.php:233 functions/post-type-charity.php:9
 #: functions/post-type-charity.php:43 shortcodes/donate/shortcode-donate.php:60
 msgid "Charities"
 msgstr "Organisaties"
 
-#: charitywallet-plugin.php:236 templates/account/account.php:17
+#: charitywallet-plugin.php:234 templates/account/account.php:17
 msgid "Account"
 msgstr "Account"
 
@@ -283,7 +283,7 @@ msgctxt "permalink for sector taxonomy"
 msgid "sector"
 msgstr "sector"
 
-#: functions/rewrite-templates.php:8 templates/wallet/wallet.php:41
+#: functions/rewrite-templates.php:8 templates/wallet/wallet.php:45
 msgctxt "rewrite rule"
 msgid "transactions"
 msgstr "transacties"
@@ -530,7 +530,27 @@ msgstr "Nieuwsbrief"
 msgid "Post"
 msgstr "Post"
 
-#: templates/account/edit.php:21
+#: templates/account/edit.php:23
+msgid "First name"
+msgstr "Voornaam"
+
+#: templates/account/edit.php:26
+msgid "Last name"
+msgstr "Achternaam"
+
+#: templates/account/edit.php:31
+msgid "Email address"
+msgstr "E-mailadres"
+
+#: templates/account/edit.php:34
+msgid "Phone"
+msgstr "Telefoon"
+
+#: templates/account/edit.php:38
+msgid "Save"
+msgstr "Opslaan"
+
+#: templates/account/edit.php:41
 msgid "back"
 msgstr "terug"
 
@@ -585,25 +605,25 @@ msgstr "Wallet opwaarderen"
 msgid "We are now going to top-up your wallet"
 msgstr "We gaan nu je wallet opwaarderen"
 
-#: templates/onboarding/pay.php:129 templates/wallet/wallet.php:26
+#: templates/onboarding/pay.php:129 templates/wallet/wallet.php:28
 msgid "You chose to"
 msgstr "Je hebt gekozen om"
 
-#: templates/onboarding/pay.php:131 templates/wallet/wallet.php:28
+#: templates/onboarding/pay.php:131 templates/wallet/wallet.php:30
 msgctxt "comes after 'You chose to'"
 msgid "monthly add"
 msgstr "maandelijks"
 
-#: templates/onboarding/pay.php:133 templates/wallet/wallet.php:30
+#: templates/onboarding/pay.php:133 templates/wallet/wallet.php:32
 msgctxt "comes after 'You chose to'"
 msgid "add"
 msgstr "eenmalig"
 
-#: templates/onboarding/pay.php:139 templates/wallet/wallet.php:36
+#: templates/onboarding/pay.php:139 templates/wallet/wallet.php:38
 msgid "change"
 msgstr "wijzig"
 
-#: templates/onboarding/pay.php:141 templates/wallet/wallet.php:38
+#: templates/onboarding/pay.php:141 templates/wallet/wallet.php:40
 msgid "to your wallet"
 msgstr "in je wallet te storten"
 
@@ -684,7 +704,7 @@ msgstr "Wat je ook kiest, je kunt het later altijd nog aanpassen."
 msgid "Wallet transactions"
 msgstr "Wallet-transacties"
 
-#: templates/wallet/transactions.php:16 templates/wallet/wallet.php:24
+#: templates/wallet/transactions.php:16 templates/wallet/wallet.php:26
 msgid "Your Wallet Balance is"
 msgstr "Je walletsaldo bedraagt"
 
@@ -708,7 +728,7 @@ msgstr "details"
 msgid "Wallet"
 msgstr "Wallet"
 
-#: templates/wallet/wallet.php:41
+#: templates/wallet/wallet.php:45
 msgid "View your wallet transactions."
 msgstr "Bekijk je wallet-transacties."
 

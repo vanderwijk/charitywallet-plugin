@@ -91,7 +91,7 @@ function chawa_include_templates($template) {
 		}
 
 		if ($query_var && $query_var === 'edit') {
-			return CHAWA_PLUGIN_DIR_PATH . 'templates/account/edit.php';
+			return CHAWA_PLUGIN_DIR_PATH . 'templates/account/account-edit.php';
 		}
 
 	}
