@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Charity Wallet\n"
-"POT-Creation-Date: 2020-10-23 12:04+0200\n"
-"PO-Revision-Date: 2020-10-23 12:05+0200\n"
+"POT-Creation-Date: 2020-10-30 10:25+0100\n"
+"PO-Revision-Date: 2020-10-30 10:25+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -470,6 +470,52 @@ msgstr "44 cent transactiekosten zullen worden toegevoegd"
 msgid "Transaction"
 msgstr "Transactie"
 
+#: templates/account/account-edit.php:17 templates/account/account.php:23
+msgid "Edit account"
+msgstr "Bewerk account"
+
+#: templates/account/account-edit.php:23
+msgid "First name"
+msgstr "Voornaam"
+
+#: templates/account/account-edit.php:26
+msgid "Last name"
+msgstr "Achternaam"
+
+#: templates/account/account-edit.php:31
+msgid "Email address"
+msgstr "E-mailadres"
+
+#: templates/account/account-edit.php:34
+msgid "Phone"
+msgstr "Telefoon"
+
+#: templates/account/account-edit.php:39
+msgid "Address"
+msgstr "Adres"
+
+#: templates/account/account-edit.php:42
+#, fuzzy
+#| msgid "Post"
+msgid "Postcode"
+msgstr "Post"
+
+#: templates/account/account-edit.php:47
+msgid "City"
+msgstr "Plaats"
+
+#: templates/account/account-edit.php:50
+msgid "Country"
+msgstr "Land"
+
+#: templates/account/account-edit.php:54
+msgid "Save"
+msgstr "Opslaan"
+
+#: templates/account/account-edit.php:57
+msgid "back"
+msgstr "terug"
+
 #: templates/account/account.php:20
 msgid "Your name"
 msgstr "Je naam"
@@ -481,10 +527,6 @@ msgstr "Je e-mailadres"
 #: templates/account/account.php:22
 msgid "Your address"
 msgstr "Je adres"
-
-#: templates/account/account.php:23 templates/account/edit.php:17
-msgid "Edit account"
-msgstr "Bewerk account"
 
 #: templates/account/account.php:28
 msgid "Your Interests"
@@ -529,30 +571,6 @@ msgstr "Nieuwsbrief"
 #: templates/account/account.php:89
 msgid "Post"
 msgstr "Post"
-
-#: templates/account/edit.php:23
-msgid "First name"
-msgstr "Voornaam"
-
-#: templates/account/edit.php:26
-msgid "Last name"
-msgstr "Achternaam"
-
-#: templates/account/edit.php:31
-msgid "Email address"
-msgstr "E-mailadres"
-
-#: templates/account/edit.php:34
-msgid "Phone"
-msgstr "Telefoon"
-
-#: templates/account/edit.php:38
-msgid "Save"
-msgstr "Opslaan"
-
-#: templates/account/edit.php:41
-msgid "back"
-msgstr "terug"
 
 #: templates/onboarding/account.php:19 templates/onboarding/account.php:26
 msgid "Create account"
