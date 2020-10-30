@@ -6,6 +6,18 @@
 	color: #8fd1c1;
 	color: #e6f1d6;
 }
+
+.account-edit input[type=submit] {
+	padding: 14px 30px;
+}
+
+.account-edit .saving {
+	background-image: url('/wp-content/plugins/charitywallet-plugin/images/spinner.svg');
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	background-size: contain;
+}
+
 .top-up-modal {
 	border-radius: 3px;
 	background-color: #f2f2f2;

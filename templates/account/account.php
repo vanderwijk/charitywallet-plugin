@@ -17,9 +17,9 @@ get_header(); ?>
 			<h1><?php _e('Account', 'chawa'); ?></h1>
 
 			<?php 
-				echo '<p><strong>' . __('Your name', 'chawa') . ':</strong><br />' . $user_meta['first_name'][0] . ' ' . $user_meta['last_name'][0] . '</p>';
-				echo '<p><strong>' . __('Your e-mail address', 'chawa') . ':</strong><br />' . $user_data->user_email . '</p>';
-				echo '<p><strong>' . __('Your address', 'chawa') . ':</strong><br />' . $user_data->user_address_street . '<br />' . $user_data->user_address_postcode . ' ' . $user_data->user_address_city . '</p>';
+				echo '<p><strong>' . __('Your name', 'chawa') . ':</strong><br />' . esc_html( $user_meta['first_name'][0] ) . ' ' . esc_html( $user_meta['last_name'][0] ) . '</p>';
+				echo '<p><strong>' . __('Your e-mail address', 'chawa') . ':</strong><br />' . esc_html( $user_data->user_email ) . '</p>';
+				echo '<p><strong>' . __('Your address', 'chawa') . ':</strong><br />' . esc_html( $user_data->user_address_street ) . '<br />' . esc_html( $user_data->user_address_postcode ) . ' ' . esc_html( $user_data->user_address_city ) . '</p>';
 				echo '<p><a href="/account/edit/" class="button">' . __('Edit account', 'chawa') . '</a></p>';
 			?>
 

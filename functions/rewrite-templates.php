@@ -8,7 +8,7 @@ function chawa_rewrite_rules() {
 	add_rewrite_rule('wallet/' . _x('transactions','rewrite rule','chawa') . '/?$', 'index.php?wallet=transactions', 'top' );
 
 	add_rewrite_rule('account/?$', 'index.php?account=account', 'top' );
-	add_rewrite_rule('account/edit/?$', 'index.php?account=edit', 'top' );
+	add_rewrite_rule('account/edit/?$', 'index.php?account=account-edit', 'top' );
 
 	add_rewrite_rule('webhook/charge/?$', 'index.php?webhook=charge', 'top' );
 
@@ -90,7 +90,7 @@ function chawa_include_templates($template) {
 			return CHAWA_PLUGIN_DIR_PATH . 'templates/account/account.php';
 		}
 
-		if ($query_var && $query_var === 'edit') {
+		if ($query_var && $query_var === 'account-edit') {
 			return CHAWA_PLUGIN_DIR_PATH . 'templates/account/account-edit.php';
 		}
 

@@ -32,6 +32,7 @@ function chawa_load_textdomain() {
 }
 add_action('plugins_loaded', 'chawa_load_textdomain' );
 
+require 'api/rest-user-meta.php';
 require 'functions/rewrite-templates.php';
 require 'functions/database-transactions.php';
 require 'functions/database-donations.php';
@@ -131,6 +132,14 @@ function chawa_enqueue_scripts() {
 	wp_register_script('update-usermeta', CHAWA_PLUGIN_DIR . 'templates/account/usermeta.js', array('jquery' ), CHAWA_PLUGIN_VER );
 	wp_localize_script('update-usermeta', 'ajax_url', $ajax_url );
 	wp_enqueue_script('update-usermeta');
+
+	wp_register_script('account-edit', CHAWA_PLUGIN_DIR . 'templates/account/account-edit.js', array('jquery' ), CHAWA_PLUGIN_VER );
+	global $wp_query;
+	$query_var = $wp_query->query_vars['account'];
+	if ($query_var && $query_var === 'account-edit') {
+		wp_enqueue_script( 'account-edit' );
+		wp_localize_script( 'account-edit', 'WP_API_Settings', array( 'root' => esc_url_raw( rest_url() ), 'nonce' => wp_create_nonce( 'wp_rest' ), 'title' => ( current_time( 'H:i:s' ) ) ) );
+	}
 
 }
 add_action('wp_enqueue_scripts', 'chawa_enqueue_scripts' );
