@@ -39,7 +39,7 @@ function chawa_include_templates($template) {
 		$query_var = $wp_query->query_vars['onboarding'];
 
 		if ($query_var && $query_var === 'account') {
-			return CHAWA_PLUGIN_DIR_PATH .'templates/onboarding/account.php';
+			return CHAWA_PLUGIN_DIR_PATH . 'templates/onboarding/account.php';
 		}
 		
 		if ($query_var && $query_var === 'wallet') {

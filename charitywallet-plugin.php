@@ -135,12 +135,13 @@ function chawa_enqueue_scripts() {
 
 	wp_register_script('account-edit', CHAWA_PLUGIN_DIR . 'templates/account/account-edit.js', array('jquery' ), CHAWA_PLUGIN_VER );
 	global $wp_query;
-	$query_var = $wp_query->query_vars['account'];
-	if ($query_var && $query_var === 'account-edit') {
-		wp_enqueue_script( 'account-edit' );
-		wp_localize_script( 'account-edit', 'WP_API_Settings', array( 'root' => esc_url_raw( rest_url() ), 'nonce' => wp_create_nonce( 'wp_rest' ), 'title' => ( current_time( 'H:i:s' ) ) ) );
+	if ( isset($wp_query->query_vars['account'])) {
+		$query_var = $wp_query->query_vars['account'];
+		if ($query_var && $query_var === 'account-edit') {
+			wp_enqueue_script( 'account-edit' );
+			wp_localize_script( 'account-edit', 'WP_API_Settings', array( 'root' => esc_url_raw( rest_url() ), 'nonce' => wp_create_nonce( 'wp_rest' ), 'title' => ( current_time( 'H:i:s' ) ) ) );
+		}
 	}
-
 }
 add_action('wp_enqueue_scripts', 'chawa_enqueue_scripts' );
 
